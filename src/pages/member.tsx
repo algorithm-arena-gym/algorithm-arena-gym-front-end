@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import 'src/app/globals.css'
+import TabNavbar from "src/app/navbar/navbar.js";
 
 interface Member {
   memberID:number,
@@ -59,23 +60,36 @@ export default function allMember() {
   }
 
   const members=JSON.parse(JSON.stringify(memberData));
-  return (
-    <div className=' bg-black flex flex-wrap justify-around p-5'>
+
+     return (
+      <div>
+      <div>
+        <TabNavbar />
+      </div>
+      <div className=' bg-black'>
+    <div className=' bg-black flex flex-wrap p-5'>
       {members.map((member:Member) => (
         <div>
           <Link href={`/member/${member.memberID}`}>
-        <div className=' bg-[#D9D9D9] p-5 flex mlr-10 rounded-3xl m-5 content-center  w-96'>
+        <div className=' bg-[#D9D9D9] p-5 flex mlr-10 rounded-3xl m-2 content-center  w-96'>
           <img className=' border-[#E2FEA7] border-4 w-20 h-20 rounded-full' src={member.profilePic} alt="profilePicture"/>
           <div className=' ml-10'>
-            <p className=''>Member ID: {member.memberID}</p>
+    
             <p>{member.nameEng}</p>
             <p>{member.nameTh}</p>
-            {/* <p>{member.rankID}</p> */}
+            <p>{member.phone}</p>
           </div>
         </div>
         </Link>
         </div>
       ))}
+       <div className=' bg-[#D9D9D9] p-5 flex mlr-10 rounded-3xl m-2 content-center  w-96' >
+        <button type="button" className="focus:outline-none text-black bg-[#46FFBD]  hover:bg-[#E2FEA7] focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" >+</button>
+
+       </div>
+    </div>
+   
+    </div>
     </div>
   )
 }

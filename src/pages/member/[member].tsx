@@ -1,6 +1,8 @@
+import Navbar from "@/app/navbar/navbar";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import 'src/app/globals.css'
+import 'src/app/globals.css';
+import TabNavbar from "src/app/navbar/navbar.js";
 
 interface Member {
   memberID: number;
@@ -59,6 +61,11 @@ export default function MemberDetail() {
   }
 
   return (
+    <div>
+      <div>
+        <TabNavbar />
+      </div>
+      
     <div className=" bg-black flex-row  w-full h-full">
       <div className="flex justify-center ">
         <div className=" bg-[#D9D9D9] rounded-2xl m-10">
@@ -76,6 +83,9 @@ export default function MemberDetail() {
           </div>
         </div>
       </div>
+    </div>
+
+
     </div>
   );
 }

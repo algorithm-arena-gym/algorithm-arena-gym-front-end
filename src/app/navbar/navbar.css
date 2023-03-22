@@ -1,0 +1,18 @@
+.tabNavbar  {
+  background-color: #484646;
+  height: 50px;
+}
+
+.textLOGO {
+  font-family: 'Anton', sans-serif;
+  font-size: 35px;
+  color:white;
+  
+}
+
+.textmenu {
+  font-family: 'Audiowide', cursive;
+  /* font-size: 35px; */
+  color:white;
+  
+}
