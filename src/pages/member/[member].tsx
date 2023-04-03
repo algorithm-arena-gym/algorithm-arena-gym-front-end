@@ -71,7 +71,9 @@ export default function MemberDetail() {
         <div className=" bg-[#D9D9D9] rounded-2xl m-10">
           <img className=" rounded-full w-96 h-96 m-20 border-8 border-[#E2FEA7]" src={memberData.profilePic}/>
           <div className=" flex-row justify-center m-10">
-            <h1 className="text-1xl font-bold underline">{memberData.nameEng}</h1>
+            <h1 className="text-1xl font-bold fontDetail">{memberData.nameEng}</h1>
+                        <p>{memberData.memberID}</p>
+
             <p>{memberData.nameTh}</p>
             <p>{memberData.address}</p>
             <p>{memberData.nameTh}</p>
