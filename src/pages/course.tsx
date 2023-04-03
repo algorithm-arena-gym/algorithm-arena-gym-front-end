@@ -63,25 +63,16 @@ export default function allCourse() {
     <div className=' bg-black'> 
   <div className=' flex flex-wrap p-5'>
     {courses.map((course:Course) => ( ///loop course
-      <div>
+      <div className="row">
         <Link href={`/member/${course.courseID}`}>
           <div className="card">
-            <img src= {course.coursePic}
-            style={{width:"100%"}}/>
+            <img src= {course.coursePic}/>
             <div className="container">
               <p className="title">{course.courseName}</p>
               <p>{course.price} Bath/Month</p> 
             </div>
           </div>
-          {/* <div className=' bg-[#D9D9D9] p-5 flex mlr-10 rounded-3xl m-2 content-center  w-40'> */}
-            {/* <img  src={course.profilePic} /> */}
-            {/* <div className=' ml-10'>
-              <img className=' border-[#E2FEA7] border-4 w-20 h-20 rounded-full content-center' src={course.profilePic} alt="profilePicture"/> */}
-              {/* <p>name {course.courseName}</p>
-              <p> {course.price} Bath/Month</p> */}
-              {/* <img className=' border-[#E2FEA7] border-4 w-20 h-20 rounded-full content-center' src={course.profilePic} alt="profilePicture"/> */}
-            {/* </div> */}
-          {/* </div> */}
+          
         </Link>
       </div>
       ))}
