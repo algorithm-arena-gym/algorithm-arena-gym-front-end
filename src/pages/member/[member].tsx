@@ -89,13 +89,52 @@ export default function MemberDetail() {
           {/* ก้อน2 */}
           <p>Member information</p>
           <div className="flex flex-row">
-             <div className="basis-1/2 flex justify-center ...">01</div>
-             <div className="basis-1/2 flex justify-center ...">02</div>
-</div>
+             <div className="basis-1/2 flex justify-center ...">
+              <p>Name(Eng)</p>
+              <p className="font-bold">{memberData.nameEng}</p>
+              <p>Name(TH)</p>
+              <p className="font-bold">{memberData.nameTh}</p>
+              <p>Rank</p>
+              {/* <p className="font-bold">{memberData.nameEng}</p> */}
+              <p>Point</p>
+              <p className="font-bold">{memberData.point}</p>
+              
+
+             </div>
+             <div className="basis-1/2 flex justify-center ...">
+              <p>Citizen ID</p>
+              <p className="font-bold">{memberData.cID}</p>
+              <p>Phone number</p>
+              <p className="font-bold">{memberData.phone}</p>
+              <p>Email</p>
+              <p className="font-bold">{memberData.email}</p>
+              <p>Address</p>
+              <p className="font-bold">{memberData.address}</p>
+              
+
+             </div>
+          </div>
 
 
          {/* ก้อน3 */}
-         
+         <div className="flex flex-row">
+             <div className="basis-1/2 flex justify-center ...">
+             <p>Medical information</p>
+             <p></p>
+             <p>Drug Allergy</p>
+              <p className="font-bold">{memberData.drugAllergy}</p>
+              <p>Congenital Disease</p>
+              <p className="font-bold">{memberData.congenitalDisease}</p>
+              <p>Emergency Contact</p>
+              <p className="font-bold">{memberData.emergencyContact}</p>
+              </div>
+
+             <div className="basis-1/2 flex justify-center ...">
+              <p>Course information</p>
+             <p></p>
+             
+             </div>
+          </div>
 
 
          </div>
