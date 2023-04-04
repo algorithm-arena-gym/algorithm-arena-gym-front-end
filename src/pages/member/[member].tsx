@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
+import member from "../member";
 
 interface Member {
   memberID: number;
@@ -66,12 +67,42 @@ export default function MemberDetail() {
         <TabNavbar />
       </div>
       
-    <div className=" bg-black flex-row  w-full h-full">
-      <div className="flex justify-center ">
-        <div className=" bg-[#D9D9D9] rounded-2xl m-10">
-          <img className=" rounded-full w-96 h-96 m-20 border-8 border-[#E2FEA7]" src={memberData.profilePic}/>
-          <div className=" flex-row justify-center m-10">
-            <h1 className="text-1xl font-bold fontDetail">{memberData.nameEng}</h1>
+    <div className=" bg-black w-full h-full">
+      <div className="grid place-items-center h-screen">
+        <div className="rounded-3x1 p-6 w-4/5 text-black h-[45opx] bg-[#D9D9D9]">
+          {/* ก้อน1 */}
+          <div className="flex justify-between items-center">
+           <img className=" rounded-full w-32 h-32 m-20 border-8 border-[#E2FEA7]" src={memberData.profilePic}/>
+           <div>
+            <div className="grid">
+              <span>{memberData.nameEng}</span>
+              <span>ID : {memberData.memberID}</span>
+            </div>
+           </div>
+           <div>
+            <div className="grid">
+             <button>create</button>
+              <button>edit</button>
+            </div>
+           </div>
+          </div>
+          {/* ก้อน2 */}
+          <p>Member information</p>
+          <div className="flex flex-row">
+             <div className="basis-1/2 flex justify-center ...">01</div>
+             <div className="basis-1/2 flex justify-center ...">02</div>
+</div>
+
+
+         {/* ก้อน3 */}
+         
+
+
+         </div>
+      </div>
+      </div>
+      
+            {/* <h1 className="text-1xl font-bold fontDetail">{memberData.nameEng}</h1>
                         <p>{memberData.memberID}</p>
 
             <p>{memberData.nameTh}</p>
@@ -81,12 +112,8 @@ export default function MemberDetail() {
             <p>{memberData.nameTh}</p>
             <p>{memberData.address}</p>
             <p>{memberData.nameTh}</p>
-            <p>{memberData.address}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
+            <p>{memberData.address}</p> */}
+          
 
     </div>
   );
