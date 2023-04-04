@@ -56,11 +56,12 @@ export default function allCourse() {
   const courses = JSON.parse(JSON.stringify(courseData));
 
   return (
-    <div>
+    <body className='bg-black'>
+    <div >
       <div>
-        <TabNavbar />  
+        <TabNavbar />
       </div>
-      <div className=' bg-black'>
+      <div >
         <div className=' flex flex-wrap p-5'>
           {courses.map((course: Course) => ( ///loop course
             <div className="row">
@@ -90,5 +91,6 @@ export default function allCourse() {
 
       </div>
     </div>
+    </body>
   )
 }

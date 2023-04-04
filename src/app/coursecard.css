@@ -32,6 +32,8 @@
   .title {
     color:black;
     font-size: 25px;
+    font-family: 'Azeret Mono';
+    font-weight: bold;
   }
   
   .row {
