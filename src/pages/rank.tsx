@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import 'src/app/globals.css'
 import TabNavbar from "src/app/navbar/navbar.js";
+import "src/app/rankcard.css";
 
 interface Rank {
     rankID: number,
@@ -50,10 +51,38 @@ export default function allRank() {
     const ranks = JSON.parse(JSON.stringify(rankData));
 
     return (
-        <div>
+        <body className='bg-black'>
             <div>
-                <TabNavbar />
+                <div>
+                    <TabNavbar />
+                </div>
+
+                <div className=' flex flex-wrap p-10 '> {/*rank all*/}
+                    {ranks.map((rank: Rank) => ( ///loop course
+                        <div >
+                            <Link href={`/member/${rank.rankID}`}>
+                                <div className="card">
+                                    <img src={rank.rankPic} />
+                                    <div className="cardcontainer">
+                                        <p className="title">{rank.rankName}</p>
+
+                                    </div>
+                                </div>
+
+                            </Link>
+                        </div>
+                    ))}
+
+                    {/* button add */}
+                    < div >
+                        <div className="card" >
+                            <button type="button" className="btn" >+</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </body>
+
     )
 }
