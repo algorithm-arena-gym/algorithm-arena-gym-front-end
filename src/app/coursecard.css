@@ -1,9 +1,12 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2);
     transition: 0.3s;
+    /* position: relative; */
     /* width: 40%; */
-    max-width: 300px;
-    
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 350px;
     border-radius: 10px;
     text-align: center;
     background-color: #D9D9D9;
@@ -12,7 +15,7 @@
   }
   
   .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.589);
   }
   
   img {
@@ -23,14 +26,47 @@
     object-fit: cover;
   }
   
-  .container {
-    padding: 2px 16px;
+  .containe {
+    padding: 20px;
   }
   .title {
     color:black;
-    font-size: 18px;
+    font-size: 25px;
   }
   
   .row {
-    margin: 8px 16px;
+    margin: 8px 30px;
   }
+
+  .card .btn {
+    outline: none;
+  
+    justify-content: center;
+    align-items: center;
+    background-color: #46FFBD;
+    color: black;
+    font-size: 30px;
+    
+    /* margin-left: 110px; */
+    margin: auto;
+    padding: 20px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .card .btn:hover {
+    background-color: #E2FEA7;
+    color: rgb(0, 0, 0);
+  }
+  /* .plus{
+    focus:outline-none; 
+    text-black bg-[#46FFBD]  
+    hover:bg-[#E2FEA7] 
+    focus:ring-4 
+    focus:ring-green-300 font-medium
+     rounded-lg 
+     text-sm px-5 py-2.5 mr-2 mb-2 
+     dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800
+  } */
