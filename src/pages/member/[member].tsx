@@ -131,7 +131,7 @@ export default function MemberDetail() {
 
              <div className="basis-1/2 flex justify-center ...">
               <p>Course information</p>
-             <p></p>
+              <p></p>
              
              </div>
           </div>
@@ -140,20 +140,6 @@ export default function MemberDetail() {
          </div>
       </div>
       </div>
-      
-            {/* <h1 className="text-1xl font-bold fontDetail">{memberData.nameEng}</h1>
-                        <p>{memberData.memberID}</p>
-
-            <p>{memberData.nameTh}</p>
-            <p>{memberData.address}</p>
-            <p>{memberData.nameTh}</p>
-            <p>{memberData.address}</p>
-            <p>{memberData.nameTh}</p>
-            <p>{memberData.address}</p>
-            <p>{memberData.nameTh}</p>
-            <p>{memberData.address}</p> */}
-          
-
     </div>
   );
 }
