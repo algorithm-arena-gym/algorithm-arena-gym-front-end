@@ -11,6 +11,8 @@ module.exports = {
     extend: {
       fontFamily: {
         'AzeretMono': ['Azeret Mono', 'monospace'],
+        'Anton' : ['Anton', 'sans-serif'],
+        'AudioWide' : ['Audiowide', 'cursive'],
       },
     },
   },
