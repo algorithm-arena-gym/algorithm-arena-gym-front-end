@@ -32,9 +32,9 @@ img {
 
 .title {
   color: black;
-  font-size: 25px;
+  font-size: 20px;
   font-family: 'Azeret Mono';
-  font-weight: 900;
+  /* font-weight: SemiBold; */
 }
 
 .row {

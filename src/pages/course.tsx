@@ -69,7 +69,7 @@ export default function allCourse() {
                   <div className="card">
                     <img src={course.coursePic} />
                     <div className="cardcontainer">
-                      <p className="title">{course.courseName}</p>
+                      <p className="title font-semibold">{course.courseName}</p>
                       {/* <p>{course.price} Bath/Month</p> */}
                     </div>
                   </div>
