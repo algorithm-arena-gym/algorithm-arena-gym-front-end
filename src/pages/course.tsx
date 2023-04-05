@@ -63,7 +63,7 @@ export default function allCourse() {
     <div className=' bg-black flex flex-wrap p-5'>
       {courses.map((course:Course) => (
         <div>
-          <Link href={`/member/${course.courseID}`}>
+          <Link href={`/course/${course.courseID}`}>
         <div className=' bg-[#D9D9D9] p-5 flex mlr-10 rounded-3xl m-2 content-center  w-96'>
           <img  src={course.profilePic} />
           <div className=' ml-10'>

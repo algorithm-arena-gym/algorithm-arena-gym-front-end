@@ -9,7 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      
+      fontFamily: {
+        'AzeretMono': ['Azeret Mono', 'monospace'],
+      },
     },
   },
   plugins: [],
