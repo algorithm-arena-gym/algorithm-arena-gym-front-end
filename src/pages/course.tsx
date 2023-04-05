@@ -62,7 +62,7 @@ export default function allCourse() {
           <TabNavbar />
         </div>
         {/* <div > course รวม */}
-          <div className='grid grid-cols-3 place-content-center p-10'>
+          <div className='grid grid-cols-3 place-content-center p-20'>
             {courses.map((course: Course) => ( ///loop course
               <div className='grid justify-items-center p-6'>
                 <Link href={`/member/${course.courseID}`}>
