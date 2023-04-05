@@ -17,19 +17,19 @@
 img {
     border-radius: 5px 5px 0 0;
     width: 250px;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
 }
 
 .cardcontainer {
-    padding: 20px;
+    padding: 14px;
 }
 
 .title {
     color: black;
-    font-size: 25px;
+    font-size: 16px;
     font-family: 'Azeret Mono';
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 .row {
@@ -43,6 +43,7 @@ img {
     background-color: #46FFBD;
     color: black;
     font-size: 30px;
+    font-weight: 900;
     margin: auto;
     padding: 20px 30px;
     border: none;

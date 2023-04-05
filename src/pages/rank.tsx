@@ -57,14 +57,14 @@ export default function allRank() {
                     <TabNavbar />
                 </div>
 
-                <div className=' flex flex-wrap p-10 '> {/*rank all*/}
+                <div className=' flex flex-wrap place-content-center'> {/*rank all*/}
                     {ranks.map((rank: Rank) => ( ///loop course
-                        <div >
+                        <div className='p-8'>
                             <Link href={`/member/${rank.rankID}`}>
                                 <div className="card">
-                                    <img src={rank.rankPic} />
+                                    <img className='object-top' src={rank.rankPic} />
                                     <div className="cardcontainer">
-                                        <p className="title">{rank.rankName}</p>
+                                        <p className="title font-[900]">{rank.rankName}</p>
 
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@ export default function allRank() {
                     ))}
 
                     {/* button add */}
-                    < div >
+                    < div className='p-8'>
                         <div className="card" >
                             <button type="button" className="btn" >+</button>
                         </div>

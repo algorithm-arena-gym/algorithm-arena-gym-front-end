@@ -62,22 +62,22 @@ export default function allCourse() {
           <TabNavbar />
         </div>
         {/* <div > course รวม */}
-          <div className=' flex flex-wrap p-5'>
+          <div className=' flex flex-wrap place-content-center'>
             {courses.map((course: Course) => ( ///loop course
-              <div className="row">
+              <div className="row p-4">
                 <Link href={`/member/${course.courseID}`}>
                   <div className="card">
                     <img src={course.coursePic} />
                     <div className="cardcontainer">
                       <p className="title">{course.courseName}</p>
-                      <p>{course.price} Bath/Month</p>
+                      {/* <p>{course.price} Bath/Month</p> */}
                     </div>
                   </div>
 
                 </Link>
               </div>
             ))}
-            < div className="row">
+            < div className="row p-4">
               <div className="card" >
                 <button type="button" className="btn" >+</button>
               </div>
