@@ -25,7 +25,7 @@ function Navbar() {
     
 
 <nav className="tabNavbar ">
-  <div className="container  flex flex-wrap items-center justify-between mx-auto fixed">
+  <div className="container  flex flex-wrap items-center justify-between mx-auto ">
        <a className="textLOGO "> Algorithm arena</a>
   <div className="flex md:order-2">
       <a className="textmenu "> username</a>
