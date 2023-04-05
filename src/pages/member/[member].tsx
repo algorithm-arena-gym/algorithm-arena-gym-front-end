@@ -68,7 +68,7 @@ export default function MemberDetail() {
       </div>
 
       <div className=" bg-black w-full h-full">
-        <div className="grid place-items-center h-screen font-AzeretMono">
+        <div className="grid place-items-center  font-AzeretMono">
           <div className="rounded-3xl m-6 w-9/12 pb-6 text-black bg-[#D9D9D9]">
             <div className="rounded-3xl rounded-b-none  w-full h-[95px] text-black bg-[#FFFFFF]">
               {/* ก้อน1 */}
@@ -96,7 +96,7 @@ export default function MemberDetail() {
 
             {/* ก้อน2 */}
             <p className="ml-32 pt-24 text-base">Member information</p>
-            <hr className="ml-20 mr-20 my-3 bg-[#000000] border-10 " />
+            <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
             <div className="flex flex-row mb-6">
               <div className="basis-1/2 flex justify-start ...">
                 <div className="grid ml-32 ">
@@ -137,10 +137,10 @@ export default function MemberDetail() {
 
             {/* ก้อน3 */}
             <div className="flex flex-row">
-              <div className="basis-1/2 flex justify-start ...">
+              <div className="basis-1/2 ">
                 <div className="grid ">
                   <p className="ml-32">Medical information</p>
-                  <hr className="ml-20  my-3 bg-[#000000] border-10 " />
+                  <hr className="ml-20 mr-10 my-3 bg-[#000000] border-10 " />
                   <div className="grid ml-32">
                   <span font-light text-base>Drug Allergy</span>
                   <span className="font-semibold text-xl ">{memberData.drugAllergy}</span>
@@ -153,9 +153,9 @@ export default function MemberDetail() {
                 </div>
                 </div>
               </div>
-              <div className="basis-1/2 flex justify-start ...">
+              <div className="basis-1/2 ">
                 <p>Course information</p>
-                <p></p>
+                <hr className="mr-10 my-3 bg-[#000000] border-10 " />
 
               </div>
             </div>
