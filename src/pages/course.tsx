@@ -62,11 +62,11 @@ export default function allCourse() {
           <TabNavbar />
         </div>
         {/* <div > course รวม */}
-          <div className=' flex flex-wrap place-content-center'>
+          <div className='grid grid-cols-3 place-content-center p-10'>
             {courses.map((course: Course) => ( ///loop course
-              <div className="row p-4">
+              <div className='grid justify-items-center p-6'>
                 <Link href={`/member/${course.courseID}`}>
-                  <div className="card">
+                  <div className="card ">
                     <img src={course.coursePic} />
                     <div className="cardcontainer">
                       <p className="title font-semibold">{course.courseName}</p>
@@ -77,7 +77,7 @@ export default function allCourse() {
                 </Link>
               </div>
             ))}
-            < div className="row p-4">
+            < div className="grid justify-items-center p-6">
               <div className="card" >
                 <button type="button" className="btn" >+</button>
               </div>
