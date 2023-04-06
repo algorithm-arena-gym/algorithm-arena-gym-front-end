@@ -101,16 +101,8 @@ export default function CourseDetail() {
               <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
 
               <div className="flex flex-row ">
-                <div className="basis-1/4 ">
-                  <div>
-                    <div className="grid ml-32">
-                      <span className="font-light text-base ">ID</span>
-                      <span className="font-semibold text-xl ">ดึงID</span>
-                    </div>
-                  </div>
-                </div>
 
-                <div className="basis-1/4 flex justify-center ...">
+                <div className="basis-1/3 flex justify-center ... bg-orange-300">
                   <div>
                     <div className="grid ">
                       <span className="font-light text-base ">Name</span>
@@ -119,7 +111,7 @@ export default function CourseDetail() {
                   </div>
                 </div>
 
-                <div className="basis-1/4 flex justify-center ...">
+                <div className="basis flex justify-center ...">
                   <div>
                     <div className="grid ">
                       <span className="font-light text-base ">Phone Number</span>
@@ -128,7 +120,7 @@ export default function CourseDetail() {
                   </div>
                 </div>
 
-                <div className="basis-1/4 flex justify-start ...">
+                <div className="basis-1/3 flex justify-start ...">
                   <div>
                     <div className="grid ">
                       <span className="font-light text-base ">Email</span>
