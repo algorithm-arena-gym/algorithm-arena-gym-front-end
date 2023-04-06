@@ -141,7 +141,6 @@ export default function MemberDetail() {
               <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
 
               <div className="flex flex-row ">
-
                 <div className="basis-1/3 ">
                   <div>
                     <div className="grid ml-32">
@@ -168,7 +167,6 @@ export default function MemberDetail() {
                     </div>
                   </div>
                 </div>
-
               </div>
 
             </div>
@@ -180,10 +178,68 @@ export default function MemberDetail() {
                 <div className="basis-1/2 ">
                   <p className="ml-32  mt-8 text-base">Trainer Information</p>
                   <hr className="ml-20 mr-5 my-3 bg-[#000000]" />
+                  <div className="flex flex-row ">
+                    <div className="basis-1/3 ">
+                      <div>
+                        <div className="grid ml-20">
+                          <span className="font-light text-base ">Name</span>
+                          <span className="font-semibold text-xl ">ดึงname</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/3 flex justify-center ...">
+                      <div>
+                        <div className="grid  ">
+                          <span className="font-light text-base ">Days</span>
+                          <span className="font-semibold text-xl ">ดึงDay</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/3 flex justify-center ...">
+                      <div>
+                        <div className="grid ">
+                          <span className="font-light text-base ">Time</span>
+                          <span className="font-semibold text-xl ">ดึงtime</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
                 </div>
                 <div className="basis-1/2">
                   <p className=" ml-10 mt-8 text-base">Registered Course</p>
                   <hr className="mr-20 my-3 bg-[#000000]" />
+                  <div className="flex flex-row ">
+                    <div className="basis-1/3 ">
+                      <div>
+                        <div className="grid ">
+                          <span className="font-light text-base ">Name</span>
+                          <span className="font-semibold text-xl ">ดึงname</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/3 flex justify-start ...">
+                      <div>
+                        <div className="grid  ">
+                          <span className="font-light text-base ">Days</span>
+                          <span className="font-semibold text-xl ">ดึงDay</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/3 ">
+                      <div>
+                        <div className="grid ">
+                          <span className="font-light text-base ">Time</span>
+                          <span className="font-semibold text-xl ">22:22</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                 </div>
               </div>
