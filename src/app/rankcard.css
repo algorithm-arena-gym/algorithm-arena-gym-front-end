@@ -68,3 +68,22 @@ img {
     background-color: #E2FEA7;
     color: rgb(0, 0, 0);
 }
+.bttn {
+    outline: none;
+    /* justify-content: center; */
+    align-items: center;
+    background-color: #46FFBD;
+    color: black;
+    font-size: 30px;
+    font-weight: 900;
+    margin: auto;
+    padding: 20px 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    text-align: center;
+}
+.bttn:hover {
+    background-color: #E2FEA7;
+    color: rgb(0, 0, 0);
+}
