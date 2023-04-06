@@ -3,8 +3,16 @@
     transition: 0.3s;
     display: flex;
     flex-direction: column;
-    width: 250px;
-    height: 250px;
+     width:250px;
+    height: 250px; 
+    /* @media (min-width: 768px) {
+        width: 200px;
+        height: 200px;
+    }
+    @media (min-width: 1024px) { 
+        width: 250px;
+        height: 250px;
+     } */
     border-radius: 20px;
     text-align: center;
     background-color: #D9D9D9;

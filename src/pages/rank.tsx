@@ -58,10 +58,10 @@ export default function allRank() {
                     <TabNavbar />
                 </div>
 
-                <div className='grid gap-6 grid-cols-1 md:grid-cols-3 place-content-center px-40 pt-10'> {/*rank all*/}
+                <div className='grid gap-6 grid-cols-1-250 md:grid-cols-2-250 lg:grid-cols-3-250 place-content-center md:px-40 pt-10'> {/*rank all*/}
                     {ranks.map((rank: Rank) => ( ///loop course
                         <div className='grid justify-items-center p-6'>
-                            <Link href={`/member/${rank.rankID}`}>
+                            <Link href={`/rank/${rank.rankID}`}>
                                 <div className="card">
                                     <img className='object-top' src={rank.rankPic} />
                                     <div className="cardcontainer">
