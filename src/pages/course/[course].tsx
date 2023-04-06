@@ -6,13 +6,13 @@ import TabNavbar from "src/app/navbar/navbar.js";
 import course from "../course";
 
 interface Course {
-  courseID:number,
-  createAt:Date;
-  courseName: string,
-  price:number,
-  detail: string,
-  profilePic: string,
-  
+  courseID: number;
+  coursePic: string;
+  courseName: string;
+  trainerID:number;
+  detail: string;
+  createAt: Date;
+
 }
 
 export default function CourseDetail() {
@@ -65,16 +65,16 @@ export default function CourseDetail() {
             <div className="rounded-3xl rounded-b-none  w-full h-[95px] text-black bg-[#FFFFFF]">
               {/* ก้อน1 */}
               <div className="flex flex-row ">
-                <div className="basis-3/4 flex justify-start ...">
-                  <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " src={memberData.profilePic} />
+                <div className="basis-5/6 flex justify-start ...">
+                  <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " src={courseData.coursePic} />
                   <div>
                     <div className="grid pt-24 ">
-                      <span className="font-semibold text-4xl">{memberData.nameEng}</span>
-                      <span className="font-light text-3xl pb-24" >ID : {memberData.memberID}</span>
+                      <span className="font-semibold text-4xl">{courseData.courseName}</span>
+                      <span className="font-light text-3xl pb-24" >ID : {courseData.courseID}</span>
                     </div>
                   </div>
                 </div>
-                <div className="basis-1/4 flex justify-end ...mr-10">
+                <div className="basis-1/6 flex justify-end ...mr-10">
                   <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
                   <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base" >DELETE</button>
                 </div>
@@ -82,44 +82,44 @@ export default function CourseDetail() {
             </div>
 
 
-                        {/* ก้อน2 */}
-                        <div>
-                            <p className="ml-32 mt-40 ">Information</p>
-                            <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
-                            <span className="font-light text-base ml-32">{rankData.rankDetail}</span>
-                        </div>
-
-                        {/* ก้อน3 */}
-                        <div>
-                            <div className="flex flex-row mb-6 ">
-                                <div className="basis-1/2 ">
-                                    <p className="ml-32  mt-8 text-base">Member in this rank</p>
-                                    <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
-                                    <div>
-                                        <div className="grid ">
-                                            <span className="font-semibold text-xl ml-32 ">ดึงname</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="basis-1/2">
-                                    <p className="  ml-10 mt-8 text-base">Course in this rank</p>
-                                    <hr className=" mr-5 my-3 bg-[#000000]" />
-                                    <div>
-                                        <div className="grid ">
-                                            <span className="font-semibold text-xl ml-10 ">ดึงcourse</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {/* ก้อน2 */}
+            <div>
+              <p className="ml-32 mt-40 ">Information</p>
+              <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
+              <span className="font-light text-base ml-32">{courseData.courseID}</span>
             </div>
-    
-     
+
+            {/* ก้อน3 */}
+            <div>
+              <div className="flex flex-row mb-6 ">
+                <div className="basis-1/2 ">
+                  <p className="ml-32  mt-8 text-base">Member in this rank</p>
+                  <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
+                  <div>
+                    <div className="grid ">
+                      <span className="font-semibold text-xl ml-32 ">ดึงname</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="basis-1/2">
+                  <p className="  ml-10 mt-8 text-base">Course in this rank</p>
+                  <hr className=" mr-5 my-3 bg-[#000000]" />
+                  <div>
+                    <div className="grid ">
+                      <span className="font-semibold text-xl ml-10 ">ดึงcourse</span>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   );
 }

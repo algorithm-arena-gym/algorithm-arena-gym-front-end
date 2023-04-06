@@ -67,7 +67,7 @@ export default function RankDetail() {
                             {/* ก้อน1 */}
                             <div >
                                 <div className="flex flex-row ">
-                                    <div className="basis-3/4 flex justify-start ...">
+                                    <div className="basis-5/6 flex justify-start ...">
                                         <img className=" rounded-3xl w-1/3 h-48 m-10 border-8 border-[#FFFFFF] " src={rankData.rankPic} />
                                         <div>
                                             <div className="grid pt-24 ">
@@ -77,7 +77,7 @@ export default function RankDetail() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="basis-1/4 flex justify-end ...mr-10">
+                                    <div className="basis-1/6 flex justify-end ...mr-10">
                                         <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
                                         <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base" >DELETE</button>
                                     </div>
