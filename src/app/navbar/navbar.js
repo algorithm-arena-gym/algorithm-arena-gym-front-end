@@ -10,7 +10,7 @@ function Navbar() {
 
     <nav className="tabNavbar ">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <a className="textLOGO font-Anton"> Algorithm arena</a>
+        <a className="textLOGO font-Anton-bold"> Algorithm arena</a>
         <div className="flex md:order-2">
           <a className="textmenu font-AudioWide"> username</a>
         </div>

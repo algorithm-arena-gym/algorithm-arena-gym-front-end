@@ -79,7 +79,7 @@ export default function MemberDetail() {
                   <div>
                     <div className="grid pt-24 ">
                       <span className="font-semibold text-4xl">{memberData.nameEng}</span>
-                      <span className="font-light text-3xl" >ID : {memberData.memberID}</span>
+                      <span className="font-light text-3xl pb-24" >ID : {memberData.memberID}</span>
                     </div>
                   </div>
                 </div>
@@ -95,7 +95,7 @@ export default function MemberDetail() {
 
 
             {/* ก้อน2 */}
-            <p className="ml-32 pt-24 text-base">Member information</p>
+            <p className="ml-32  mt-28 text-base">Member information</p>
             <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
             <div className="flex flex-row mb-6">
               <div className="basis-1/2 flex justify-start ...">
@@ -136,29 +136,71 @@ export default function MemberDetail() {
 
 
             {/* ก้อน3 */}
-            <div className="flex flex-row">
-              <div className="basis-1/2 ">
-                <div className="grid ">
-                  <p className="ml-32">Medical information</p>
-                  <hr className="ml-20 mr-10 my-3 bg-[#000000] border-10 " />
-                  <div className="grid ml-32">
-                  <span font-light text-base>Drug Allergy</span>
-                  <span className="font-semibold text-xl ">{memberData.drugAllergy}</span>
+            <div>
+              <p className="ml-32">Medical information</p>
+              <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
 
-                  <span font-light text-base>Congenital Disease</span>
-                  <span className="font-semibold text-xl ">{memberData.congenitalDisease}</span>
+              <div className="flex flex-row ">
 
-                  <span font-light text-base>Emergency Contact</span>
-                  <span className="font-semibold text-xl ">{memberData.emergencyContact}</span>
+                <div className="basis-1/3 ">
+                  <div>
+                    <div className="grid ml-32">
+                      <span className="font-light text-base ">Drug Allergy</span>
+                      <span className="font-semibold text-xl ">{memberData.drugAllergy}</span>
+                    </div>
+                  </div>
                 </div>
+
+                <div className="basis-1/3 flex justify-center ...">
+                  <div >
+                    <div className="grid ">
+                      <span className="font-light text-base ">Congenital Disease</span>
+                      <span className="font-semibold text-xl ">{memberData.congenitalDisease}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="basis-1/2 ">
-                <p>Course information</p>
-                <hr className="mr-10 my-3 bg-[#000000] border-10 " />
+
+                <div className="basis-1/3 flex justify-start ...">
+                  <div>
+                    <div className="grid ">
+                      <span className="font-light text-base ">Emergency Contact</span>
+                      <span className="font-semibold text-xl ">{memberData.emergencyContact}</span>
+                    </div>
+                  </div>
+                </div>
 
               </div>
+
             </div>
+
+            {/* ก้อน4 */}
+
+            <div>
+              <div className="flex flex-row mb-6 ">
+                <div className="basis-1/2 ">
+                  <p className="ml-32  mt-8 text-base">Trainer Information</p>
+                  <hr className="ml-20 mr-5 my-3 bg-[#000000]" />
+                </div>
+                <div className="basis-1/2">
+                  <p className=" ml-10 mt-8 text-base">Registered Course</p>
+                  <hr className="mr-20 my-3 bg-[#000000]" />
+
+                </div>
+              </div>
+
+              {/* <p className="ml-32  mt-8 text-base">Trainer Information</p>
+            <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
+            <div className="flex flex-row mb-6">
+              <div className="basis-1/2 flex justify-start ...">
+
+              </div>
+                            </div> */}
+            </div>
+
+
+
+
+
           </div>
 
 
@@ -166,6 +208,6 @@ export default function MemberDetail() {
       </div>
 
 
-    </div>
+    </div >
   );
 }

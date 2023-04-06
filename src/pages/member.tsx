@@ -4,7 +4,7 @@ import 'src/app/globals.css'
 import TabNavbar from "src/app/navbar/navbar.js";
 
 interface Member {
-  memberID:number,
+  memberID: number,
   nameEng: string,
   nameTh: string,
   profilePic: string,
@@ -17,7 +17,7 @@ interface Member {
   address: string,
   emergencyContact: string,
   point: number,
-  subscriptionDate:Date;
+  subscriptionDate: Date;
 }
 
 
@@ -59,13 +59,20 @@ export default function allMember() {
     return <div>No data to display.</div>;
   }
 
-  const members=JSON.parse(JSON.stringify(memberData));
+  const members = JSON.parse(JSON.stringify(memberData));
 
-     return (
-      <div>
+  return (
+    <div>
       <div>
         <TabNavbar />
       </div>
+      {/* <div className=' bg-[#000000] max-h-full'>
+      <div className="flex flex-row">
+        <div className="basis-2/12">01</div>
+        <div className="basis-8/12">02</div>
+        <div className="basis-2/12">03</div>
+      </div>
+      </div> */}
       <div className=' bg-black'>
     <div className=' bg-black flex flex-wrap p-5'>
       {members.map((member:Member) => (
