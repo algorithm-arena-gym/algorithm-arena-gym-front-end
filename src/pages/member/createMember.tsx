@@ -191,7 +191,7 @@ export default function createMember() {
                                             <label htmlFor="first-name" className="font-light text-base ">Congenital Disease</label>
                                             <div className="mt-2">
                                                 <input
-                                                    type="number"
+                                                    type="text"
                                                     name="first-name"
                                                     id="first-name"
                                                     autoComplete="off"
@@ -208,7 +208,7 @@ export default function createMember() {
                                             <label htmlFor="first-name" className="font-light text-base ">Emergency Contact</label>
                                             <div className="mt-2">
                                                 <input
-                                                    type="number"
+                                                    type="text"
                                                     name="first-name"
                                                     id="first-name"
                                                     autoComplete="off"

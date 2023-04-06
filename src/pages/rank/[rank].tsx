@@ -107,7 +107,7 @@ export default function RankDetail() {
                                 </div>
                                 <div className="basis-1/2">
                                     <p className="  ml-10 mt-8 text-base">Course in this rank</p>
-                                    <hr className=" mr-5 my-3 bg-[#000000]" />
+                                    <hr className=" mr-20 my-3 bg-[#000000]" />
                                     <div>
                                         <div className="grid ">
                                             <span className="font-semibold text-xl ml-10 ">ดึงcourse</span>

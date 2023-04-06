@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
-import member from "../member";
+
 
 interface Trainer {
     trainerID: number;
@@ -164,7 +164,7 @@ export default function TrainerCreate() {
                                             <label htmlFor="first-name" className="font-light text-base ">Congenital Disease</label>
                                             <div className="mt-2">
                                                 <input
-                                                    type="number"
+                                                    type="text"
                                                     name="first-name"
                                                     id="first-name"
                                                     autoComplete="off"
@@ -181,7 +181,7 @@ export default function TrainerCreate() {
                                             <label htmlFor="first-name" className="font-light text-base ">Emergency Contact</label>
                                             <div className="mt-2">
                                                 <input
-                                                    type="number"
+                                                    type="text"
                                                     name="first-name"
                                                     id="first-name"
                                                     autoComplete="off"
