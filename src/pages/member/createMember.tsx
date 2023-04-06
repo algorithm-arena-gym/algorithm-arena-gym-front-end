@@ -167,12 +167,20 @@ export default function createMember() {
                             <p className="ml-32">Medical information</p>
                             <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
 
-                            {/* <div className="flex flex-row ">
+                            <div className="flex flex-row ">
                                 <div className="basis-1/3 ">
                                     <div>
                                         <div className="grid ml-32">
-                                            <span className="font-light text-base ">Drug Allergy</span>
-                                            <span className="font-semibold text-xl ">{memberData.drugAllergy}</span>
+                                            <label htmlFor="first-name" className="font-light text-base ">Drug Allergy</label>
+                                            <div className="mt-2">
+                                                <input
+                                                    type="text"
+                                                    name="first-name"
+                                                    id="first-name"
+                                                    autoComplete="off"
+                                                    className="font-semibold text-xl rounded-md block w-full"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -180,28 +188,44 @@ export default function createMember() {
                                 <div className="basis-1/3 flex justify-center ...">
                                     <div >
                                         <div className="grid ">
-                                            <span className="font-light text-base ">Congenital Disease</span>
-                                            <span className="font-semibold text-xl ">{memberData.congenitalDisease}</span>
+                                            <label htmlFor="first-name" className="font-light text-base ">Congenital Disease</label>
+                                            <div className="mt-2">
+                                                <input
+                                                    type="number"
+                                                    name="first-name"
+                                                    id="first-name"
+                                                    autoComplete="off"
+                                                    className="font-semibold text-xl rounded-md block w-full"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="basis-1/3 flex justify-start ...">
                                     <div>
-                                        <div className="grid ">
-                                            <span className="font-light text-base ">Emergency Contact</span>
-                                            <span className="font-semibold text-xl ">{memberData.emergencyContact}</span>
+                                        <div className="grid mr-20">
+                                            <label htmlFor="first-name" className="font-light text-base ">Emergency Contact</label>
+                                            <div className="mt-2">
+                                                <input
+                                                    type="number"
+                                                    name="first-name"
+                                                    id="first-name"
+                                                    autoComplete="off"
+                                                    className="font-semibold text-xl rounded-md block w-full "
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div> */}
+                            </div>
 
                         </div>
 
                         {/* ก้อน4 */}
 
                         <div>
-                            {/* <div className="flex flex-row mb-6 ">
+                            <div className="flex flex-row mb-6 ">
                                 <div className="basis-1/2 ">
                                     <p className="ml-32  mt-8 text-base">Trainer Information</p>
                                     <hr className="ml-20 mr-5 my-3 bg-[#000000]" />
@@ -214,26 +238,88 @@ export default function createMember() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="basis-1/3 flex justify-center ...">
+                                        <div className="basis-1/3 flex justify-center ... ">
                                             <div>
                                                 <div className="grid  ">
-                                                    <span className="font-light text-base ">Days</span>
-                                                    <span className="font-semibold text-xl ">ดึงDay</span>
+                                                    <label htmlFor="first-name" className="font-light text-base ">Days</label>
+                                                    <div className="mt-2">
+                                                        <select
+                                                            id="country"
+                                                            name="country"
+                                                            autoComplete="off"
+                                                            className="font-semibold text-xl rounded-md block w-full"
+                                                        >
+                                                            <option>Sunday</option>
+                                                            <option>Monday</option>
+                                                            <option>Tuesday</option>
+                                                            <option>Wednesday</option>
+                                                            <option>Thrusday</option>
+                                                            <option>Friday</option>
+                                                            <option>Saturday</option>
+
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="basis-1/3 flex justify-center ...">
                                             <div>
                                                 <div className="grid ">
-                                                    <span className="font-light text-base ">Time</span>
-                                                    <span className="font-semibold text-xl ">ดึงtime</span>
+                                                    <label htmlFor="first-name" className="font-light text-base ">Time</label>
+                                                    <div className="mt-2 ">
+                                                        <select
+                                                            id="country"
+                                                            name="country"
+                                                            autoComplete="off"
+                                                            className="font-semibold text-xl rounded-md block w-full "
+                                                        >
+                                                            <option>10-11</option>
+                                                            <option>11-12</option>
+                                                            <option>12-13</option>
+                                                            <option>13-14</option>
+                                                            <option>14-15</option>
+                                                            <option>15-16</option>
+                                                            <option>16-17</option>
+                                                            <option>17-18</option>
+                                                            <option>18-19</option>
+                                                            <option>19-20</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> 
 
-                                 </div>
-                                 <div className="basis-1/2">
+                                        
+                                        {/* <div className="basis-1/3 flex justify-start ... ">
+                                            <div>
+                                                <div className="grid ">
+                                                    <label htmlFor="first-name" className="font-light text-base ">Time</label>
+                                                    <div className="mt-2 mr-20">
+                                                        <select
+                                                            id="country"
+                                                            name="country"
+                                                            autoComplete="off"
+                                                            className="font-semibold text-xl rounded-md block w-full "
+                                                        >
+                                                            <option>10-11</option>
+                                                            <option>11-12</option>
+                                                            <option>12-13</option>
+                                                            <option>13-14</option>
+                                                            <option>14-15</option>
+                                                            <option>15-16</option>
+                                                            <option>16-17</option>
+                                                            <option>17-18</option>
+                                                            <option>18-19</option>
+                                                            <option>19-20</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>*/}
+                                    </div>
+
+                                </div>
+                                <div className="basis-1/2">
                                     <p className=" ml-10 mt-8 text-base">Registered Course</p>
                                     <hr className="mr-20 my-3 bg-[#000000]" />
                                     <div className="flex flex-row ">
@@ -245,26 +331,60 @@ export default function createMember() {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="basis-1/3 flex justify-start ...">
+                                        <div className="basis-1/3 flex justify-start ... ">
                                             <div>
                                                 <div className="grid  ">
-                                                    <span className="font-light text-base ">Days</span>
-                                                    <span className="font-semibold text-xl ">ดึงDay</span>
+                                                    <label htmlFor="first-name" className="font-light text-base ">Days</label>
+                                                    <div className="mt-2">
+                                                        <select
+                                                            id="country"
+                                                            name="country"
+                                                            autoComplete="off"
+                                                            className="font-semibold text-xl rounded-md block w-full"
+                                                        >
+                                                            <option>Sunday</option>
+                                                            <option>Monday</option>
+                                                            <option>Tuesday</option>
+                                                            <option>Wednesday</option>
+                                                            <option>Thrusday</option>
+                                                            <option>Friday</option>
+                                                            <option>Saturday</option>
+
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="basis-1/3 ">
                                             <div>
                                                 <div className="grid ">
-                                                    <span className="font-light text-base ">Time</span>
-                                                    <span className="font-semibold text-xl ">22:22</span>
+                                                    <label htmlFor="first-name" className="font-light text-base ">Time</label>
+                                                    <div className="mt-2 mr-20">
+                                                        <select
+                                                            id="country"
+                                                            name="country"
+                                                            autoComplete="off"
+                                                            className="font-semibold text-xl rounded-md block w-full "
+                                                        >
+                                                            <option>10-11</option>
+                                                            <option>11-12</option>
+                                                            <option>12-13</option>
+                                                            <option>13-14</option>
+                                                            <option>14-15</option>
+                                                            <option>15-16</option>
+                                                            <option>16-17</option>
+                                                            <option>17-18</option>
+                                                            <option>18-19</option>
+                                                            <option>19-20</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
-                            </div>*/}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -272,7 +392,7 @@ export default function createMember() {
 
 
 
-            
+
         </div>
 
 
