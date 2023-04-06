@@ -9,6 +9,7 @@ interface Rank {
     rankName: string,
     rankDetail: string,
     rankPic: string
+    rankPrice:number
 }
 
 export default function allRank() {
@@ -65,6 +66,7 @@ export default function allRank() {
                                     <img className='object-top' src={rank.rankPic} />
                                     <div className="cardcontainer">
                                         <p className="title font-[900]">{rank.rankName}</p>
+                                        <p className='Price'>{rank.rankPrice} Bath/Month</p>
 
                                     </div>
                                 </div>
