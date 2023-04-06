@@ -5,8 +5,8 @@ import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
 import member from "../member";
 
-interface Member {
-    memberID: number;
+interface Trainer {
+    trainerID: number;
     nameEng: string;
     nameTh: string;
     profilePic: string;
@@ -15,14 +15,12 @@ interface Member {
     cID: string;
     drugAllergy: string;
     congenitalDisease: string;
-    rankID: number;
     address: string;
     emergencyContact: string;
-    point: number;
-    subscriptionDate: Date;
+    hireDate: Date;
 }
 
-export default function createMember() {
+export default function TrainerCreate() {
 
 
     return (
@@ -41,7 +39,7 @@ export default function createMember() {
                                     <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " />
                                     <div>
                                         <div className="grid pt-24 ">
-                                            <span className="font-semibold text-4xl">Untitled Member</span>
+                                            <span className="font-semibold text-4xl">Untitled Trainer</span>
                                             <span className="font-light text-3xl pb-24" >ID : XXX</span>
                                         </div>
                                     </div>
@@ -52,11 +50,13 @@ export default function createMember() {
                             </div>
                         </div>
 
+
+
                         {/* ก้อน2 */}
                         <p className="ml-32  mt-28 text-base">Member information</p>
                         <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
                         <div className="flex flex-row mb-6">
-                            <div className="basis-1/2 mr-10">
+                            <div className="basis-1/2 flex justify-start ...">
                                 <div className="grid ml-32 ">
 
                                     <label htmlFor="first-name" className="font-light text-base">Name(Eng)</label>
@@ -70,7 +70,7 @@ export default function createMember() {
                                         />
                                     </div>
 
-                                    <label htmlFor="first-name" className="font-light text-base mt-2">Name(TH)</label>
+                                    <label htmlFor="first-name" className="font-light text-base ">Name(TH)</label>
                                     <div className="mt-2">
                                         <input
                                             type="text"
@@ -81,40 +81,25 @@ export default function createMember() {
                                         />
                                     </div>
 
-
-                                    <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
-                                    <div className="mt-2">
-                                        <select
-                                            id="country"
-                                            name="country"
-                                            autoComplete="off"
-                                            className="font-semibold text-xl rounded-md block w-full"
-                                        >
-                                            <option>rankที่มี</option>
-                                            <option>Canada</option>
-                                            <option>Mexico</option>
-                                        </select>
-                                    </div>
-
-                                    <label htmlFor="first-name" className="font-light text-base mt-2">Point</label>
+                                    <label htmlFor="first-name" className="font-light text-base  ">Citizen ID</label>
                                     <div className="mt-2">
                                         <input
-                                            type="number"
+                                            type="text"
                                             name="first-name"
                                             id="first-name"
                                             autoComplete="off"
                                             className="font-semibold text-xl rounded-md block w-full"
                                         />
                                     </div>
-
                                 </div>
                             </div>
 
-                            <div className="basis-1/2 ">
-                                <div className="grid mr-32">
+                            <div className="basis-1/2 flex justify-start ...">
+                                <div className="grid ">
 
-                                    <label htmlFor="first-name" className="font-light text-base ">Citizen ID</label>
-                                    <div className="mt-2">
+
+                                    <label htmlFor="first-name" className="font-light text-base ">Phone number</label>
+                                    <div className="mt-8">
                                         <input
                                             type="text"
                                             name="first-name"
@@ -124,8 +109,8 @@ export default function createMember() {
                                         />
                                     </div>
 
-                                    <label htmlFor="first-name" className="font-light text-base mt-2">Phone number</label>
-                                    <div className="mt-2">
+                                    <label htmlFor="first-name" className="font-light text-base mt-6">Email</label>
+                                    <div className="mt-8">
                                         <input
                                             type="text"
                                             name="first-name"
@@ -135,19 +120,8 @@ export default function createMember() {
                                         />
                                     </div>
 
-                                    <label htmlFor="first-name" className="font-light text-base mt-2">Email</label>
-                                    <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="first-name"
-                                            id="first-name"
-                                            autoComplete="off"
-                                            className="font-semibold text-xl rounded-md block w-full"
-                                        />
-                                    </div>
-
-                                    <label htmlFor="first-name" className="font-light text-base mt-2">Address</label>
-                                    <div className="mt-2">
+                                    <label htmlFor="first-name" className="font-light text-base mt-6">Address</label>
+                                    <div className="mt-8">
                                         <textarea
                                             name="first-name"
                                             id="first-name"
@@ -166,7 +140,6 @@ export default function createMember() {
                         <div>
                             <p className="ml-32">Medical information</p>
                             <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
-
                             <div className="flex flex-row ">
                                 <div className="basis-1/3 ">
                                     <div>
@@ -219,6 +192,8 @@ export default function createMember() {
                                     </div>
                                 </div>
                             </div>
+
+
 
                         </div>
 
@@ -289,8 +264,8 @@ export default function createMember() {
                                             </div>
                                         </div>
 
-                                        
-                                        
+
+
                                     </div>
                                     <div className=" text-black bg-[#FFFFFF] text-xl rounded-md  ml-20 mr-5 mt-3  flex justify-center">+</div>
 
@@ -359,7 +334,7 @@ export default function createMember() {
                                             </div>
                                         </div>
                                     </div>
-                                      <div className=" text-black bg-[#FFFFFF] text-xl rounded-md   mr-20 mt-3  flex justify-center">+</div>
+                                    <div className=" text-black bg-[#FFFFFF] text-xl rounded-md   mr-20 mt-3  flex justify-center">+</div>
 
 
                                 </div>
@@ -368,12 +343,7 @@ export default function createMember() {
                     </div>
                 </div>
             </div>
-
-
-
-
         </div>
-
-
+        
     );
 }
