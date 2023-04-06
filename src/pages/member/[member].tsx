@@ -92,7 +92,7 @@ export default function MemberDetail() {
 
 
             {/* ก้อน2 */}
-            <p className="ml-32   text-base">Member information</p>
+            <p className="ml-32  mt-28 text-base">Member information</p>
             <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
             <div className="flex flex-row mb-6">
               <div className="basis-1/2 flex justify-start ...">
