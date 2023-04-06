@@ -4,7 +4,7 @@ import 'src/app/globals.css'
 import TabNavbar from "src/app/navbar/navbar.js";
 
 interface Trainer {
-  trainerID:number,
+  trainerID: number,
   nameEng: string,
   nameTh: string,
   profilePic: string,
@@ -57,31 +57,31 @@ export default function Trainer() {
     return <div>No data to display.</div>;
   }
 
-  const trainers =JSON.parse(JSON.stringify(trainerData));
+  const trainers = JSON.parse(JSON.stringify(trainerData));
 
-     return (
-      <div>
+  return (
+    <body className=' bg-black'>
       <div>
         <TabNavbar />
       </div>
-<div className=' bg-black flex flex-wrap justify-around p-5'>
-      {trainers.map((trainer:Trainer) => (
-        <div>
-          <Link href={`/trainer/${trainer.trainerID}`}>
-        <div className=' bg-[#D9D9D9] p-5 flex mlr-10 rounded-3xl m-5 content-center  w-96'>
-          <img className=' border-[#E2FEA7] border-4 w-20 h-20 rounded-full' src={trainer.profilePic} alt="profilePicture"/>
-          <div className=' ml-10'>
-            <p>{trainer.nameEng}</p>
-            <p className=''>Phone : {trainer.phone}</p>
-            
+      <div className='grid gap-6 grid-cols-3 place-content-center md:px-20 pt-10'>
+        {trainers.map((trainer: Trainer) => (
+          <div className='bg-[#D9D9D9] p-4 rounded-3xl  w-70'>
+            <Link href={`/trainer/${trainer.trainerID}`}>
+              <div className='flex flex-row '>
+                <img className='flex border-[#E2FEA7] border-4 w-20 h-20 rounded-full' src={trainer.profilePic} alt="profilePicture" />
+                <div className='pl-4'>
+                  <p>{trainer.nameEng}</p>
+                  <p className=''>Phone : {trainer.phone}</p>
+
+                </div>
+              </div>
+            </Link>
           </div>
-        </div>
-        </Link>
-        </div>
-      ))}
-    </div>
-    </div>
-    
+        ))}
+      </div>
+    </body>
+
   )
 }
 
