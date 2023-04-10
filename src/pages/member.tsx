@@ -20,12 +20,20 @@ interface Member {
   point: number,
   subscriptionDate: Date;
 }
-
+interface Rank {
+  rankID: number,
+  rankName: string,
+  rankDetail: string,
+  rankPic: string
+  rankPrice:number
+}
 
 export default function allMember() {
   const [memberData, setData] = useState<Member | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+
 
   useEffect(() => {
     async function fetchData() {
@@ -62,6 +70,7 @@ export default function allMember() {
 
   const members = JSON.parse(JSON.stringify(memberData));
 
+
   return (
     <body className=' bg-black'>
       <div >
@@ -77,7 +86,8 @@ export default function allMember() {
                   <div className='pl-4 '>
 
                     <p>{member.nameEng}</p>
-                    {/* <p>{member.nameTh}</p> */}
+                    {/* need rank */}
+                    {}
                     <p>{member.phone}</p>
                   </div>
                 </div>

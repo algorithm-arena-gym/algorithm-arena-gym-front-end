@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import 'src/app/globals.css'
 import TabNavbar from "src/app/navbar/navbar.js";
+import "src/app/rankcard.css";
 
 interface Trainer {
   trainerID: number,
@@ -79,6 +80,11 @@ export default function Trainer() {
             </Link>
           </div>
         ))}
+        <div className=' bg-[#D9D9D9] p-4 rounded-3xl  w-70 h-28 grid ' >
+          <div className='grid justify-items-center'>
+            <button type="button" className="bttn" >+</button>
+          </div>
+        </div>
       </div>
     </body>
 
