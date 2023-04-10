@@ -21,45 +21,80 @@ interface Member {
   point: number;
   subscriptionDate: Date;
 }
+interface Rank {
+  rankID: number;
+  rankDetail: string;
+  
+}
 
 export default function MemberDetail() {
   const router = useRouter();
-  const [memberData, setMemberData] = useState<Member | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+const [memberData, setMemberData] = useState<Member | null>(null);
+const [rankData, setRankData] = useState<Rank | null>(null);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      try {
-        const memberID = router.query.member as string;
-        const apiURL = `http://localhost:4000/member/${memberID}`;
-        const res = await fetch(apiURL);
-        const json = await res.json();
-        setMemberData(json[0]);
-        setError(null);
-      } catch (error) {
-        console.error(error);
-        setError("An error occurred while fetching the data.");
-        setMemberData(null);
-      }
-      setLoading(false);
+useEffect(() => {
+  async function fetchMemberData() {
+    try {
+      const memberID = router.query.member as string;
+      const apiURL = `http://localhost:4000/member/${memberID}`;
+      const res = await fetch(apiURL);
+      const json = await res.json();
+      setMemberData(json[0]);
+      setError(null);
+    } catch (error) {
+      console.error(error);
+      setError("An error occurred while fetching the memberData.");
+      setMemberData(null);
     }
-
-    fetchData();
-  }, [router.query.member]);
-
-  if (loading) {
-    return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  setLoading(true);
+  setError(null);
+  fetchMemberData();
+  setLoading(false);
+}, [router.query.member]);
+
+useEffect(() => {
+  async function fetchRankData() {
+    try {
+      const rankID = memberData?.rankID as string;
+      const apiURL2 = `http://localhost:4000/rank/${rankID}`;
+      const res2 = await fetch(apiURL2);
+      const json2 = await res2.json();
+      setRankData(json2[0]);
+      setError(null);
+    } catch (error) {
+      console.error(error);
+      setError("An error occurred while fetching the rankData.");
+      setRankData(null);
+    }
   }
 
-  if (!memberData) {
-    return <div>No data to display.</div>;
+  if (memberData) {
+    setLoading(true);
+    setError(null);
+    fetchRankData();
+    setLoading(false);
   }
+}, [memberData]);
+
+if (loading) {
+  return <div>Loading...</div>;
+}
+
+if (error) {
+  return <div>{error}</div>;
+}
+
+if (!memberData) {
+  return <div>No memberData to display.</div>;
+}
+
+if (!rankData) {
+  return <div>No rankData to display.</div>;
+}
 
   return (
     <div>
@@ -105,7 +140,7 @@ export default function MemberDetail() {
                   <span className="font-semibold text-xl ">{memberData.nameTh}</span>
 
                   <span font-light text-base>Rank</span>
-                  <p className="font-semibold text-xl">ID : เด๋วโยง{memberData.rankID}</p>
+                  <p className="font-semibold text-xl">Rank : {rankData.rankName}</p>
 
                   <span font-light text-base>Point</span>
                   <span className="font-semibold text-xl">{memberData.point}</span>
