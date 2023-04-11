@@ -109,7 +109,7 @@ if (!rankData) {
               {/* ก้อน1 */}
               <div className="flex flex-row ">
                 <div className="basis-5/6 flex justify-start ...">
-                  <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " src={memberData.profilePic} />
+                  <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " src={memberData?.profilePic} />
                   <div>
                     <div className="grid pt-24 ">
                       <span className="font-semibold text-4xl">{memberData.nameEng}</span>
@@ -140,7 +140,7 @@ if (!rankData) {
                   <span className="font-semibold text-xl ">{memberData.nameTh}</span>
 
                   <span font-light text-base>Rank</span>
-                  <p className="font-semibold text-xl">Rank : {rankData.rankName}</p>
+                  <p className="font-semibold text-xl">ID : {rankData.rankName}</p>
 
                   <span font-light text-base>Point</span>
                   <span className="font-semibold text-xl">{memberData.point}</span>

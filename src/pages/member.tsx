@@ -60,7 +60,6 @@ export default function allMember() {
   }
 
   const members = JSON.parse(JSON.stringify(memberData));
-
   return (
     <div>
       <div>
