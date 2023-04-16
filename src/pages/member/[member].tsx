@@ -51,13 +51,14 @@ interface Course {
   courseMemberID: number;
   memberID: number;
 
-  courseDateTimeID:number;
-  courseDate:string;
-  courseTime:string;
+  courseDateTimeID: number;
+  courseDate: string;
+  courseTime: string;
 
   createAt: Date;
 }
-  
+
+
 
 
 export default function MemberDetail() {
@@ -184,6 +185,7 @@ export default function MemberDetail() {
 
   const trainerDateTimes = JSON.parse(JSON.stringify(trainerData));
 
+
   return (
     <div>
       <div>
@@ -306,18 +308,26 @@ export default function MemberDetail() {
                           <span className="font-semibold text-xl ">forloop{trainerData?.nameEng}</span>
 
 
-                          {/* {trainerData.for (let index = 0; index < array.length; index++) {
-                            const element = array[index];
-                            map
-                          }((trainer:Trainer) => (
+                          {/* {trainerDateTimes.map((trainer:Trainer) => (
                               <div>
                                 <span className="font-light text-base ">Name :</span>
                             <span className="font-semibold text-xl ">{trainerData?.nameEng}</span>
                               </div>
                             ))} */}
-                           
 
+                          {trainerDateTimes.map((tr: Trainer) => (
+                            <div>
+
+
+                              <p>{tr.nameEng}</p>
+                              <p>{tr.trainingDate}</p>
+                              <p>{tr.trainingTime}</p>
+                            </div>
+       ))}
                          
+
+
+
 
 
 
