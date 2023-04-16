@@ -6,7 +6,7 @@ import TabNavbar from "src/app/navbar/navbar.js";
 interface Course {
   courseID:number,
   createAt:Date;
-  courseNAME: string,
+  courseName: string,
   price:number,
   detail: string,
   profilePic: string,

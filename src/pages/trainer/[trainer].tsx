@@ -168,7 +168,7 @@ export default function TrainerDetail() {
             <div>
               <div className="flex flex-row mb-6 ">
                 <div className="basis-1/2 ">
-                  <p className="ml-32  mt-8 text-base">Trainer Information</p>
+                  <p className="ml-32  mt-8 text-base">Trainee Information</p>
                   <hr className="ml-20 mr-5 my-3 bg-[#000000]" />
                   <div className="flex flex-row ">
                     <div className="basis-1/3 ">

@@ -62,7 +62,7 @@ export default function RankDetail() {
             <div className=" bg-black w-full h-screen">
                 <div className="grid place-items-center  font-AzeretMono">
                     <div className="rounded-3xl m-12 w-9/12 pb-6 text-black bg-[#D9D9D9]">
-                        <div className="rounded-3xl rounded-b-none  w-full h-[95px] text-black bg-[#FFFFFF]">
+                        <div className="rounded-3xl rounded-b-none  w-full h-[75px] text-black bg-[#FFFFFF]">
 
                             {/* ก้อน1 */}
                             <div >
@@ -70,10 +70,10 @@ export default function RankDetail() {
                                     <div className="basis-5/6 flex justify-start ...">
                                         <img className=" rounded-3xl w-1/3 h-48 m-10 border-8 border-[#FFFFFF] " src={rankData.rankPic} />
                                         <div>
-                                            <div className="grid pt-24 ">
+                                            <div className="grid pt-20 ">
                                                 <span className="font-semibold text-5xl">{rankData.rankName}</span>
-                                                <span className="font-semibold text-5xl" >ID : {rankData.rankID}</span>
-                                                <span className="font-semibold text-5xl mb-24" >PRICE : {rankData.rankPrice}</span>
+                                                <span className="font-light text-4xl" >ID : {rankData.rankID}</span>
+                                                <span className="font-light text-4xl mb-24" >PRICE : {rankData.rankPrice}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@ export default function RankDetail() {
 
                         {/* ก้อน2 */}
                         <div>
-                            <p className="ml-32 mt-40 ">Information</p>
+                            <p className="ml-32 mt-48 ">Information</p>
                             <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
                             <span className="font-light text-base ml-32">{rankData.rankDetail}</span>
                         </div>
