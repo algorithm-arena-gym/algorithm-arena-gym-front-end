@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -73,7 +72,7 @@ export default function MemberDetail() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
 
   useEffect(() => {
     async function fetchMemberData() {
@@ -97,7 +96,7 @@ export default function MemberDetail() {
     setLoading(false);
   }, [router.query.member]);
 
-  
+
 
 
   useEffect(() => {
@@ -135,7 +134,7 @@ export default function MemberDetail() {
         setError(null);
 
         // console.log(json3)
-        
+
       } catch (error) {
         console.error(error);
         setError("An error occurred while fetching the trainerData.");
@@ -150,7 +149,7 @@ export default function MemberDetail() {
     }
   }, [memberData]);
 
-  
+
 
 
   useEffect(() => {
@@ -192,101 +191,99 @@ export default function MemberDetail() {
 
   if (!memberData) {
     return <div>
-       <div>
+      <div>
         <TabNavbar />
       </div>
-      <p className="font-AzeretMono font-semibold">No memberData to display.</p> 
+      <p className="font-AzeretMono font-semibold">No memberData to display.</p>
       {/* <Link href="/member" className="bg-[#EF4444] font-AzeretMono font-semibold">
        Go back
       </Link> */}
-      </div>;
-    
+    </div>;
+
   }
 
   if (!rankData) {
     return <div>No rankData to display.</div>;
   }
-     
- 
-  const listTrainer = trainerData?.map((tr:Trainer) => {
-    return (
-      
-      <div className="flex flex-row mb-2 ">
-                    <div className="basis-1/2 ">
-                      <div>
-                        <div className="grid ml-20">
-                           <span className="font-semibold text-xl ">{tr.nameEng}</span>
-                         
-                        </div>
-                      </div>
-                    </div>
-                    <div className="basis-1/4 flex justify-center ...">
-                      <div>
-                        <div className="grid  ">
-                          <span className="font-semibold text-xl ">{tr.trainingDate}</span>
 
-                        </div>
-                      </div>
-                    </div>
-                    <div className="basis-1/4 flex justify-center ...">
-                      <div>
-                        <div className="grid ">
-                         <span className="font-semibold text-xl ">{tr.trainingTime}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+  const listTrainer = trainerData?.map((tr: Trainer) => {
+    return (
+
+      <div className="flex flex-row mb-2 ">
+        <div className="basis-1/2 ">
+          <div>
+            <div className="grid ml-20">
+              <span className="font-semibold text-xl ">{tr.nameEng}</span>
+
+            </div>
+          </div>
+        </div>
+        <div className="basis-1/4 flex justify-center ...">
+          <div>
+            <div className="grid  ">
+              <span className="font-semibold text-xl ">{tr.trainingDate}</span>
+
+            </div>
+          </div>
+        </div>
+        <div className="basis-1/4 flex justify-center ...">
+          <div>
+            <div className="grid ">
+              <span className="font-semibold text-xl ">{tr.trainingTime}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   });
-  const listCourse= courseData?.map((co:Course) => {
+  const listCourse = courseData?.map((co: Course) => {
     return (
-      
+
       <div className="flex flex-row mb-2 ">
-                    <div className="basis-1/3 ">
-                      <div>
-                        <div className="grid ">
-                          <span className="font-semibold text-xl ">{co.courseName}</span>
-                          </div>
-                      </div>
-                    </div>
-                    <div className="basis-1/3 flex justify-center ...">
-                      <div>
-                        <div className="grid  ">
-                          <span className="font-semibold text-xl ">{co.courseDate}</span>
-                          </div>
-                      </div>
-                    </div>
-                    <div className="basis-1/3 ">
-                      <div>
-                        <div className="grid ">
-                          <span className="font-semibold text-xl">{co.courseTime}</span>
-                         </div>
-                      </div>
-                    </div>
-                  </div>
+        <div className="basis-1/3 ">
+          <div>
+            <div className="grid ">
+              <span className="font-semibold text-xl ">{co.courseName}</span>
+            </div>
+          </div>
+        </div>
+        <div className="basis-1/3 flex justify-center ...">
+          <div>
+            <div className="grid  ">
+              <span className="font-semibold text-xl ">{co.courseDate}</span>
+            </div>
+          </div>
+        </div>
+        <div className="basis-1/3 ">
+          <div>
+            <div className="grid ">
+              <span className="font-semibold text-xl">{co.courseTime}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   });
 
-  const onDelete = async (memberID : any) => {
-    try{
-      
-      // const memberID = router.query.member as string;
-      let response = await fetch(`http://localhost:4000/member/${memberID}` , {
-         headers: {
-       "Contene-Type" : "application/json",
-      },
-      method: "DELETE",
-    })
+  const onDelete = async (memberID: any) => {
+    try {
+        let response = await fetch(`http://localhost:4000/member/${memberID}`, {
+        headers: {
+          "Contene-Type": "application/json",
+        },
+        method: "DELETE",
+      })
 
-    }catch(error) {
-      console.log("An error occured while deleting member",error);
+    } catch (error) {
+      console.log("An error occured while deleting member", error);
     }
-    
+
   };
-    
 
 
-  
+
+
 
 
   return (
@@ -311,11 +308,11 @@ export default function MemberDetail() {
                   </div>
                 </div>
                 <div className="basis-1/6 flex justify-end ...mr-10">
-                 <Link href= {`/member/editMember/${memberData.memberID}`}>
-                      <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
+                  <Link href={`/member/editMember/${memberData.memberID}`}>
+                    <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
                   </Link>
-                 <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base" 
-                          onClick={() => onDelete(memberData.memberID )}>DELETE</button>
+                  <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base"
+                    onClick={() => onDelete(memberData.memberID)}>DELETE</button>
                 </div>
               </div>
             </div>
@@ -411,25 +408,25 @@ export default function MemberDetail() {
                       <div>
                         <div className="grid ml-20">
                           <span className="font-light text-base ">Name </span>
-                         </div>
+                        </div>
                       </div>
                     </div>
                     <div className="basis-1/4 flex justify-center ...">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>
-                         </div>
+                        </div>
                       </div>
                     </div>
                     <div className="basis-1/4 flex justify-center ...">
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Time</span>
-                         </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                   {listTrainer}
+                  {listTrainer}
 
                 </div>
                 <div className="basis-1/2">
@@ -440,25 +437,25 @@ export default function MemberDetail() {
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Name</span>
-                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="basis-1/3 flex justify-center ...">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>
-                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="basis-1/3 ">
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Time</span>
-                         </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  { listCourse}
+                  {listCourse}
 
                 </div>
               </div>

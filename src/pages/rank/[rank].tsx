@@ -1,9 +1,9 @@
-import Navbar from "@/app/navbar/navbar";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
-import member from "../member";
+
 
 interface Rank {
     rankID: number;
@@ -14,14 +14,16 @@ interface Rank {
     createAt: Date;
 }
 interface Member {
-  memberID: number;
-  nameEng: string;
-  
+    memberID: number;
+    nameEng: string;
+    trainingDate: string;
+    trainingTime: string;
+
 }
 
 interface Course {
-  courseID: number,
-  courseName: string,
+    courseID: number,
+    courseName: string,
 }
 
 export default function RankDetail() {
@@ -56,50 +58,50 @@ export default function RankDetail() {
     }, [router.query.rank]);
 
     useEffect(() => {
-    async function fetchMemberData() {
-      try {
-        const rankID = rankData?.rankID as number;
-        const apiURL3 = `http://localhost:4000/pr-member/${rankID}`;
-        const res3 = await fetch(apiURL3);
-        const json3 = await res3.json();
-        setMemberData(json3[0]);
-        setError(null);
-      } catch (error) {
-        console.error(error);
-        setError("An error occurred while fetching the memberData.");
-        setMemberData(null);
-      }
-    }
-    if (rankData) {
-      setLoading(true);
-      setError(null);
-      fetchMemberData();
-      setLoading(false);
-    }
-  }, [memberData]);
+        async function fetchMemberData() {
+            try {
+                const rankID = rankData?.rankID as number;
+                const apiURL3 = `http://localhost:4000/pr-member/${rankID}`;
+                const res3 = await fetch(apiURL3);
+                const json3 = await res3.json();
+                setMemberData(json3);
+                setError(null);
+            } catch (error) {
+                console.error(error);
+                setError("An error occurred while fetching the memberData.");
+                setMemberData(null);
+            }
+        }
+        if (rankData) {
+            setLoading(true);
+            setError(null);
+            fetchMemberData();
+            setLoading(false);
+        }
+    }, [rankData]);
 
-  useEffect(() => {
-    async function fetchCourseData() {
-      try {
-        const rankID = rankData?.rankID as number;
-        const apiURL4 = `http://localhost:4000/pr-course/${rankID}`;
-        const res4 = await fetch(apiURL4);
-        const json4 = await res4.json();
-        setCourseData(json4[0]);
-        setError(null);
-      } catch (error) {
-        console.error(error);
-        setError("An error occurred while fetching the CourseData.");
-        setCourseData(null);
-      }
-    }
-    if (rankData) {
-      setLoading(true);
-      setError(null);
-      fetchCourseData();
-      setLoading(false);
-    }
-  }, [rankData]);
+    useEffect(() => {
+        async function fetchCourseData() {
+            try {
+                const rankID = rankData?.rankID as number;
+                const apiURL4 = `http://localhost:4000/pr-course/${rankID}`;
+                const res4 = await fetch(apiURL4);
+                const json4 = await res4.json();
+                setCourseData(json4);
+                setError(null);
+            } catch (error) {
+                console.error(error);
+                setError("An error occurred while fetching the CourseData.");
+                setCourseData(null);
+            }
+        }
+        if (rankData) {
+            setLoading(true);
+            setError(null);
+            fetchCourseData();
+            setLoading(false);
+        }
+    }, [rankData]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -110,8 +112,51 @@ export default function RankDetail() {
     }
 
     if (!rankData) {
-        return <div>No data to display.</div>;
+       return <div>
+      <div>
+        <TabNavbar />
+      </div>
+      <p className="font-AzeretMono font-semibold">No rankData to display.</p>
+    </div>;
     }
+
+
+    const listMember = memberData?.map((mem: Member) => {
+        return (
+            <div>
+                <div className="grid ml-32">
+                    <span className="font-semibold text-xl ">{mem.nameEng}</span>
+                </div>
+            </div>
+        )
+    });
+
+    const listCourse = courseData?.map((co: Course) => {
+        return (
+            <div>
+                <div className="grid ">
+                    <span className="font-semibold text-xl ml-10 ">{co.courseName}</span>
+                </div>
+            </div>
+
+
+        )
+    });
+
+    const onDelete = async (rankID : any) => {
+    try{
+      let response = await fetch(`http://localhost:4000/rank/${rankID}` , {
+         headers: {
+       "Contene-Type" : "application/json",
+      },
+      method: "DELETE",
+    })
+
+    }catch(error) {
+      console.log("An error occured while deleting rank",error);
+    }
+    
+  };
 
     return (
         <div>
@@ -119,7 +164,7 @@ export default function RankDetail() {
                 <TabNavbar />
             </div>
 
-            <div className=" bg-black w-full h-screen">
+            <div className=" bg-black w-full h-full">
                 <div className="grid place-items-center  font-AzeretMono">
                     <div className="rounded-3xl m-12 w-9/12 pb-6 text-black bg-[#D9D9D9]">
                         <div className="rounded-3xl rounded-b-none  w-full h-[75px] text-black bg-[#FFFFFF]">
@@ -138,8 +183,11 @@ export default function RankDetail() {
                                         </div>
                                     </div>
                                     <div className="basis-1/6 flex justify-end ...mr-10">
-                                        <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
-                                        <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base" >DELETE</button>
+                                         <Link href={`/rank/editRank/${rankData.rankID}`}>
+                    <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
+                  </Link>
+                  <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base"
+                    onClick={() => onDelete(rankData.rankID)}>DELETE</button>
                                     </div>
                                 </div>
                             </div>
@@ -159,20 +207,12 @@ export default function RankDetail() {
                                 <div className="basis-1/2 ">
                                     <p className="ml-32  mt-8 text-base">Member in this rank</p>
                                     <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
-                                    <div>
-                                        <div className="grid ">
-                                            <span className="font-semibold text-xl ml-32 ">forloop{memberData?.nameEng}</span>
-                                        </div>
-                                    </div>
+                                    {listMember}
                                 </div>
                                 <div className="basis-1/2">
                                     <p className="  ml-10 mt-8 text-base">Course in this rank</p>
                                     <hr className=" mr-20 my-3 bg-[#000000]" />
-                                    <div>
-                                        <div className="grid ">
-                                            <span className="font-semibold text-xl ml-10 ">forloop{courseData?.courseName}</span>
-                                        </div>
-                                    </div>
+                                    {listCourse}
                                 </div>
 
 
