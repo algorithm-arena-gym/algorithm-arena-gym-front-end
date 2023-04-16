@@ -13,10 +13,24 @@ interface Rank {
     rankPrice: number;
     createAt: Date;
 }
+interface Member {
+  memberID: number;
+  nameEng: string;
+  
+}
+
+interface Course {
+  courseID: number,
+  courseName: string,
+}
 
 export default function RankDetail() {
     const router = useRouter();
     const [rankData, setRankData] = useState<Rank | null>(null);
+
+    const [memberData, setMemberData] = useState<Member | null>(null);
+    const [courseData, setCourseData] = useState<Course | null>(null);
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -40,6 +54,52 @@ export default function RankDetail() {
 
         fetchData();
     }, [router.query.rank]);
+
+    useEffect(() => {
+    async function fetchMemberData() {
+      try {
+        const rankID = rankData?.rankID as number;
+        const apiURL3 = `http://localhost:4000/pr-member/${rankID}`;
+        const res3 = await fetch(apiURL3);
+        const json3 = await res3.json();
+        setMemberData(json3[0]);
+        setError(null);
+      } catch (error) {
+        console.error(error);
+        setError("An error occurred while fetching the memberData.");
+        setMemberData(null);
+      }
+    }
+    if (rankData) {
+      setLoading(true);
+      setError(null);
+      fetchMemberData();
+      setLoading(false);
+    }
+  }, [memberData]);
+
+  useEffect(() => {
+    async function fetchCourseData() {
+      try {
+        const rankID = rankData?.rankID as number;
+        const apiURL4 = `http://localhost:4000/pr-course/${rankID}`;
+        const res4 = await fetch(apiURL4);
+        const json4 = await res4.json();
+        setCourseData(json4[0]);
+        setError(null);
+      } catch (error) {
+        console.error(error);
+        setError("An error occurred while fetching the CourseData.");
+        setCourseData(null);
+      }
+    }
+    if (rankData) {
+      setLoading(true);
+      setError(null);
+      fetchCourseData();
+      setLoading(false);
+    }
+  }, [rankData]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -101,7 +161,7 @@ export default function RankDetail() {
                                     <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
                                     <div>
                                         <div className="grid ">
-                                            <span className="font-semibold text-xl ml-32 ">ดึงname</span>
+                                            <span className="font-semibold text-xl ml-32 ">forloop{memberData?.nameEng}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -110,7 +170,7 @@ export default function RankDetail() {
                                     <hr className=" mr-20 my-3 bg-[#000000]" />
                                     <div>
                                         <div className="grid ">
-                                            <span className="font-semibold text-xl ml-10 ">ดึงcourse</span>
+                                            <span className="font-semibold text-xl ml-10 ">forloop{courseData?.courseName}</span>
                                         </div>
                                     </div>
                                 </div>
