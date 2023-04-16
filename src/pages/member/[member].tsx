@@ -1,4 +1,5 @@
 import Navbar from "@/app/navbar/navbar";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import 'src/app/globals.css';
@@ -67,10 +68,12 @@ export default function MemberDetail() {
   const [rankData, setRankData] = useState<Rank | null>(null);
 
   const [trainerData, setTrainerData] = useState<Trainer | null>(null);
+
   const [courseData, setCourseData] = useState<Course | null>(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
 
   useEffect(() => {
     async function fetchMemberData() {
@@ -93,6 +96,9 @@ export default function MemberDetail() {
     fetchMemberData();
     setLoading(false);
   }, [router.query.member]);
+
+  
+
 
   useEffect(() => {
     async function fetchRankData() {
@@ -125,8 +131,11 @@ export default function MemberDetail() {
         const apiURL3 = `http://localhost:4000/pm-trainer/${memberID}`;
         const res3 = await fetch(apiURL3);
         const json3 = await res3.json();
-        setTrainerData(json3[0]);
+        setTrainerData(json3);
         setError(null);
+
+        // console.log(json3)
+        
       } catch (error) {
         console.error(error);
         setError("An error occurred while fetching the trainerData.");
@@ -141,6 +150,9 @@ export default function MemberDetail() {
     }
   }, [memberData]);
 
+  
+
+
   useEffect(() => {
     async function fetchCourseData() {
       try {
@@ -148,8 +160,11 @@ export default function MemberDetail() {
         const apiURL4 = `http://localhost:4000/pm-course/${memberID}`;
         const res4 = await fetch(apiURL4);
         const json4 = await res4.json();
-        setCourseData(json4[0]);
+        setCourseData(json4);
         setError(null);
+
+        //  console.log(json4)
+
       } catch (error) {
         console.error(error);
         setError("An error occurred while fetching the CourseData.");
@@ -176,14 +191,102 @@ export default function MemberDetail() {
   }
 
   if (!memberData) {
-    return <div>No memberData to display.</div>;
+    return <div>
+       <div>
+        <TabNavbar />
+      </div>
+      <p className="font-AzeretMono font-semibold">No memberData to display.</p> 
+      {/* <Link href="/member" className="bg-[#EF4444] font-AzeretMono font-semibold">
+       Go back
+      </Link> */}
+      </div>;
+    
   }
 
   if (!rankData) {
     return <div>No rankData to display.</div>;
   }
+     
+ 
+  const listMember = trainerData?.map((tr:Trainer) => {
+    return (
+      
+      <div className="flex flex-row mb-2 ">
+                    <div className="basis-1/2 ">
+                      <div>
+                        <div className="grid ml-20">
+                           <span className="font-semibold text-xl ">{tr.nameEng}</span>
+                         
+                        </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/4 flex justify-center ...">
+                      <div>
+                        <div className="grid  ">
+                          <span className="font-semibold text-xl ">{tr.trainingDate}</span>
 
-  const trainerDateTimes = JSON.parse(JSON.stringify(trainerData));
+                        </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/4 flex justify-center ...">
+                      <div>
+                        <div className="grid ">
+                         <span className="font-semibold text-xl ">{tr.trainingTime}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+    )
+  });
+  const listCourse= courseData?.map((co:Course) => {
+    return (
+      
+      <div className="flex flex-row mb-2 ">
+                    <div className="basis-1/3 ">
+                      <div>
+                        <div className="grid ">
+                          <span className="font-semibold text-xl ">{co.courseName}</span>
+                          </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/3 flex justify-center ...">
+                      <div>
+                        <div className="grid  ">
+                          <span className="font-semibold text-xl ">{co.courseDate}</span>
+                          </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/3 ">
+                      <div>
+                        <div className="grid ">
+                          <span className="font-semibold text-xl">{co.courseTime}</span>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+    )
+  });
+
+  const onDelete = async (memberID : any) => {
+    try{
+      
+      // const memberID = router.query.member as string;
+      let response = await fetch(`http://localhost:4000/member/${memberID}` , {
+         headers: {
+       "Contene-Type" : "application/json",
+      },
+      method: "DELETE",
+    })
+
+    }catch(error) {
+      console.log("An error occured while deleting",error);
+    }
+    
+  };
+    
+
+
+  
 
 
   return (
@@ -208,8 +311,12 @@ export default function MemberDetail() {
                   </div>
                 </div>
                 <div className="basis-1/6 flex justify-end ...mr-10">
-                  <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
-                  <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base" >DELETE</button>
+                 <Link href="/member/editMember/${memberID}">
+                                  <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
+                  </Link>
+                  {/* <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button> */}
+                  <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base" 
+                          onClick={() => onDelete(memberData.memberID )}>DELETE</button>
                 </div>
               </div>
             </div>
@@ -300,59 +407,30 @@ export default function MemberDetail() {
                 <div className="basis-1/2 ">
                   <p className="ml-32  mt-8 text-base">Trainer Information</p>
                   <hr className="ml-20 mr-5 my-3 bg-[#000000]" />
-                  <div className="flex flex-row ">
+                  <div className="flex flex-row  ">
                     <div className="basis-2/4 ">
                       <div>
                         <div className="grid ml-20">
                           <span className="font-light text-base ">Name </span>
-                          <span className="font-semibold text-xl ">forloop{trainerData?.nameEng}</span>
-
-
-                          {/* {trainerDateTimes.map((trainer:Trainer) => (
-                              <div>
-                                <span className="font-light text-base ">Name :</span>
-                            <span className="font-semibold text-xl ">{trainerData?.nameEng}</span>
-                              </div>
-                            ))} */}
-
-                          {trainerDateTimes.map((tr: Trainer) => (
-                            <div>
-
-
-                              <p>{tr.nameEng}</p>
-                              <p>{tr.trainingDate}</p>
-                              <p>{tr.trainingTime}</p>
-                            </div>
-       ))}
-                         
-
-
-
-
-
-
-
-                        </div>
+                         </div>
                       </div>
                     </div>
                     <div className="basis-1/4 flex justify-center ...">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>
-                          <span className="font-semibold text-xl ">forloop{trainerData?.trainingDate}</span>
-
-                        </div>
+                         </div>
                       </div>
                     </div>
                     <div className="basis-1/4 flex justify-center ...">
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Time</span>
-                          <span className="font-semibold text-xl ">forloop{trainerData?.trainingTime}</span>
-                        </div>
+                         </div>
                       </div>
                     </div>
                   </div>
+                   {listMember}
 
                 </div>
                 <div className="basis-1/2">
@@ -363,27 +441,25 @@ export default function MemberDetail() {
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Name</span>
-                          <span className="font-semibold text-xl ">forloop{courseData?.courseName}</span>
-                        </div>
+                          </div>
                       </div>
                     </div>
-                    <div className="basis-1/3 flex justify-start ...">
+                    <div className="basis-1/3 flex justify-center ...">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>
-                          <span className="font-semibold text-xl ">forloop{courseData?.courseDate}</span>
-                        </div>
+                          </div>
                       </div>
                     </div>
                     <div className="basis-1/3 ">
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Time</span>
-                          <span className="font-semibold text-xl ">forloop{courseData?.courseTime}</span>
-                        </div>
+                         </div>
                       </div>
                     </div>
                   </div>
+                  { listCourse}
 
                 </div>
               </div>
@@ -394,3 +470,5 @@ export default function MemberDetail() {
     </div >
   );
 }
+
+
