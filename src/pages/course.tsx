@@ -68,7 +68,7 @@ export default function allCourse() {
           <img  src={course.profilePic} />
           <div className=' ml-10'>
     
-            <p>{course.courseNAME}</p>
+            <p>{course.courseName}</p>
             <p> {course.price}Bath/Month</p>
             <img className=' border-[#E2FEA7] border-4 w-20 h-20 rounded-full' src={course.profilePic} alt="profilePicture"/>
           </div>

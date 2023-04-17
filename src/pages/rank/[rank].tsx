@@ -112,12 +112,12 @@ export default function RankDetail() {
     }
 
     if (!rankData) {
-       return <div>
-      <div>
-        <TabNavbar />
-      </div>
-      <p className="font-AzeretMono font-semibold">No rankData to display.</p>
-    </div>;
+        return <div>
+            <div>
+                <TabNavbar />
+            </div>
+            <p className="font-AzeretMono font-semibold">No rankData to display.</p>
+        </div>;
     }
 
 
@@ -143,20 +143,20 @@ export default function RankDetail() {
         )
     });
 
-    const onDelete = async (rankID : any) => {
-    try{
-      let response = await fetch(`http://localhost:4000/rank/${rankID}` , {
-         headers: {
-       "Contene-Type" : "application/json",
-      },
-      method: "DELETE",
-    })
+    const onDelete = async (rankID: any) => {
+        try {
+            let response = await fetch(`http://localhost:4000/rank/${rankID}`, {
+                headers: {
+                    "Contene-Type": "application/json",
+                },
+                method: "DELETE",
+            })
 
-    }catch(error) {
-      console.log("An error occured while deleting rank",error);
-    }
-    
-  };
+        } catch (error) {
+            console.log("An error occured while deleting rank", error);
+        }
+
+    };
 
     return (
         <div>
@@ -183,11 +183,11 @@ export default function RankDetail() {
                                         </div>
                                     </div>
                                     <div className="basis-1/6 flex justify-end ...mr-10">
-                                         <Link href={`/rank/editRank/${rankData.rankID}`}>
-                    <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
-                  </Link>
-                  <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base"
-                    onClick={() => onDelete(rankData.rankID)}>DELETE</button>
+                                        <Link href={`/rank/editRank/${rankData.rankID}`}>
+                                            <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
+                                        </Link>
+                                        <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base"
+                                            onClick={() => onDelete(rankData.rankID)}>DELETE</button>
                                     </div>
                                 </div>
                             </div>

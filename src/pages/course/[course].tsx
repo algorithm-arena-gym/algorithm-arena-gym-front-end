@@ -1,9 +1,9 @@
-import Navbar from "@/app/navbar/navbar";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
-import course from "../course";
+
 
 interface Course {
   courseID: number;
@@ -14,10 +14,39 @@ interface Course {
   createAt: Date;
 
 }
+interface Trainer {
+  trainerID: number;
+  nameEng: string;
+  phone: string;
+  email: string;
+
+
+}
+interface Rank {
+  rankID: number;
+  rankPic: string;
+  rankName: string;
+  rankDetail: string;
+  rankPrice: number;
+  createAt: Date;
+}
+interface Member {
+  memberID: number;
+  nameEng: string;
+  trainingDate: string;
+  trainingTime: string;
+
+}
 
 export default function CourseDetail() {
   const router = useRouter();
   const [courseData, setCourseData] = useState<Course | null>(null);
+
+  const [trainerData, setTrainerData] = useState<Trainer | null>(null);
+  const [memberData, setMemberData] = useState<Member | null>(null);
+  const [rankData, setRankData] = useState<Rank | null>(null);
+
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -42,6 +71,32 @@ export default function CourseDetail() {
     fetchData();
   }, [router.query.course]);
 
+  useEffect(() => {
+    async function fetchTrainerData() {
+      try {
+        const trainerID = courseData?.trainerID as number;
+        const apiURL2 = `http://localhost:4000/triner/${trainerID}`;
+        const res2 = await fetch(apiURL2);
+        const json2 = await res2.json();
+        setTrainerData(json2);
+        setError(null);
+
+        console.log(json2);
+
+      } catch (error) {
+        console.error(error);
+        setError("An error occurred while fetching the rankData.");
+        setTrainerData(null);
+      }
+    }
+    if (trainerData) {
+      setLoading(true);
+      setError(null);
+      fetchTrainerData();
+      setLoading(false);
+    }
+  }, [courseData]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -51,8 +106,29 @@ export default function CourseDetail() {
   }
 
   if (!courseData) {
-    return <div>No data to display.</div>;
+    return <div>
+      <div>
+        <TabNavbar />
+      </div>
+      <p className="font-AzeretMono font-semibold">No courseData to display.</p>
+    </div>;
   }
+
+
+  const onDelete = async (courseID: any) => {
+    try {
+      let response = await fetch(`http://localhost:4000/course/${courseID}`, {
+        headers: {
+          "Contene-Type": "application/json",
+        },
+        method: "DELETE",
+      })
+
+    } catch (error) {
+      console.log("An error occured while deleting course", error);
+    }
+
+  };
 
   return (
     <div>
@@ -75,8 +151,11 @@ export default function CourseDetail() {
                   </div>
                 </div>
                 <div className="basis-1/6 flex justify-end ...mr-10">
-                  <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
-                  <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base" >DELETE</button>
+                  <Link href={`/course/editCourse/${courseData.courseID}`}>
+                    <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
+                  </Link>
+                  <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base"
+                    onClick={() => onDelete(courseData.courseID)}>DELETE</button>
                 </div>
               </div>
             </div>
@@ -102,27 +181,27 @@ export default function CourseDetail() {
 
               <div className="flex flex-row ">
 
-                <div className="basis-1/3 flex justify-center ... bg-orange-300">
+                <div className="basis-3/6 flex justify-start">
                   <div>
-                    <div className="grid ">
+                    <div className="grid ml-32">
                       <span className="font-light text-base ">Name</span>
                       <span className="font-semibold text-xl ">ดึงName</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="basis flex justify-center ...">
+                <div className="basis-1/6  flex justify-start ...">
                   <div>
                     <div className="grid ">
                       <span className="font-light text-base ">Phone Number</span>
-                      <span className="font-semibold text-xl ">ดึงPhone Number</span>
+                      <span className="font-semibold text-xl ">088-888-8888</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="basis-1/3 flex justify-start ...">
+                <div className="basis-2/6  flex justify-start">
                   <div>
-                    <div className="grid ">
+                    <div className="grid ml-8">
                       <span className="font-light text-base ">Email</span>
                       <span className="font-semibold text-xl ">ดึงEmail</span>
                     </div>
