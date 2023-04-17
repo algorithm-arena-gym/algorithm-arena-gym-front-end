@@ -46,7 +46,6 @@ export default function CourseDetail() {
   const [memberData, setMemberData] = useState<Member | null>(null);
   const [rankData, setRankData] = useState<Rank | null>(null);
 
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -75,13 +74,13 @@ export default function CourseDetail() {
     async function fetchTrainerData() {
       try {
         const trainerID = courseData?.trainerID as number;
-        const apiURL2 = `http://localhost:4000/triner/${trainerID}`;
+        const apiURL2 = `http://localhost:4000/trainer/${trainerID}`;
         const res2 = await fetch(apiURL2);
         const json2 = await res2.json();
-        setTrainerData(json2);
+        setTrainerData(json2[0]);
         setError(null);
 
-        console.log(json2);
+        // console.log(json2);
 
       } catch (error) {
         console.error(error);
@@ -89,13 +88,67 @@ export default function CourseDetail() {
         setTrainerData(null);
       }
     }
-    if (trainerData) {
+   if (courseData) {
       setLoading(true);
       setError(null);
       fetchTrainerData();
       setLoading(false);
     }
   }, [courseData]);
+
+  useEffect(() => {
+    async function fetchMemberData() {
+      try {
+        const courseID = courseData?.courseID as number;
+        const apiURL3 = `http://localhost:4000/pc-member/${courseID}`;
+        const res3 = await fetch(apiURL3);
+        const json3 = await res3.json();
+        setMemberData(json3);
+        setError(null);
+
+        console.log(json3)
+
+      } catch (error) {
+        console.error(error);
+        setError("An error occurred while fetching the trainerData.");
+        setMemberData(null);
+      }
+    }
+    if (courseData) {
+      setLoading(true);
+      setError(null);
+      fetchMemberData();
+      setLoading(false);
+    }
+  }, [courseData]);
+
+  // useEffect(() => {
+  //   async function fetchRankData() {
+  //     try {
+  //       const memberID = courseData?.memberID as number;
+  //       const apiURL4 = `http://localhost:4000/pm-course/${memberID}`;
+  //       const res4 = await fetch(apiURL4);
+  //       const json4 = await res4.json();
+  //       setCourseData(json4);
+  //       setError(null);
+
+  //       //  console.log(json4)
+
+  //     } catch (error) {
+  //       console.error(error);
+  //       setError("An error occurred while fetching the CourseData.");
+  //       setCourseData(null);
+  //     }
+  //   }
+  //   if (courseData) {
+  //     setLoading(true);
+  //     setError(null);
+  //     fetchMemberData();
+  //     setLoading(false);
+  //   }
+  // }, [courseData]);
+
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -185,7 +238,7 @@ export default function CourseDetail() {
                   <div>
                     <div className="grid ml-32">
                       <span className="font-light text-base ">Name</span>
-                      <span className="font-semibold text-xl ">ดึงName</span>
+                      <span className="font-semibold text-xl ">{trainerData?.nameEng}</span>
                     </div>
                   </div>
                 </div>
@@ -194,7 +247,7 @@ export default function CourseDetail() {
                   <div>
                     <div className="grid ">
                       <span className="font-light text-base ">Phone Number</span>
-                      <span className="font-semibold text-xl ">088-888-8888</span>
+                      <span className="font-semibold text-xl ">{trainerData?.phone}</span>
                     </div>
                   </div>
                 </div>
@@ -203,7 +256,7 @@ export default function CourseDetail() {
                   <div>
                     <div className="grid ml-8">
                       <span className="font-light text-base ">Email</span>
-                      <span className="font-semibold text-xl ">ดึงEmail</span>
+                      <span className="font-semibold text-xl ">{trainerData?.email}</span>
                     </div>
                   </div>
                 </div>

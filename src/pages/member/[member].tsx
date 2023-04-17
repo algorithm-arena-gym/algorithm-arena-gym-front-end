@@ -133,7 +133,7 @@ export default function MemberDetail() {
         setTrainerData(json3);
         setError(null);
 
-        // console.log(json3)
+         console.log(json3)
 
       } catch (error) {
         console.error(error);
