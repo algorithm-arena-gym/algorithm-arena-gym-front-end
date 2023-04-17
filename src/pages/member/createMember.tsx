@@ -21,8 +21,109 @@ interface Member {
     point: number;
     subscriptionDate: Date;
 }
+interface Rank {
+    rankID: number,
+    rankName: string,
+}
+
+interface Trainer {
+  trainerID: number;
+  nameEng: string;
+}
+
+interface Course {
+    courseID: number,
+    courseName: string,
+}
+
 
 export default function createMember() {
+    const [rankData, setRankData] = useState<Rank | null>(null);
+    const [trainerData, setTrainerData] = useState<Trainer | null>(null);
+    const [courseData, setCourseData] = useState<Course | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function fetchRankData() {
+            setLoading(true);
+            try {
+                const res = await fetch('http://localhost:4000/rank');
+                const json = await res.json();
+                setRankData(json[0]);
+                setError(null);
+
+                // console.error(json);
+
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the rank data.');
+                setRankData(null);
+            }
+
+            setLoading(false);
+        }
+
+        fetchRankData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchTrainerData() {
+            setLoading(true);
+            try {
+                const res2 = await fetch('http://localhost:4000/trainer');
+                const json2 = await res2.json();
+                setTrainerData(json2);
+                setError(null);
+
+                // console.error(json2);
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the trainer data.');
+                setTrainerData(null);
+            }
+            setLoading(false);
+        }
+
+        fetchTrainerData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchCourseData() {
+            setLoading(true);
+            try {
+                const res3 = await fetch('http://localhost:4000/rank');
+                const json3 = await res3.json();
+                setCourseData(json3);
+                setError(null);
+
+                // console.error(json3);
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the course data.');
+                setCourseData(null);
+            }
+            setLoading(false);
+        }
+        fetchCourseData();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    if (!rankData) {
+        return <div>No data to display.</div>;
+    }
+
+    const ranks = JSON.parse(JSON.stringify(rankData));
 
 
     return (
@@ -91,8 +192,14 @@ export default function createMember() {
                                             className="font-semibold text-xl rounded-md block w-full"
                                         >
                                             <option>rankที่มี</option>
-                                            <option>Canada</option>
+                                            <option>{rankData?.rankName}</option>
                                             <option>Mexico</option>
+                                            {/* {ranks.map((rank: Rank) => (
+                                                <div>
+                                                   <option>{rank.rankName}</option>
+                                                </div>
+                                                
+                                            ))} */}
                                         </select>
                                     </div>
 
@@ -289,8 +396,8 @@ export default function createMember() {
                                             </div>
                                         </div>
 
-                                        
-                                        
+
+
                                     </div>
                                     <div className=" text-black bg-[#FFFFFF] text-xl rounded-md  ml-20 mr-5 mt-3  flex justify-center">+</div>
 
@@ -359,7 +466,7 @@ export default function createMember() {
                                             </div>
                                         </div>
                                     </div>
-                                      <div className=" text-black bg-[#FFFFFF] text-xl rounded-md   mr-20 mt-3  flex justify-center">+</div>
+                                    <div className=" text-black bg-[#FFFFFF] text-xl rounded-md   mr-20 mt-3  flex justify-center">+</div>
 
 
                                 </div>
