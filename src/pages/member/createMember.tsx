@@ -47,8 +47,8 @@ const initialValues = {
 
     profilePic: '',
 
-    drugAllergy: '',
-    congenitalDisease: '',
+    drugAllergy: 'None',
+    congenitalDisease: 'None',
     emergencyContact: '',
 
     trainerID: '',
@@ -305,7 +305,7 @@ export default function createMember() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Emergency Contact</label>
                                                         <div className="mt-2">
                                                             <Field type="string" name="emergencyContact"
-                                                                className="font-semibold text-xl rounded-md block w-full"
+                                                                className="font-semibold text-xl rounded-md block w-full" required
                                                             />
                                                         </div>
                                                     </div>

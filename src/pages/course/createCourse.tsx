@@ -49,8 +49,8 @@ export default function CourseCreate() {
                                                     <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " />
                                                     <div>
                                                         <div className="grid pt-24 ">
-                                                            <span className="font-semibold text-5xl">Untitled Course</span>
-                                                            <span className="font-semibold text-5xl" >ID : XXX</span>
+                                                             <span className="font-semibold text-4xl">Untitled Course</span>
+                                                        <span className="font-light text-3xl pb-24" >ID : XXX</span>
                                                         </div>
                                                     </div>
                                                 </div>

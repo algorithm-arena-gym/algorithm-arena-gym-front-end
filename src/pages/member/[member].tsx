@@ -202,9 +202,9 @@ export default function MemberDetail() {
 
   }
 
-  if (!rankData) {
-    return <div>No rankData to display.</div>;
-  }
+  // if (!rankData) {
+  //   return <div>No rankData to display.</div>;
+  // }
 
 
   const listTrainer = trainerData?.map((tr: Trainer) => {
@@ -333,7 +333,7 @@ export default function MemberDetail() {
                   <span className="font-semibold text-xl ">{memberData.nameTh}</span>
 
                   <span font-light text-base>Rank</span>
-                  <p className="font-semibold text-xl">{rankData.rankName}</p>
+                  <p className="font-semibold text-xl">{rankData?.rankName ? rankData.rankName:" None" }</p>
 
                   <span font-light text-base>Point</span>
                   <span className="font-semibold text-xl">{memberData.point}</span>

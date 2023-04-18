@@ -29,8 +29,8 @@ const initialValues = {
 
     profilePic: '',
 
-    drugAllergy: '',
-    congenitalDisease: '',
+    drugAllergy: 'None',
+    congenitalDisease: 'None',
     emergencyContact: '',
 
     memberID: '',
@@ -69,7 +69,7 @@ export default function TrainerCreate() {
                                                 <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " />
                                                 <div>
                                                     <div className="grid pt-24 ">
-                                                        <span className="font-semibold text-4xl">Untitled Trainer</span>
+                                                       <span className="font-semibold text-4xl">Untitled Trainer</span>
                                                         <span className="font-light text-3xl pb-24" >ID : XXX</span>
                                                     </div>
                                                 </div>
@@ -93,21 +93,21 @@ export default function TrainerCreate() {
                                                 <label className="font-light text-base">Name(Eng)</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="nameEng"
-                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                        className="font-semibold text-xl rounded-md block w-full" required
                                                     />
                                                 </div>
 
                                                 <label className="font-light text-base ">Name(TH)</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="nameTh"
-                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                        className="font-semibold text-xl rounded-md block w-full" required
                                                     />
                                                 </div>
 
                                                 <label className="font-light text-base  ">Citizen ID</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="cID"
-                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                        className="font-semibold text-xl rounded-md block w-full" required
                                                     />
                                                 </div>
                                             </div>
@@ -120,14 +120,14 @@ export default function TrainerCreate() {
                                                 <label className="font-light text-base ">Phone number</label>
                                                 <div className="mt-8">
                                                     <Field type="string" name="phone"
-                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                        className="font-semibold text-xl rounded-md block w-full" required
                                                     />
                                                 </div>
 
                                                 <label className="font-light text-base mt-6">Email</label>
                                                 <div className="mt-8">
                                                     <Field type="email" name="email"
-                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                        className="font-semibold text-xl rounded-md block w-full" required
                                                     />
                                                 </div>
 
@@ -135,7 +135,7 @@ export default function TrainerCreate() {
                                                 <div className="mt-8">
                                                     <Field type="string" name="address" as="textarea"
                                                         rows={2}
-                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                        className="font-semibold text-xl rounded-md block w-full" required
                                                     />
                                                 </div>
                                             </div>
@@ -155,7 +155,7 @@ export default function TrainerCreate() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Drug Allergy</label>
                                                         <div className="mt-2">
                                                             <Field type="string" name="drugAllergy"
-                                                                className="font-semibold text-xl rounded-md block w-full"
+                                                                className="font-semibold text-xl rounded-md block w-full" 
                                                             />
                                                         </div>
                                                     </div>
@@ -168,7 +168,7 @@ export default function TrainerCreate() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Congenital Disease</label>
                                                         <div className="mt-2">
                                                             <Field type="string" name="congenitalDisease"
-                                                                className="font-semibold text-xl rounded-md block w-full"
+                                                                className="font-semibold text-xl rounded-md block w-full" 
                                                             />
                                                         </div>
                                                     </div>
@@ -181,7 +181,7 @@ export default function TrainerCreate() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Emergency Contact</label>
                                                         <div className="mt-2">
                                                             <Field type="string" name="emergencyContact"
-                                                                className="font-semibold text-xl rounded-md block w-full"
+                                                                className="font-semibold text-xl rounded-md block w-full" required
                                                             />
                                                         </div>
                                                     </div>
