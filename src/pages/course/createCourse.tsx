@@ -12,15 +12,165 @@ interface Course {
     profilePic: string,
 
 }
+interface Trainer {
+    trainerID: number;
+    nameEng: string;
+    nameTh: string;
+    profilePic: string;
+    phone: string;
+    email: string;
+    cID: string;
+    drugAllergy: string;
+    congenitalDisease: string;
+    address: string;
+    emergencyContact: string;
+    hireDate: Date;
+}
+
+interface Rank {
+    rankID: number,
+    rankName: string,
+}
+
+interface Member {
+    memberID: number;
+    nameEng: string;
+
+}
+
 
 const initialValues = {
     courseName: '',
     coursePic: '',
     detail: '',
     trainerID: '',
+
+    rankID: '',
+    memberID: ''
+
+   
 }
 
 export default function CourseCreate() {
+    const [courseData, setCourseData] = useState<Course | null>(null);
+    const [trainerData, setTrainerData] = useState<Trainer | null>(null);
+    const [memberData, setMemberData] = useState<Member | null>(null);
+    const [rankData, setRankData] = useState<Rank | null>(null);
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    
+
+    useEffect(() => {
+        async function fetchRankData() {
+            setLoading(true);
+            try {
+                const res = await fetch('http://localhost:4000/rank');
+                const json = await res.json();
+                setRankData(json);
+                setError(null);
+
+                console.error(json);
+
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the rank data.');
+                setRankData(null);
+            }
+
+            setLoading(false);
+        }
+
+        fetchRankData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchTrainerData() {
+            setLoading(true);
+            try {
+                const res2 = await fetch('http://localhost:4000/trainer');
+                const json2 = await res2.json();
+                setTrainerData(json2);
+                setError(null);
+
+                // console.error(json2);
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the trainer data.');
+                setTrainerData(null);
+            }
+            setLoading(false);
+        }
+
+        fetchTrainerData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchCourseData() {
+            setLoading(true);
+            try {
+                const res3 = await fetch('http://localhost:4000/course');
+                const json3 = await res3.json();
+                setCourseData(json3);
+                setError(null);
+
+                // console.error(json3);
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the course data.');
+                setCourseData(null);
+            }
+            setLoading(false);
+        }
+        fetchCourseData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchMemberData() {
+            setLoading(true);
+            try {
+                
+                const res4 = await fetch('http://localhost:4000/member');
+                const json4 = await res4.json();
+                setMemberData(json4);
+                setError(null);
+
+                console.error(json4);
+
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the member data.');
+                setMemberData(null);
+            }
+
+            setLoading(false);
+        }
+
+        fetchMemberData();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    if (!courseData) {
+        return <div>No data to display.</div>;
+    }
+
+    
+    const trainers = JSON.parse(JSON.stringify(trainerData));
+    const ranks = JSON.parse(JSON.stringify(rankData));
+    const members = JSON.parse(JSON.stringify(memberData));
+
 
 
     return (
@@ -49,8 +199,13 @@ export default function CourseCreate() {
                                                     <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " />
                                                     <div>
                                                         <div className="grid pt-24 ">
-                                                             <span className="font-semibold text-4xl">Untitled Course</span>
-                                                        <span className="font-light text-3xl pb-24" >ID : XXX</span>
+                                                            <span className="font-semibold text-4xl mt-2 w-full">
+                                                                <Field type="string" name="coursePic"
+                                                                    className="font-semibold text-xl rounded-md block w-full" required
+                                                                    placeholder="www.coursePicture.com"
+                                                                />
+                                                            </span>
+                                                            <span className="font-light text-3xl pb-24" >ID : XXX</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -102,18 +257,19 @@ export default function CourseCreate() {
                                         <p className="ml-32 mt-5 ">Trainer</p>
                                         <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
 
-                                       
-                                                <div>
-                                                    <div className="grid ml-32 mr-32">
-                                                        <span className="font-light text-base ">Name</span>
 
-                                                        <Field type="string" name="rank" as="select" className="font-semibold text-xl rounded-md block w-full">
+                                        <div>
+                                            <div className="grid ml-32 mr-32">
+                                                <label htmlFor="first-name" className="font-light text-base ">Name</label>
+                                                                <div className="mt-2 ">
+                                                                    <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        {trainers?.map((tr: Trainer) => (
+                                                                            <option value={tr.trainerID}>{tr.nameEng}</option>
+                                                                        ))}
+                                                                    </Field>
+                                                                </div>
+                                            </div>
 
-                                                            <option value="ที่มี" className="font-semibold text-xl w-full">ที่มี</option>
-
-                                                        </Field>
-                                                    </div>
-                                                
 
 
                                         </div>
@@ -129,18 +285,11 @@ export default function CourseCreate() {
                                                 <div>
                                                     <div className="grid ml-32 mr-10 ">
                                                         <div className="mt-2  ">
-                                                            <select
-                                                                id="country"
-                                                                name="country"
-                                                                autoComplete="off"
-                                                                className="font-semibold text-xl rounded-md block w-full"
-                                                            >
-                                                                <option>ชื่อ</option>
-                                                                <option>Monday</option>
-                                                                <option>Tuesday</option>
-
-
-                                                            </select>
+                                                            <Field type="number" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        {ranks?.map((rank: Rank) => (
+                                                                            <option value={rank.rankID}>{rank.rankName}</option>
+                                                                        ))}
+                                                                    </Field>
                                                         </div>
                                                     </div>
                                                 </div>

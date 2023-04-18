@@ -181,7 +181,7 @@ export default function RankCreate() {
                                                     <div>
                                                         <div className="grid pt-24 ">
                                                             <span className="font-semibold text-4xl mt-2 w-full">
-                                                                <Field type="string" name="profilePic"
+                                                                <Field type="string" name="rankPic"
                                                                     className="font-semibold text-xl rounded-md block w-full" required
                                                                     placeholder="www.rankPicture.com"
                                                                 />

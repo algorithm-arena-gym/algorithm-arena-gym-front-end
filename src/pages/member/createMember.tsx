@@ -20,6 +20,7 @@ interface Member {
     point: number;
     subscriptionDate: Date;
 }
+
 interface Rank {
     rankID: number,
     rankName: string,
