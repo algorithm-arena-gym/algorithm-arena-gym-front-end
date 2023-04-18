@@ -227,7 +227,7 @@ export default function EditMember() {
                                                 <div className="mt-2">
                                                     <Field type="string" name="nameEng"
                                                         className="font-semibold text-xl rounded-md block w-full"
-                                                        placeholder={memberData?.nameEng}   require
+                                                        placeholder={memberData?.nameEng}   
                                                     />
                                                 </div>
 
@@ -236,16 +236,18 @@ export default function EditMember() {
                                                 <div className="mt-2">
                                                     <Field type="string" name="nameTh"
                                                         className="font-semibold text-xl rounded-md block w-full"
+                                                         placeholder={memberData?.nameTh}   
                                                     />
                                                 </div>
 
 
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
                                                 <div className="mt-2">
-                                                    <Field type="string" name="rank" as="select"  className="font-semibold text-xl rounded-md block w-full">
+                                                    <Field type="string" name="rank" as="select"  
+                                                    className="font-semibold text-xl rounded-md block w-full"     >
 
-                                                    <option value="ที่มี"  className="font-semibold text-xl w-full">ที่มี</option>
-                                                    <option value={rankData?.rankName}>{rankData?.rankName}</option>
+                                                    <option value={rankData?.rankName} className="font-semibold text-xl w-full">{rankData?.rankName}</option>
+                                                    <option value={rankData?.rankName}>rankอื่น</option>
                                                     </Field>
 
 
@@ -257,6 +259,8 @@ export default function EditMember() {
                                                 <div className="mt-2">
                                                     <Field type="number" name="point"
                                                         className="font-semibold text-xl rounded-md block w-full"
+                                                         placeholder={memberData?.point}  
+                                                        
                                                     />
                                                 </div>
 
@@ -270,6 +274,7 @@ export default function EditMember() {
                                                 <div className="mt-2">
                                                     <Field type="string" name="cID"
                                                         className="font-semibold text-xl rounded-md block w-full"
+                                                         placeholder={memberData?.cID}  
                                                     />
                                                 </div>
 
@@ -277,6 +282,7 @@ export default function EditMember() {
                                                 <div className="mt-2">
                                                     <Field type="string" name="phone"
                                                         className="font-semibold text-xl rounded-md block w-full"
+                                                         placeholder={memberData?.phone}  
                                                     />
                                                 </div>
 
@@ -284,6 +290,7 @@ export default function EditMember() {
                                                 <div className="mt-2">
                                                     <Field type="email" name="email"
                                                         className="font-semibold text-xl rounded-md block w-full"
+                                                        placeholder={memberData?.email}
                                                     />
                                                 </div>
 
@@ -292,6 +299,7 @@ export default function EditMember() {
                                                     <Field type="string" name="address" as="textarea"
                                                         rows={2}
                                                         className="font-semibold text-xl rounded-md block w-full"
+                                                        placeholder={memberData?.address}
                                                     />
                                                 </div>
                                             </div>
@@ -313,6 +321,7 @@ export default function EditMember() {
                                                         <div className="mt-2">
                                                             <Field type="string" name="drugAllergy"
                                                                 className="font-semibold text-xl rounded-md block w-full"
+                                                                placeholder={memberData?.drugAllergy}
                                                             />
                                                         </div>
                                                     </div>
@@ -326,6 +335,7 @@ export default function EditMember() {
                                                         <div className="mt-2">
                                                             <Field type="string" name="congenitalDisease"
                                                                 className="font-semibold text-xl rounded-md block w-full"
+                                                                placeholder={memberData?.congenitalDisease}
                                                             />
                                                         </div>
                                                     </div>
@@ -339,6 +349,7 @@ export default function EditMember() {
                                                         <div className="mt-2">
                                                             <Field type="string" name="emergencyContact"
                                                                 className="font-semibold text-xl rounded-md block w-full"
+                                                                placeholder={memberData?.emergencyContact}
                                                             />
                                                         </div>
                                                     </div>
