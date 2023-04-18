@@ -46,12 +46,11 @@ export default function CourseCreate() {
                                         <div >
                                             <div className="flex flex-row ">
                                                 <div className="basis-5/6 flex justify-start ...">
-                                                    <img className=" rounded-3xl w-1/3 h-48 m-10 border-8 border-[#FFFFFF] " />
+                                                    <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " />
                                                     <div>
                                                         <div className="grid pt-24 ">
-                                                            <span className="font-semibold text-5xl">Untitled Rank</span>
+                                                            <span className="font-semibold text-5xl">Untitled Course</span>
                                                             <span className="font-semibold text-5xl" >ID : XXX</span>
-                                                            <span className="font-semibold text-5xl mb-24" >PRICE : XXX</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -62,12 +61,24 @@ export default function CourseCreate() {
                                         </div>
                                     </div>
 
-
                                     {/* ก้อน2 */}
                                     <div>
-                                        <p className="ml-32 mt-40 ">Information</p>
+                                        <p className="ml-32 mt-28 ">Course Name(ENG)</p>
                                         <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
-                                        <div className="mt-2 ml-20 mr-20 ">
+                                        <div className="mt-2 ml-32 mr-32">
+                                            <Field type="string" name="nameEng"
+                                                className="font-semibold text-xl rounded-md block w-full"
+                                            />
+                                        </div>
+
+                                    </div>
+
+
+                                    {/* ก้อน3 */}
+                                    <div>
+                                        <p className="ml-32 mt-5 ">Course Information</p>
+                                        <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
+                                        <div className="mt-2 ml-32 mr-32 ">
                                             <div className="mt-2">
                                                 <Field type="string" name="rankDetail" as="textarea"
 
@@ -79,48 +90,45 @@ export default function CourseCreate() {
 
                                     </div>
 
-                                    {/* ก้อน3*/}
+                                    {/* ก้อน4 */}
                                     <div>
-                                        <div className="flex flex-row mb-6 ">
-                                            <div className="basis-1/2 ">
-                                                <p className="ml-32  mt-8 text-base">Rank NAME (EMG)</p>
-                                                <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
+                                        <p className="ml-32 mt-5">Available Days of The Week</p>
+                                        <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
+                                        <span className="font-light text-base ml-32">ดึงวันเวลา</span>
+                                    </div>
+
+                                    {/* ก้อน5*/}
+                                    <div>
+                                        <p className="ml-32 mt-5 ">Trainer</p>
+                                        <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
+
+                                       
                                                 <div>
-                                                    <div className="grid ml-20 mr-10">
-                                                        <div className="mt-2 ">
-                                                            <Field type="string" name="rankName"
-                                                                className="font-semibold text-xl rounded-md block w-full"
-                                                            />
-                                                        </div>
+                                                    <div className="grid ml-32 mr-32">
+                                                        <span className="font-light text-base ">Name</span>
+
+                                                        <Field type="string" name="rank" as="select" className="font-semibold text-xl rounded-md block w-full">
+
+                                                            <option value="ที่มี" className="font-semibold text-xl w-full">ที่มี</option>
+
+                                                        </Field>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div className="basis-1/2">
-                                                <p className="  ml-10 mt-8 text-base">Rank Price</p>
-                                                <hr className="  my-3 mr-20 bg-[#000000]" />
-                                                <div>
-                                                    <div className="grid mr-20 ">
-                                                        <div className="mt-2 ">
-                                                            <Field type="number" name="rankPrice"
-                                                                className="font-semibold text-xl rounded-md block w-full "
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                
+
+
                                         </div>
                                     </div>
 
 
-                                    {/* ก้อน4*/}
+                                    {/* ก้อน6*/}
                                     <div>
                                         <div className="flex flex-row mb-6 ">
                                             <div className="basis-1/2 ">
-                                                <p className="ml-32  mt-8 text-base">Member in this rank</p>
+                                                <p className="ml-32  mt-8 text-base">Rank Available</p>
                                                 <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
                                                 <div>
-                                                    <div className="grid ml-20 mr-10">
-                                                        <div className="mt-2 ">
+                                                    <div className="grid ml-32 mr-10 ">
+                                                        <div className="mt-2  ">
                                                             <select
                                                                 id="country"
                                                                 name="country"
@@ -138,10 +146,10 @@ export default function CourseCreate() {
                                                 </div>
                                             </div>
                                             <div className="basis-1/2">
-                                                <p className="  ml-10 mt-8 text-base">Course in this rank</p>
-                                                <hr className=" mr-20 my-3 bg-[#000000]" />
+                                                <p className="  ml-10 mt-8 text-base">Course Member</p>
+                                                <hr className="  mr-20 my-3 bg-[#000000]" />
                                                 <div>
-                                                    <div className="grid ">
+                                                    <div className="grid ml-10">
                                                         <div className="mt-2 mr-20 my-3">
                                                             <select
                                                                 id="country"

@@ -88,7 +88,7 @@ export default function CourseDetail() {
         setTrainerData(null);
       }
     }
-   if (courseData) {
+    if (courseData) {
       setLoading(true);
       setError(null);
       fetchTrainerData();
@@ -213,21 +213,26 @@ export default function CourseDetail() {
               </div>
             </div>
 
-
             {/* ก้อน2 */}
-            <div>
-              <p className="ml-32 mt-40 ">Course Information</p>
+             <div>
+              <p className="ml-32 mt-28 ">Course Name(ENG)</p>
               <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
-              <span className="font-light text-base ml-32">{courseData.detail}</span>
+              <span className="font-semibold text-xl ml-32">{courseData.courseName}</span>
+            </div>
+            {/* ก้อน3 */}
+            <div>
+              <p className="ml-32 mt-5 ">Course Information</p>
+              <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
+              <span className="font-semibold text-xl ml-32">{courseData.detail}</span>
             </div>
 
-            {/* ก้อน3 */}
+            {/* ก้อน4 */}
             <div>
               <p className="ml-32 mt-5">Available Days of The Week</p>
               <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
               <span className="font-light text-base ml-32">ดึงวันเวลา</span>
             </div>
-            {/* ก้อน4 */}
+            {/* ก้อน5 */}
             <div>
               <p className="ml-32 mt-5 ">Trainer</p>
               <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
@@ -262,34 +267,35 @@ export default function CourseDetail() {
                 </div>
 
               </div>
+            </div>
 
-              {/* ก้อน5 */}
-              <div>
-                <div className="flex flex-row mb-6 ">
-                  <div className="basis-1/2 ">
-                    <p className="ml-32  mt-8 text-base">Course Member</p>
-                    <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
-                    <div>
-                      <div className="grid ">
-                        <span className="font-semibold text-xl ml-32 ">ดึงname</span>
-                      </div>
+            {/* ก้อน6 */}
+            <div>
+              <div className="flex flex-row mb-6 ">
+                <div className="basis-1/2 ">
+                  <p className="ml-32  mt-4 text-base">Rank Available</p>
+                  <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
+                  <div>
+                    <div className="grid ">
+                      <span className="font-semibold text-xl ml-32 ">ดึงname</span>
                     </div>
                   </div>
-                  <div className="basis-1/2">
-                    <p className="  ml-10 mt-8 text-base">Rank Available</p>
-                    <hr className=" mr-5 my-3 bg-[#000000]" />
-                    <div>
-                      <div className="grid ">
-                        <span className="font-semibold text-xl ml-10 ">ดึงcourse</span>
-                      </div>
-                    </div>
-                  </div>
-
-
-
                 </div>
+                <div className="basis-1/2">
+                  <p className="  ml-10 mt-4 text-base">Course Member</p>
+                  <hr className=" mr-20 my-3 bg-[#000000]" />
+                  <div>
+                    <div className="grid ">
+                      <span className="font-semibold text-xl ml-10 ">ดึงrank</span>
+                    </div>
+                  </div>
+                </div>
+
+
+
               </div>
             </div>
+
           </div>
         </div>
 

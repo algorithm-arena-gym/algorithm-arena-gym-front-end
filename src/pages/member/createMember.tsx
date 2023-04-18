@@ -209,11 +209,8 @@ export default function createMember() {
 
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
                                                 <div className="mt-2">
-
                                                     <Field type="string" name="rank" as="select"  className="font-semibold text-xl rounded-md block w-full">
 
-                                                       
-                                                    
                                                     <option value="ที่มี"  className="font-semibold text-xl w-full">ที่มี</option>
                                                     <option value={rankData?.rankName}>{rankData?.rankName}</option>
                                                     </Field>
