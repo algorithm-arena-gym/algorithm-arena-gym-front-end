@@ -1,8 +1,8 @@
-import Navbar from "@/app/navbar/navbar";
-import { useRouter } from "next/router";
+Trainer
 import { useEffect, useState } from "react";
 import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 
 interface Trainer {
@@ -20,6 +20,29 @@ interface Trainer {
     hireDate: Date;
 }
 
+const initialValues = {
+    nameEng: '',
+    nameTh: '',
+    cID: '',
+    phone: '',
+    email: '',
+    address: '',
+
+    profilePic: '',
+
+    drugAllergy: '',
+    congenitalDisease: '',
+    emergencyContact: '',
+
+    memberID: '',
+    day: '',
+    time: '',
+
+    courseID: '',
+
+}
+
+
 export default function TrainerCreate() {
 
 
@@ -29,6 +52,14 @@ export default function TrainerCreate() {
                 <TabNavbar />
             </div>
 
+           <Formik
+                initialValues={initialValues}
+                onSubmit={(values, action) => {
+                    console.log(values)
+                }}
+            >
+                {({ isSubmitting }) => (
+                    <Form>
             <div className=" bg-black w-full h-full">
                 <div className="grid place-items-center  font-AzeretMono">
                     <div className="rounded-3xl m-6 w-9/12 pb-6 text-black bg-[#D9D9D9]">
@@ -59,37 +90,24 @@ export default function TrainerCreate() {
                             <div className="basis-1/2 flex justify-start ...">
                                 <div className="grid ml-32 ">
 
-                                    <label htmlFor="first-name" className="font-light text-base">Name(Eng)</label>
+                                    <label className="font-light text-base">Name(Eng)</label>
                                     <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="first-name"
-                                            id="first-name"
-                                            autoComplete="off"
-                                            className="font-semibold text-xl rounded-md block w-full"
-                                        />
+                                        <Field type="string" name="nameEng"
+                                                        className="font-semibold text-xl rounded-md block w-full"
                                     </div>
 
-                                    <label htmlFor="first-name" className="font-light text-base ">Name(TH)</label>
+                                    <label className="font-light text-base ">Name(TH)</label>
                                     <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="first-name"
-                                            id="first-name"
-                                            autoComplete="off"
-                                            className="font-semibold text-xl rounded-md block w-full"
-                                        />
+                                        <Field type="string" name="nameTh"
+                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                    />
                                     </div>
 
-                                    <label htmlFor="first-name" className="font-light text-base  ">Citizen ID</label>
+                                    <label className="font-light text-base  ">Citizen ID</label>
                                     <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name="first-name"
-                                            id="first-name"
-                                            autoComplete="off"
-                                            className="font-semibold text-xl rounded-md block w-full"
-                                        />
+                                        <Field type="string" name="cID"
+                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                    />
                                     </div>
                                 </div>
                             </div>
@@ -98,37 +116,26 @@ export default function TrainerCreate() {
                                 <div className="grid ">
 
 
-                                    <label htmlFor="first-name" className="font-light text-base ">Phone number</label>
+                                    <label className="font-light text-base ">Phone number</label>
                                     <div className="mt-8">
-                                        <input
-                                            type="text"
-                                            name="first-name"
-                                            id="first-name"
-                                            autoComplete="off"
-                                            className="font-semibold text-xl rounded-md block w-full"
-                                        />
+                                        <Field type="string" name="phone"
+                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                    />
                                     </div>
 
-                                    <label htmlFor="first-name" className="font-light text-base mt-6">Email</label>
+                                    <label className="font-light text-base mt-6">Email</label>
                                     <div className="mt-8">
-                                        <input
-                                            type="text"
-                                            name="first-name"
-                                            id="first-name"
-                                            autoComplete="off"
-                                            className="font-semibold text-xl rounded-md block w-full"
-                                        />
+                                        <Field type="email" name="email"
+                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                    />
                                     </div>
 
                                     <label htmlFor="first-name" className="font-light text-base mt-6">Address</label>
                                     <div className="mt-8">
-                                        <textarea
-                                            name="first-name"
-                                            id="first-name"
-                                            autoComplete="off"
-                                            rows={2}
-                                            className="font-semibold text-xl rounded-md block w-full"
-                                        />
+                                       <Field type="string" name="address" as="textarea"
+                                                        rows={2}
+                                                        className="font-semibold text-xl rounded-md block w-full"
+                                                    />
                                     </div>
                                 </div>
                             </div>
@@ -144,15 +151,12 @@ export default function TrainerCreate() {
                                 <div className="basis-1/3 ">
                                     <div>
                                         <div className="grid ml-32">
-                                            <label htmlFor="first-name" className="font-light text-base ">Drug Allergy</label>
+                                            <label className="font-light text-base ">Drug Allergy</label>
                                             <div className="mt-2">
-                                                <input
-                                                    type="text"
-                                                    name="first-name"
-                                                    id="first-name"
-                                                    autoComplete="off"
-                                                    className="font-semibold text-xl rounded-md block w-full"
-                                                />
+                                                <div className="mt-2">
+                                                            <Field type="string" name="drugAllergy"
+                                                                className="font-semibold text-xl rounded-md block w-full"
+                                                            />
                                             </div>
                                         </div>
                                     </div>
@@ -161,15 +165,11 @@ export default function TrainerCreate() {
                                 <div className="basis-1/3 flex justify-center ...">
                                     <div >
                                         <div className="grid ">
-                                            <label htmlFor="first-name" className="font-light text-base ">Congenital Disease</label>
+                                            <label className="font-light text-base ">Congenital Disease</label>
                                             <div className="mt-2">
-                                                <input
-                                                    type="text"
-                                                    name="first-name"
-                                                    id="first-name"
-                                                    autoComplete="off"
-                                                    className="font-semibold text-xl rounded-md block w-full"
-                                                />
+                                                <Field type="string" name="congenitalDisease"
+                                                                className="font-semibold text-xl rounded-md block w-full"
+                                                            />
                                             </div>
                                         </div>
                                     </div>
@@ -178,15 +178,11 @@ export default function TrainerCreate() {
                                 <div className="basis-1/3 flex justify-start ...">
                                     <div>
                                         <div className="grid mr-20">
-                                            <label htmlFor="first-name" className="font-light text-base ">Emergency Contact</label>
+                                            <label className="font-light text-base ">Emergency Contact</label>
                                             <div className="mt-2">
-                                                <input
-                                                    type="text"
-                                                    name="first-name"
-                                                    id="first-name"
-                                                    autoComplete="off"
-                                                    className="font-semibold text-xl rounded-md block w-full "
-                                                />
+                                                <Field type="string" name="emergencyContact"
+                                                                className="font-semibold text-xl rounded-md block w-full"
+                                                            />
                                             </div>
                                         </div>
                                     </div>
@@ -286,49 +282,43 @@ export default function TrainerCreate() {
                                         <div className="basis-1/3 flex justify-start ... ">
                                             <div>
                                                 <div className="grid  ">
-                                                    <label htmlFor="first-name" className="font-light text-base ">Days</label>
+                                                    <label className="font-light text-base ">Days</label>
                                                     <div className="mt-2">
-                                                        <select
-                                                            id="country"
-                                                            name="country"
-                                                            autoComplete="off"
-                                                            className="font-semibold text-xl rounded-md block w-full"
-                                                        >
-                                                            <option>Sunday</option>
-                                                            <option>Monday</option>
-                                                            <option>Tuesday</option>
-                                                            <option>Wednesday</option>
-                                                            <option>Thrusday</option>
-                                                            <option>Friday</option>
-                                                            <option>Saturday</option>
+                                                        <Field type="string" name="day" as="select"  className="font-semibold text-xl rounded-md block w-full">
+                                                                                                           
+<option value="Sunday"  className="font-semibold text-xl w-full">Sunday</option>
+ <option value="Monday"  className="font-semibold text-xl w-full">Monday</option>
+<option value="Tuesday"  className="font-semibold text-xl w-full">Tuesday</option>
+<option value="Wednesday"  className="font-semibold text-xl w-full">Wednesday</option>
+<option value="Thrusday"  className="font-semibold text-xl w-full">Thrusday</option>
+<option value="Friday"  className="font-semibold text-xl w-full">Friday</option>
+<option value="Saturday"  className="font-semibold text-xl w-full">Saturday</option>
 
-                                                        </select>
-                                                    </div>
+</Field>
+                                                                                                               </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="basis-1/3 ">
                                             <div>
                                                 <div className="grid ">
-                                                    <label htmlFor="first-name" className="font-light text-base ">Time</label>
+                                                    <label className="font-light text-base ">Time</label>
                                                     <div className="mt-2 mr-20">
-                                                        <select
-                                                            id="country"
-                                                            name="country"
-                                                            autoComplete="off"
-                                                            className="font-semibold text-xl rounded-md block w-full "
-                                                        >
-                                                            <option>10-11</option>
-                                                            <option>11-12</option>
-                                                            <option>12-13</option>
-                                                            <option>13-14</option>
-                                                            <option>14-15</option>
-                                                            <option>15-16</option>
-                                                            <option>16-17</option>
-                                                            <option>17-18</option>
-                                                            <option>18-19</option>
-                                                            <option>19-20</option>
-                                                        </select>
+                                                       <Field type="string" name="day" as="select"  className="font-semibold text-xl rounded-md block w-full">
+                                                                                                           
+<option value="10-11"  className="font-semibold text-xl w-full">10-11</option>
+ <option value="11-12"  className="font-semibold text-xl w-full">11-12</option>
+<option value="12-13"  className="font-semibold text-xl w-full">12-13</option>
+<option value="13-14"  className="font-semibold text-xl w-full">13-14</option>
+<option value="14-15"  className="font-semibold text-xl w-full">14-15</option>
+<option value="15-16"  className="font-semibold text-xl w-full">15-16</option>
+<option value="16-17"  className="font-semibold text-xl w-full">16-17</option>
+<option value="17-18"  className="font-semibold text-xl w-full">17-18</option>
+<option value="18-19"  className="font-semibold text-xl w-full">18-19</option>
+<option value="19-20"  className="font-semibold text-xl w-full">19-20</option>
+
+</Field>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -338,12 +328,19 @@ export default function TrainerCreate() {
 
 
                                 </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+
+
+                    </Form>
+                )}
+            </Formik>
+
         </div>
-        
+
+
     );
 }

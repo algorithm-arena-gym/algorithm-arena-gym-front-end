@@ -11,7 +11,7 @@ interface Rank {
     rankName: string;
     rankDetail: string;
     rankPrice: number;
-    createAt: Date;
+   
 }
 interface Member {
     memberID: number;
