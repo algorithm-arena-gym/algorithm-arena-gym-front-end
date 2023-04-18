@@ -19,6 +19,36 @@ interface Trainer {
     hireDate: Date;
 }
 
+interface Member {
+    memberID: number;
+    nameEng: string;
+
+}
+
+interface Course {
+    courseID: number,
+    courseName: string,
+}
+
+
+let cnt_td = 0;
+let cnt_tt = 0;
+
+const changeCntT = () => {
+    cnt_td = cnt_td + 1;
+    cnt_tt = cnt_tt + 1;
+    console.log("t" + cnt_td, cnt_tt);
+}
+
+let cnt_cd = 0;
+let cnt_ct = 0;
+
+const changeCntC = () => {
+    cnt_cd = cnt_cd + 1;
+    cnt_ct = cnt_ct + 1;
+    console.log("c" + cnt_cd, cnt_ct);
+}
+
 const initialValues = {
     nameEng: '',
     nameTh: '',
@@ -34,15 +64,25 @@ const initialValues = {
     emergencyContact: '',
 
     memberID: '',
-    day: '',
-    time: '',
+    day_t: '',
+    time_t: '',
 
     courseID: '',
+    day_c: '',
+    time_c: '',
 
 }
 
 
 export default function TrainerCreate() {
+    const [trainerData, setTrainerData] = useState<Trainer | null>(null);
+
+    const [memberData, setMemberData] = useState<Member | null>(null);
+    const [courseData, setCourseData] = useState<Course | null>(null);
+
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
 
     return (
@@ -69,7 +109,7 @@ export default function TrainerCreate() {
                                                 <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " />
                                                 <div>
                                                     <div className="grid pt-24 ">
-                                                       <span className="font-semibold text-4xl">Untitled Trainer</span>
+                                                        <span className="font-semibold text-4xl">Untitled Trainer</span>
                                                         <span className="font-light text-3xl pb-24" >ID : XXX</span>
                                                     </div>
                                                 </div>
@@ -155,7 +195,7 @@ export default function TrainerCreate() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Drug Allergy</label>
                                                         <div className="mt-2">
                                                             <Field type="string" name="drugAllergy"
-                                                                className="font-semibold text-xl rounded-md block w-full" 
+                                                                className="font-semibold text-xl rounded-md block w-full"
                                                             />
                                                         </div>
                                                     </div>
@@ -168,7 +208,7 @@ export default function TrainerCreate() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Congenital Disease</label>
                                                         <div className="mt-2">
                                                             <Field type="string" name="congenitalDisease"
-                                                                className="font-semibold text-xl rounded-md block w-full" 
+                                                                className="font-semibold text-xl rounded-md block w-full"
                                                             />
                                                         </div>
                                                     </div>

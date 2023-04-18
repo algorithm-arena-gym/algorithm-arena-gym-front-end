@@ -93,6 +93,30 @@ export default function createMember() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        async function fetchMemberData() {
+            setLoading(true);
+            try {
+                const res4 = await fetch('http://localhost:4000/member');
+                const json4 = await res4.json();
+                setMemberData(json4);
+                setError(null);
+
+                console.error(json4);
+
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the member data.');
+                setMemberData(null);
+            }
+
+            setLoading(false);
+        }
+
+        fetchMemberData();
+    }, []);
+
+    useEffect(() => {
         async function fetchRankData() {
             setLoading(true);
             try {
@@ -122,7 +146,7 @@ export default function createMember() {
             try {
                 const res2 = await fetch('http://localhost:4000/trainer');
                 const json2 = await res2.json();
-                setTrainerData(json2[0]);
+                setTrainerData(json2);
                 setError(null);
 
                 // console.error(json2);
@@ -142,9 +166,9 @@ export default function createMember() {
         async function fetchCourseData() {
             setLoading(true);
             try {
-                const res3 = await fetch('http://localhost:4000/rank');
+                const res3 = await fetch('http://localhost:4000/course');
                 const json3 = await res3.json();
-                setCourseData(json3[0]);
+                setCourseData(json3);
                 setError(null);
 
                 // console.error(json3);
@@ -171,9 +195,11 @@ export default function createMember() {
         return <div>No data to display.</div>;
     }
 
-    
 
 
+    const ranks = JSON.parse(JSON.stringify(rankData));
+    const trainers = JSON.parse(JSON.stringify(trainerData));
+    const courses = JSON.parse(JSON.stringify(courseData));
 
 
 
@@ -205,9 +231,9 @@ export default function createMember() {
                                                         <span className="font-semibold text-4xl mt-2 w-full">
                                                             <Field type="string" name="profilePic"
                                                                 className="font-semibold text-xl rounded-md block w-full" required
-                                                                placeholder= "www.memberPicture.com"
+                                                                placeholder="www.memberPicture.com"
                                                             />
-                                                            </span>
+                                                        </span>
                                                         <span className="font-light text-3xl pb-24" >ID : XXX</span>
                                                     </div>
                                                 </div>
@@ -245,14 +271,10 @@ export default function createMember() {
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="rank" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-
-                                                        <option value="ที่มี" className="font-semibold text-xl w-full">ที่มี</option>
-                                                        <option value={rankData?.rankName}>{rankData?.rankName}</option>
+                                                        {ranks.map((rank: Rank) => (
+                                                            <option value={rank.rankID}>{rank.rankName}</option>
+                                                        ))}
                                                     </Field>
-
-
-
-
                                                 </div>
 
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Point</label>
@@ -361,8 +383,14 @@ export default function createMember() {
                                                     <div className="basis-1/2 ">
                                                         <div>
                                                             <div className="grid ml-20">
-                                                                <span className="font-light text-base ">Name</span>
-                                                                <span className="font-semibold text-xl ">ดึงname</span>
+                                                                <label htmlFor="first-name" className="font-light text-base ">Name</label>
+                                                                <div className="mt-2 ">
+                                                                    <Field type="string" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        {trainers.map((tr: Trainer) => (
+                                                                            <option value={tr.trainerID}>{tr.nameEng}</option>
+                                                                        ))}
+                                                                    </Field>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -429,8 +457,14 @@ export default function createMember() {
                                                     <div className="basis-1/3 ">
                                                         <div>
                                                             <div className="grid ">
-                                                                <span className="font-light text-base ">Name</span>
-                                                                <span className="font-semibold text-xl ">ดึงname</span>
+                                                                 <label htmlFor="first-name" className="font-light text-base ">Name</label>
+                                                                <div className="mt-2 ">
+                                                                    <Field type="string" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        {courses.map((co: Course) => (
+                                                                            <option value={co.courseID}>{co.courseName}</option>
+                                                                        ))}
+                                                                    </Field>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
