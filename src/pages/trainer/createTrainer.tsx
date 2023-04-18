@@ -31,13 +31,13 @@ interface Course {
 }
 
 
-let cnt_td = 0;
-let cnt_tt = 0;
+let cnt_md = 0;
+let cnt_mt = 0;
 
-const changeCntT = () => {
-    cnt_td = cnt_td + 1;
-    cnt_tt = cnt_tt + 1;
-    console.log("t" + cnt_td, cnt_tt);
+const changeCntM = () => {
+    cnt_md = cnt_md + 1;
+    cnt_mt = cnt_mt + 1;
+    console.log("m" + cnt_md, cnt_mt);
 }
 
 let cnt_cd = 0;
@@ -64,8 +64,8 @@ const initialValues = {
     emergencyContact: '',
 
     memberID: '',
-    day_t: '',
-    time_t: '',
+    day_m: '',
+    time_m: '',
 
     courseID: '',
     day_c: '',
@@ -83,6 +83,92 @@ export default function TrainerCreate() {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function fetchTrainerData() {
+            setLoading(true);
+            try {
+                const res2 = await fetch('http://localhost:4000/trainer');
+                const json2 = await res2.json();
+                setTrainerData(json2);
+                setError(null);
+
+                // console.error(json2);
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the trainer data.');
+                setTrainerData(null);
+            }
+            setLoading(false);
+        }
+
+        fetchTrainerData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchMemberData() {
+            setLoading(true);
+            try {
+                const res4 = await fetch('http://localhost:4000/member');
+                const json4 = await res4.json();
+                setMemberData(json4);
+                setError(null);
+
+                // console.error(json4);
+
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the member data.');
+                setMemberData(null);
+            }
+
+            setLoading(false);
+        }
+
+        fetchMemberData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchCourseData() {
+            setLoading(true);
+            try {
+                const res3 = await fetch('http://localhost:4000/course');
+                const json3 = await res3.json();
+                setCourseData(json3);
+                setError(null);
+
+                // console.error(json3);
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the course data.');
+                setCourseData(null);
+            }
+            setLoading(false);
+        }
+        fetchCourseData();
+    }, []);
+
+
+
+     if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    if (!trainerData) {
+        return <div>No data to display.</div>;
+    }
+
+
+    const members = JSON.parse(JSON.stringify(memberData));
+    const courses = JSON.parse(JSON.stringify(courseData));
+
 
 
     return (
@@ -109,7 +195,12 @@ export default function TrainerCreate() {
                                                 <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " />
                                                 <div>
                                                     <div className="grid pt-24 ">
-                                                        <span className="font-semibold text-4xl">Untitled Trainer</span>
+                                                        <span className="font-semibold text-4xl mt-2 w-full">
+                                                            <Field type="string" name="profilePic"
+                                                                className="font-semibold text-xl rounded-md block w-full" required
+                                                                placeholder="www.trainerPicture.com"
+                                                            />
+                                                        </span>
                                                         <span className="font-light text-3xl pb-24" >ID : XXX</span>
                                                     </div>
                                                 </div>
@@ -124,7 +215,7 @@ export default function TrainerCreate() {
 
 
                                     {/* ก้อน2 */}
-                                    <p className="ml-32  mt-28 text-base">Member information</p>
+                                    <p className="ml-32  mt-28 text-base">Trainer information</p>
                                     <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
                                     <div className="flex flex-row mb-6">
                                         <div className="basis-1/2 flex justify-start ...">
@@ -235,63 +326,62 @@ export default function TrainerCreate() {
                                     <div>
                                         <div className="flex flex-row mb-6 ">
                                             <div className="basis-1/2 ">
-                                                <p className="ml-32  mt-8 text-base">Trainer Information</p>
+                                                <p className="ml-32  mt-8 text-base">Trainee Information</p>
                                                 <hr className="ml-20 mr-5 my-3 bg-[#000000]" />
                                                 <div className="flex flex-row ">
-                                                    <div className="basis-1/3 ">
+                                                    <div className="basis-1/2 ">
                                                         <div>
                                                             <div className="grid ml-20">
-                                                                <span className="font-light text-base ">Name</span>
-                                                                <span className="font-semibold text-xl ">ดึงname</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="basis-1/3 flex justify-center ... ">
-                                                        <div>
-                                                            <div className="grid  ">
-                                                                <label htmlFor="first-name" className="font-light text-base ">Days</label>
-                                                                <div className="mt-2">
-                                                                    <select
-                                                                        id="country"
-                                                                        name="country"
-                                                                        autoComplete="off"
-                                                                        className="font-semibold text-xl rounded-md block w-full"
-                                                                    >
-                                                                        <option>Sunday</option>
-                                                                        <option>Monday</option>
-                                                                        <option>Tuesday</option>
-                                                                        <option>Wednesday</option>
-                                                                        <option>Thrusday</option>
-                                                                        <option>Friday</option>
-                                                                        <option>Saturday</option>
-
-                                                                    </select>
+                                                                <label htmlFor="first-name" className="font-light text-base ">Name</label>
+                                                                <div className="mt-2 ">
+                                                                    <Field type="number" name="memberID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        {members?.map((mem: Member) => (
+                                                                            <option value={mem.memberID}>{mem.nameEng}</option>
+                                                                        ))}
+                                                                    </Field>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="basis-1/3 flex justify-center ...">
+                                                    <div className="basis-1/4 flex justify-center ... ">
+                                                        <div>
+                                                            <div className="grid  ">
+                                                                <label htmlFor="first-name" className="font-light text-base ">Days</label>
+                                                                <div className="mt-2 ">
+                                                                    <Field type="string" name={`day_m[${cnt_md}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+
+                                                                        <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                    </Field>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="basis-1/4 flex justify-center ...">
                                                         <div>
                                                             <div className="grid ">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Time</label>
-                                                                <div className="mt-2 ">
-                                                                    <select
-                                                                        id="country"
-                                                                        name="country"
-                                                                        autoComplete="off"
-                                                                        className="font-semibold text-xl rounded-md block w-full "
-                                                                    >
-                                                                        <option>10-11</option>
-                                                                        <option>11-12</option>
-                                                                        <option>12-13</option>
-                                                                        <option>13-14</option>
-                                                                        <option>14-15</option>
-                                                                        <option>15-16</option>
-                                                                        <option>16-17</option>
-                                                                        <option>17-18</option>
-                                                                        <option>18-19</option>
-                                                                        <option>19-20</option>
-                                                                    </select>
+                                                                <div className="mt-2 mr-5">
+                                                                    <Field type="string" name={`time_m[${cnt_mt}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+
+                                                                        <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
+                                                                        <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
+                                                                        <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
+                                                                        <option value="13-14" className="font-semibold text-xl w-full">13-14</option>
+                                                                        <option value="14-15" className="font-semibold text-xl w-full">14-15</option>
+                                                                        <option value="15-16" className="font-semibold text-xl w-full">15-16</option>
+                                                                        <option value="16-17" className="font-semibold text-xl w-full">16-17</option>
+                                                                        <option value="17-18" className="font-semibold text-xl w-full">17-18</option>
+                                                                        <option value="18-19" className="font-semibold text-xl w-full">18-19</option>
+                                                                        <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
+                                                                    </Field>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -300,8 +390,14 @@ export default function TrainerCreate() {
 
 
                                                 </div>
-                                                <div className=" text-black bg-[#FFFFFF] text-xl rounded-md  ml-20 mr-5 mt-3  flex justify-center">+</div>
-
+                                                <div className="flex flex-row  ">
+                                                    <div className="basis-1/2 " />
+                                                    <div className="basis-1/2  " >
+                                                        <div className=" mt-3 mr-5">
+                                                            <button type="submit" onClick={changeCntM} className=" text-black bg-[#FFFFFF]  rounded-md  w-full flex justify-center " >+</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                             <div className="basis-1/2">
@@ -311,8 +407,14 @@ export default function TrainerCreate() {
                                                     <div className="basis-1/3 ">
                                                         <div>
                                                             <div className="grid ">
-                                                                <span className="font-light text-base ">Name</span>
-                                                                <span className="font-semibold text-xl ">ดึงname</span>
+                                                                <label htmlFor="first-name" className="font-light text-base ">Name</label>
+                                                                <div className="mt-2 ">
+                                                                    <Field type="number" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        {courses?.map((co: Course) => (
+                                                                            <option value={co.courseID}>{co.courseName}</option>
+                                                                        ))}
+                                                                    </Field>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -340,7 +442,7 @@ export default function TrainerCreate() {
                                                         <div>
                                                             <div className="grid ">
                                                                 <label className="font-light text-base ">Time</label>
-                                                                <div className="mt-2 mr-20">
+                                                                <div className="mt-2 mr-14">
                                                                     <Field type="string" name="day" as="select" className="font-semibold text-xl rounded-md block w-full">
 
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
@@ -361,8 +463,14 @@ export default function TrainerCreate() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className=" text-black bg-[#FFFFFF] text-xl rounded-md   mr-20 mt-3  flex justify-center">+</div>
-
+                                                <div className="flex flex-row  ">
+                                                    <div className="basis-1/3 " />
+                                                    <div className="basis-2/3  " >
+                                                        <div className=" mt-3 mr-14">
+                                                            <button type="submit" onClick={changeCntC} className=" text-black bg-[#FFFFFF]  rounded-md  w-full flex justify-center " >+</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>

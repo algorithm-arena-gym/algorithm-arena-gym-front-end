@@ -89,6 +89,7 @@ export default function createMember() {
 
     const [trainerData, setTrainerData] = useState<Trainer | null>(null);
     const [courseData, setCourseData] = useState<Course | null>(null);
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -385,8 +386,8 @@ export default function createMember() {
                                                             <div className="grid ml-20">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                                 <div className="mt-2 ">
-                                                                    <Field type="string" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        {trainers.map((tr: Trainer) => (
+                                                                    <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        {trainers?.map((tr: Trainer) => (
                                                                             <option value={tr.trainerID}>{tr.nameEng}</option>
                                                                         ))}
                                                                     </Field>
@@ -459,8 +460,8 @@ export default function createMember() {
                                                             <div className="grid ">
                                                                  <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                                 <div className="mt-2 ">
-                                                                    <Field type="string" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        {courses.map((co: Course) => (
+                                                                    <Field type="number" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        {courses?.map((co: Course) => (
                                                                             <option value={co.courseID}>{co.courseName}</option>
                                                                         ))}
                                                                     </Field>
