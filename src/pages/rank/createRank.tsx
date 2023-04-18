@@ -13,15 +13,145 @@ interface Rank {
     rankPrice: number;
 
 }
+
+interface Member {
+    memberID: number;
+    nameEng: string;
+
+}
+
+
+interface Course {
+    courseID: number,
+    courseName: string,
+}
+
+
+let cnt_m = 0;
+
+const changeCntM = () => {
+    cnt_m = cnt_m + 1;
+    console.log("m" + cnt_m);
+}
+
+let cnt_c = 0;
+
+const changeCntC = () => {
+    cnt_c = cnt_c + 1;
+    console.log("c" + cnt_c);
+}
+
 const initialValues = {
-    rankID: '',
+
     rankPic: '',
     rankName: '',
     rankDetail: '',
     rankPrice: '',
+
+    memberID: '',
+
+    courseID: '',
+
 }
 
 export default function RankCreate() {
+    const [memberData, setMemberData] = useState<Member | null>(null);
+
+    const [rankData, setRankData] = useState<Rank | null>(null);
+
+
+    const [courseData, setCourseData] = useState<Course | null>(null);
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function fetchRankData() {
+            setLoading(true);
+            try {
+                const res = await fetch('http://localhost:4000/rank');
+                const json = await res.json();
+                setRankData(json);
+                setError(null);
+
+                console.error(json);
+
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the rank data.');
+                setRankData(null);
+            }
+
+            setLoading(false);
+        }
+
+        fetchRankData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchMemberData() {
+            setLoading(true);
+            try {
+                const res4 = await fetch('http://localhost:4000/member');
+                const json4 = await res4.json();
+                setMemberData(json4);
+                setError(null);
+
+                console.error(json4);
+
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the member data.');
+                setMemberData(null);
+            }
+
+            setLoading(false);
+        }
+
+        fetchMemberData();
+    }, []);
+
+
+
+    useEffect(() => {
+        async function fetchCourseData() {
+            setLoading(true);
+            try {
+                const res3 = await fetch('http://localhost:4000/course');
+                const json3 = await res3.json();
+                setCourseData(json3);
+                setError(null);
+
+                // console.error(json3);
+
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the course data.');
+                setCourseData(null);
+            }
+            setLoading(false);
+        }
+        fetchCourseData();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
+
+    if (!rankData) {
+        return <div>No data to display.</div>;
+    }
+
+    const ranks = JSON.parse(JSON.stringify(rankData));
+    const members = JSON.parse(JSON.stringify(memberData));
+    const courses = JSON.parse(JSON.stringify(courseData));
+
 
 
     return (
@@ -50,8 +180,12 @@ export default function RankCreate() {
                                                     <img className=" rounded-3xl w-1/3 h-48 m-10 border-8 border-[#FFFFFF] " />
                                                     <div>
                                                         <div className="grid pt-24 ">
-                                                            <span className="font-semibold text-5xl">Untitled Rank</span>
-                                                            <span className="font-semibold text-5xl" >ID : XXX</span>
+                                                            <span className="font-semibold text-4xl mt-2 w-full">
+                                                                <Field type="string" name="profilePic"
+                                                                    className="font-semibold text-xl rounded-md block w-full" required
+                                                                    placeholder="www.rankPicture.com"
+                                                                />
+                                                            </span>                                                            <span className="font-semibold text-5xl" >ID : XXX</span>
                                                             <span className="font-semibold text-5xl mb-24" >PRICE : XXX</span>
                                                         </div>
                                                     </div>
@@ -66,31 +200,30 @@ export default function RankCreate() {
 
                                     {/* ก้อน2 */}
                                     <div>
-                                        <p className="ml-32 mt-40 ">Information</p>
+                                        <p className="ml-32 mt-40 ">Rank Information</p>
                                         <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
                                         <div className="mt-2 ml-20 mr-20 ">
                                             <div className="mt-2">
                                                 <Field type="string" name="rankDetail" as="textarea"
-                                                        
-                                                        className="font-semibold text-xl rounded-md block w-full"
-                                                    />
-                                                    
+                                                    className="font-semibold text-xl rounded-md block w-full" required
+                                                />
+
                                             </div>
                                         </div>
-                                        
+
                                     </div>
 
                                     {/* ก้อน3*/}
                                     <div>
                                         <div className="flex flex-row mb-6 ">
                                             <div className="basis-1/2 ">
-                                                <p className="ml-32  mt-8 text-base">Rank NAME (EMG)</p>
+                                                <p className="ml-32  mt-8 text-base">Rank Name (ENG)</p>
                                                 <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
                                                 <div>
                                                     <div className="grid ml-20 mr-10">
                                                         <div className="mt-2 ">
                                                             <Field type="string" name="rankName"
-                                                                className="font-semibold text-xl rounded-md block w-full"
+                                                                className="font-semibold text-xl rounded-md block w-full" required
                                                             />
                                                         </div>
                                                     </div>
@@ -103,7 +236,7 @@ export default function RankCreate() {
                                                     <div className="grid mr-20 ">
                                                         <div className="mt-2 ">
                                                             <Field type="number" name="rankPrice"
-                                                                className="font-semibold text-xl rounded-md block w-full "
+                                                                className="font-semibold text-xl rounded-md block w-full " required
                                                             />
                                                         </div>
                                                     </div>
@@ -122,21 +255,22 @@ export default function RankCreate() {
                                                 <div>
                                                     <div className="grid ml-20 mr-10">
                                                         <div className="mt-2 ">
-                                                            <select
-                                                                id="country"
-                                                                name="country"
-                                                                autoComplete="off"
-                                                                className="font-semibold text-xl rounded-md block w-full"
-                                                            >
-                                                                <option>ชื่อ</option>
-                                                                <option>Monday</option>
-                                                                <option>Tuesday</option>
-
-
-                                                            </select>
+                                                            <Field type="number" name={`memberID[${cnt_m}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                {members?.map((mem: Member) => (
+                                                                    <option value={mem.memberID}>{mem.nameEng}</option>
+                                                                ))}
+                                                            </Field>
                                                         </div>
                                                     </div>
                                                 </div>
+
+
+                                               <div >
+                                                    <div className=" ml-20 mr-10 mt-3 ">
+                                                        <button type="submit" onClick={changeCntM} className=" text-black bg-[#FFFFFF]  rounded-md  w-full flex justify-center " >+</button>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <div className="basis-1/2">
                                                 <p className="  ml-10 mt-8 text-base">Course in this rank</p>
@@ -144,18 +278,18 @@ export default function RankCreate() {
                                                 <div>
                                                     <div className="grid ">
                                                         <div className="mt-2 mr-20 my-3">
-                                                            <select
-                                                                id="country"
-                                                                name="country"
-                                                                autoComplete="off"
-                                                                className="font-semibold text-xl rounded-md block w-full"
-                                                            >
-                                                                <option>เทรนเนอร์</option>
-                                                                <option>Monday</option>
-
-
-                                                            </select>
+                                                            <Field type="number" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                {courses?.map((co: Course) => (
+                                                                    <option value={co.courseID}>{co.courseName}</option>
+                                                                ))}
+                                                            </Field>
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <div >
+                                                    <div className=" mr-20  ">
+                                                        <button type="submit" onClick={changeCntC} className=" text-black bg-[#FFFFFF]  rounded-md  w-full flex justify-center " >+</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,7 +312,7 @@ export default function RankCreate() {
 
 
 
-            
+
 
         </div>
 

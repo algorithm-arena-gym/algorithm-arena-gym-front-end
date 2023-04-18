@@ -192,7 +192,7 @@ export default function createMember() {
         return <div>{error}</div>;
     }
 
-    if (!rankData) {
+    if (!memberData) {
         return <div>No data to display.</div>;
     }
 
@@ -400,7 +400,8 @@ export default function createMember() {
                                                             <div className="grid  ">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                                                 <div className="mt-2 ">
-                                                                    <Field type="string" name={`day_t[${cnt_td}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                    <Field type="string" name={`day_t[${cnt_td}]`} as="select" 
+                                                                    className="font-semibold text-xl rounded-md block w-full" required>
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -420,7 +421,8 @@ export default function createMember() {
                                                             <div className="grid ">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                                                 <div className="mt-2 mr-5">
-                                                                    <Field type="string" name={`time_t[${cnt_tt}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                    <Field type="string" name={`time_t[${cnt_tt}]`} as="select" 
+                                                                    className="font-semibold text-xl rounded-md block w-full" required>
 
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
@@ -460,7 +462,8 @@ export default function createMember() {
                                                             <div className="grid ">
                                                                  <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                                 <div className="mt-2 ">
-                                                                    <Field type="number" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                    <Field type="number" name="courseID" as="select" 
+                                                                    className="font-semibold text-xl rounded-md block w-full" required>
                                                                         {courses?.map((co: Course) => (
                                                                             <option value={co.courseID}>{co.courseName}</option>
                                                                         ))}
@@ -474,7 +477,8 @@ export default function createMember() {
                                                             <div className="grid  ">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                                                 <div className="mt-2">
-                                                                    <Field type="string" name={`day_c[${cnt_cd}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                    <Field type="string" name={`day_c[${cnt_cd}]`} as="select" 
+                                                                    className="font-semibold text-xl rounded-md block w-full" required>
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -493,7 +497,8 @@ export default function createMember() {
                                                             <div className="grid ">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                                                 <div className="mt-2 mr-14">
-                                                                    <Field type="string" name={`time_c[${cnt_ct}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                    <Field type="string" name={`time_c[${cnt_ct}]`} as="select" 
+                                                                    className="font-semibold text-xl rounded-md block w-full" required>
 
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
