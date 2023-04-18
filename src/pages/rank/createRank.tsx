@@ -74,7 +74,7 @@ export default function RankCreate() {
                 setRankData(json);
                 setError(null);
 
-                console.error(json);
+                // console.error(json);
 
 
             } catch (error) {
@@ -98,7 +98,7 @@ export default function RankCreate() {
                 setMemberData(json4);
                 setError(null);
 
-                console.error(json4);
+                // console.error(json4);
 
 
             } catch (error) {
@@ -278,7 +278,7 @@ export default function RankCreate() {
                                                 <div>
                                                     <div className="grid ">
                                                         <div className="mt-2 mr-20 my-3">
-                                                            <Field type="number" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                            <Field type="number" name={`courseID[${cnt_c}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
                                                                 {courses?.map((co: Course) => (
                                                                     <option value={co.courseID}>{co.courseName}</option>
                                                                 ))}

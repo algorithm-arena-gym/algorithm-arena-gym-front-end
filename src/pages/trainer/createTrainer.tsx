@@ -423,7 +423,7 @@ export default function TrainerCreate() {
                                                             <div className="grid  ">
                                                                 <label className="font-light text-base ">Days</label>
                                                                 <div className="mt-2">
-                                                                    <Field type="string" name="day" as="select" className="font-semibold text-xl rounded-md block w-full">
+                                                                    <Field type="string" name={`day_c[${cnt_cd}]`} as="select" className="font-semibold text-xl rounded-md block w-full">
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -443,7 +443,7 @@ export default function TrainerCreate() {
                                                             <div className="grid ">
                                                                 <label className="font-light text-base ">Time</label>
                                                                 <div className="mt-2 mr-14">
-                                                                    <Field type="string" name="day" as="select" className="font-semibold text-xl rounded-md block w-full">
+                                                                    <Field type="string" name={`time_c[${cnt_ct}]`} as="select" className="font-semibold text-xl rounded-md block w-full">
 
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
