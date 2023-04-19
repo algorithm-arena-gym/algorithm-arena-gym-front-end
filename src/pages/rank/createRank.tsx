@@ -180,13 +180,14 @@ export default function RankCreate() {
                                                     <img className=" rounded-3xl w-1/3 h-48 m-10 border-8 border-[#FFFFFF] " />
                                                     <div>
                                                         <div className="grid pt-24 ">
-                                                            <span className="font-semibold text-4xl mt-2 w-full">
+                                                            <span className="font-semibold text-5xl mt-2 w-full">
                                                                 <Field type="string" name="rankPic"
                                                                     className="font-semibold text-xl rounded-md block w-full" required
                                                                     placeholder="www.rankPicture.com"
                                                                 />
-                                                            </span>                                                            <span className="font-semibold text-5xl" >ID : XXX</span>
-                                                            <span className="font-semibold text-5xl mb-24" >PRICE : XXX</span>
+                                                            </span>                                                            
+                                                            <span className="font-light text-4xl" >ID : XXX</span>
+                                                            <span className="font-light text-4xl mb-24" >PRICE : XXX</span>
                                                         </div>
                                                     </div>
                                                 </div>
