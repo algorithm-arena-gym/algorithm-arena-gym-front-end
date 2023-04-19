@@ -46,7 +46,7 @@ const initialValues = {
 
     memberID: '',
 
-    courseID: '',
+    courseID: [null,null,null]
 
 }
 
@@ -56,7 +56,7 @@ export default function RankCreate() {
     const [rankData, setRankData] = useState<Rank | null>(null);
     const [courseData, setCourseData] = useState<Course | null>(null);
 
-    const [successMessage, setSuccessMessage] = useState<string |null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -148,49 +148,58 @@ export default function RankCreate() {
     const members = JSON.parse(JSON.stringify(memberData));
     const courses = JSON.parse(JSON.stringify(courseData));
 
-    
-    
+
+
     const onSubmit = async (values: any, { setSubmitting }: any) => {
 
-    try {
-        const response1 = await fetch(`http://localhost:4000/rank`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "rankName": values.rankName,
-                "rankPic": values.rankPic,
-                "rankDetail": values.rankDetail,
-                "rankPrice": values.rankPrice,
-            }),
-        });
-        const data1 = await response1.json();
-        console.log(values);
+        try {
+            const response1 = await fetch(`http://localhost:4000/rank`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "rankName": values.rankName,
+                    "rankPic": values.rankPic,
+                    "rankDetail": values.rankDetail,
+                    "rankPrice": values.rankPrice,
+                }),
+            });
+            const data1 = await response1.json();
+            console.log(values);
 
 
-        const apiRankID = data1.insertId;
-        const response2 = await fetch(`http://localhost:4000/rank-course`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "rankID": apiRankID,
-                "courseID": values.courseID,
-            }),
-        });
-        const data2 = await response2.json();
-        // console.log(data2);
-        if (response2.ok) 
-          setSuccessMessage('Form Rank submitted successfully!');
-          // Do any other logic you need on successful form submission
-    } catch (error) {
-        console.log(error);
-    } finally {
-        setSubmitting(false);
-    }
-};
+            const apiRankID = data1.insertId;
+
+           
+
+            for (let j = 0; j < values.courseID.length; j++) {
+                if(values.courseID[j] !=null) {
+                    const response2 = await fetch(`http://localhost:4000/rank-course`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "rankID": apiRankID,
+                        "courseID": values.courseID[j],
+                    }),
+                });
+                const data2 = await response2.json();
+                // console.log(data2);
+
+                }
+                
+            }
+            if (response1.ok)
+                setSuccessMessage('Form Rank submitted successfully!');
+            // Do any other logic you need on successful form submission
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setSubmitting(false);
+        }
+    };
 
 
     return (
@@ -199,8 +208,8 @@ export default function RankCreate() {
                 <TabNavbar />
             </div>
 
-             {successMessage && 
-             <p>{successMessage}</p>}
+            {successMessage &&
+                <p>{successMessage}</p>}
 
 
             <Formik
@@ -296,7 +305,19 @@ export default function RankCreate() {
                                         <div>
                                             <div className="grid ">
                                                 <div className="mt-2 ml-32 mr-32 my-3">
-                                                    <Field type="number" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                    <Field type="number" name={`courseID[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                        <option className="font-semibold text-xl w-full">Course</option>
+                                                        {courses?.map((co: Course) => (
+                                                            <option value={co.courseID}>{co.courseName}</option>
+                                                        ))}
+                                                    </Field>
+                                                    <Field type="number" name={`courseID[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                        <option className="font-semibold text-xl w-full">Course</option>
+                                                        {courses?.map((co: Course) => (
+                                                            <option value={co.courseID}>{co.courseName}</option>
+                                                        ))}
+                                                    </Field>
+                                                    <Field type="number" name={`courseID[2]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
                                                         <option className="font-semibold text-xl w-full">Course</option>
                                                         {courses?.map((co: Course) => (
                                                             <option value={co.courseID}>{co.courseName}</option>
