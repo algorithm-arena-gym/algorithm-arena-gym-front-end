@@ -232,28 +232,50 @@ export default function createMember() {
                 }),
             });
             const data1 = await res1.json();
-            console.log(data1);
+            // console.log(data1);
 
 
             const apiMemberID = data1.insertId;
-            const response2 = await fetch(`http://localhost:4000/trainer-member`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    "rankID": apiMemberID,
-                    "courseID": values.courseID,
 
-                    "trainerID": values.trainerID,
-                    "memberID": apiMemberID,
-                    "trainingDate": "{{$randomWeekday}}",
-                    "trainingTime": "{{random_time}}"
-                }),
-            });
-            const data2 = await response2.json();
+            for (let i = 0; i < values.day.length; i++) {
+                const res2 = await fetch(`http://localhost:4000/trainer-member`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "trainerID": values.trainerID,
+                        "memberID": apiMemberID,
+                        "trainingDate": values.day[i],
+                        "trainingTime": values.time[i],
+                    }),
+                });
+                const data2 = await res2.json();
+            }
 
-            if (res1.ok)
+            for (let j = 0; j < values.courseID.length; j++) {
+                const res3 = await fetch(`http://localhost:4000/course-member`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "courseID": values.courseID[j],
+                        "memberID": apiMemberID,
+
+                    }),
+                });
+                const data3 = await res3.json();
+                // console.log(data1);
+            }
+
+
+
+
+
+
+
+            if (res1.ok && res3.ok)
                 setSuccessMessage('Form Member submitted successfully!');
 
         } catch (error) {
@@ -631,14 +653,14 @@ export default function createMember() {
                                                     <div className="grid ml-10">
                                                         <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                         <div className="mt-2 mr-20">
-                                                            <Field type="number" name={`course[0]`} as="select"
+                                                            <Field type="number" name={`courseID[0]`} as="select"
                                                                 className="font-semibold text-xl rounded-md block w-full " required>
                                                                 <option className="font-semibold text-xl w-full">Course</option>
                                                                 {courses?.map((co: Course) => (
                                                                     <option value={co.courseID}>{co.courseName}</option>
                                                                 ))}
                                                             </Field>
-                                                            <Field type="number" name={`course[1]`} as="select"
+                                                            <Field type="number" name={`courseID[1]`} as="select"
                                                                 className="font-semibold text-xl rounded-md block w-full mt-3" >
                                                                 <option className="font-semibold text-xl w-full">Course</option>
                                                                 {courses?.map((co: Course) => (
