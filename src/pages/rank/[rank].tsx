@@ -124,7 +124,7 @@ export default function RankDetail() {
     const listMember = memberData?.map((mem: Member) => {
         return (
             <div>
-                <div className="grid ml-32">
+                <div className="grid ml-10">
                     <span className="font-semibold text-xl ">{mem.nameEng}</span>
                 </div>
             </div>
@@ -134,8 +134,8 @@ export default function RankDetail() {
     const listCourse = courseData?.map((co: Course) => {
         return (
             <div>
-                <div className="grid ">
-                    <span className="font-semibold text-xl ml-10 ">{co.courseName}</span>
+                <div className="grid ml-32">
+                    <span className="font-semibold text-xl  ">{co.courseName}</span>
                 </div>
             </div>
 
@@ -205,14 +205,15 @@ export default function RankDetail() {
                         <div>
                             <div className="flex flex-row mb-6 ">
                                 <div className="basis-1/2 ">
-                                    <p className="ml-32  mt-8 text-base">Member in this rank</p>
+                                    <p className="ml-32  mt-8 text-base">Course in this rank</p>
                                     <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
-                                    {listMember}
+                                   {listCourse}
                                 </div>
                                 <div className="basis-1/2">
-                                    <p className="  ml-10 mt-8 text-base">Course in this rank</p>
+                                    <p className="  ml-10 mt-8 text-base"> Member in this rank</p>
                                     <hr className=" mr-20 my-3 bg-[#000000]" />
-                                    {listCourse}
+                                    
+                                    {listMember}
                                 </div>
 
 

@@ -279,12 +279,11 @@ export default function CourseCreate() {
 
                                     {/* ก้อน6*/}
                                     <div>
-                                        <div className="flex flex-row mb-6 ">
-                                            <div className="basis-1/2 ">
+                                       
                                                 <p className="ml-32  mt-8 text-base">Rank Available</p>
-                                                <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
+                                                <hr className="ml-20 mr-20 my-3 bg-[#000000]" />
                                                 <div>
-                                                    <div className="grid ml-32 mr-10 ">
+                                                    <div className="grid ml-32 mr-32 ">
                                                         <div className="mt-2  ">
                                                             <Field type="number" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
                                                                 <option className="font-semibold text-xl w-full">Rank</option>
@@ -294,24 +293,8 @@ export default function CourseCreate() {
                                                             </Field>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div className="basis-1/2">
-                                                <p className="  ml-10 mt-8 text-base">Course Member</p>
-                                                <hr className="  mr-20 my-3 bg-[#000000]" />
-                                                <div>
-                                                    <div className="grid ml-10">
-                                                        <div className="mt-2 mr-20 my-3">
-                                                            <Field type="number" name="memberID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                <option className="font-semibold text-xl w-full">Member</option>
-                                                                {members?.map((mem: Member) => (
-                                                                    <option value={mem.memberID}>{mem.nameEng}</option>
-                                                                ))}
-                                                            </Field>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                
+                                           
 
 
 

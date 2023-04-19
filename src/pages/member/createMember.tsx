@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 
 interface Member {
@@ -36,6 +37,31 @@ interface Course {
     courseName: string,
 }
 
+const validationSchema = Yup.object({
+
+    password: Yup.string().required('Required'),
+
+    nameEng: Yup.string().required('Required'),
+    nameTh: Yup.string().required('Required'),
+    rankID: Yup.number().required('Required'),
+    point: Yup.number().required('Required'),
+    cID: Yup.string().required('Required'),
+    phone: Yup.string().required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    address: Yup.string().required('Required'),
+
+    profilePic: Yup.string().required('Required'),
+
+    drugAllergy: Yup.string(),
+    congenitalDisease: Yup.string(),
+    emergencyContact: Yup.string().required('Required'),
+
+    trainerID: Yup.number().required('Required'),
+    day: Yup.string(),
+    time: Yup.string(),
+
+    courseID: Yup.number().required('Required'),
+});
 
 
 
@@ -84,7 +110,7 @@ export default function createMember() {
                 setMemberData(json4);
                 setError(null);
 
-                console.error(json4);
+                // console.error(json4);
 
 
             } catch (error) {
@@ -108,7 +134,7 @@ export default function createMember() {
                 setRankData(json);
                 setError(null);
 
-                console.error(json);
+                // console.error(json);
 
 
             } catch (error) {
@@ -187,6 +213,8 @@ export default function createMember() {
 
 
 
+
+
     return (
         <div>
             <div>
@@ -195,9 +223,8 @@ export default function createMember() {
 
             <Formik
                 initialValues={initialValues}
-                onSubmit={(values, action) => {
-                    console.log(values)
-                }}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
             >
                 {({ isSubmitting }) => (
                     <Form>
@@ -254,7 +281,7 @@ export default function createMember() {
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="rank" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                        <option className="font-semibold text-xl w-full">Rank</option>
+                                                        {/* <option className="font-semibold text-xl w-full">Rank</option> */}
                                                         {ranks?.map((rank: Rank) => (
                                                             <option value={rank.rankID}>{rank.rankName}</option>
                                                         ))}
@@ -370,7 +397,7 @@ export default function createMember() {
                                                                 <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                                 <div className="mt-2 ">
                                                                     <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        <option className="font-semibold text-xl w-full">Trainer</option>
+                                                                        {/* <option className="font-semibold text-xl w-full">Trainer</option> */}
                                                                         {trainers?.map((tr: Trainer) => (
                                                                             <option value={tr.trainerID}>{tr.nameEng}</option>
                                                                         ))}
@@ -386,7 +413,7 @@ export default function createMember() {
                                                                 <div className="mt-2 ">
                                                                     <Field type="string" name={`day[0]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full " required>
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        {/* <option className="font-semibold text-xl w-full">Day</option> */}
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                         <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -397,7 +424,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[1]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        {/* <option className="font-semibold text-xl w-full">Day</option> */}
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -409,7 +436,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[2]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        {/* <option className="font-semibold text-xl w-full">Day</option> */}
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -421,7 +448,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[3]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        {/* <option className="font-semibold text-xl w-full">Day</option> */}
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -433,7 +460,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[4]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        {/* <option className="font-semibold text-xl w-full">Day</option> */}
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -455,7 +482,7 @@ export default function createMember() {
                                                                 <div className="mt-2 mr-5">
                                                                     <Field type="string" name={`time[0]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        {/* <option className="font-semibold text-xl w-full">Time</option> */}
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -469,7 +496,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[1]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        {/* <option className="font-semibold text-xl w-full">Time</option> */}
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -483,7 +510,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[2]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        {/* <option className="font-semibold text-xl w-full">Time</option> */}
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -552,7 +579,7 @@ export default function createMember() {
                                                             </Field>
                                                             <Field type="number" name={`course[1]`} as="select"
                                                                 className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full">Course</option>
+                                                                <option className="font-semibold text-xl w-full">Course</option>
                                                                 {courses?.map((co: Course) => (
                                                                     <option value={co.courseID}>{co.courseName}</option>
                                                                 ))}
@@ -584,3 +611,50 @@ export default function createMember() {
 
     );
 }
+
+const onSubmit = async (values: any, { setSubmitting }: any) => {
+    const dataMember = {
+        nameEng: values.nameEng,
+        nameTh: values.nameTh,
+        rankID: values.rankID,
+        point: values.point,
+        cID: values.cID,
+        phone: values.phone,
+        email: values.email,
+        address: values.address,
+
+        profilePic: values.profilePic,
+
+        drugAllergy: values.drugAllergy,
+        congenitalDisease: values.congenitalDisease,
+        emergencyContact: values.emergencyContact,
+
+    }
+    try {
+        const response1 = await fetch(`http://localhost:4000/member`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+
+            body: JSON.stringify(dataMember),
+        });
+        const data1 = await response1.json();
+        console.log("post"+data1);
+
+        // const response2 = await fetch('/api/other', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(values),
+        // });
+        // const data2 = await response2.json();
+        // console.log(data2);
+    } catch (error) {
+        console.log(error);
+    } finally {
+        setSubmitting(false);
+    }
+};
+

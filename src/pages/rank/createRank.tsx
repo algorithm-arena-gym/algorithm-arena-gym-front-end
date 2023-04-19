@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 
 
@@ -26,20 +27,15 @@ interface Course {
     courseName: string,
 }
 
+const validationSchema = Yup.object({
 
-let cnt_m = 0;
+    rankPic: Yup.string().required('Required'),
+    rankName: Yup.string().required('Required'),
+    rankDetail: Yup.string().required('Required'),
+    rankPrice: Yup.number().required('Required'),
+});
 
-const changeCntM = () => {
-    cnt_m = cnt_m + 1;
-    console.log("m" + cnt_m);
-}
 
-let cnt_c = 0;
-
-const changeCntC = () => {
-    cnt_c = cnt_c + 1;
-    console.log("c" + cnt_c);
-}
 
 const initialValues = {
 
@@ -162,9 +158,8 @@ export default function RankCreate() {
 
             <Formik
                 initialValues={initialValues}
-                onSubmit={(values, action) => {
-                    console.log(values)
-                }}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
             >
                 {({ isSubmitting }) => (
                     <Form>
@@ -185,7 +180,7 @@ export default function RankCreate() {
                                                                     className="font-semibold text-xl rounded-md block w-full" required
                                                                     placeholder="www.rankPicture.com"
                                                                 />
-                                                            </span>                                                            
+                                                            </span>
                                                             <span className="font-light text-4xl" >ID : XXX</span>
                                                             <span className="font-light text-4xl mb-24" >PRICE : XXX</span>
                                                         </div>
@@ -249,48 +244,22 @@ export default function RankCreate() {
 
                                     {/* ก้อน4*/}
                                     <div>
-                                        <div className="flex flex-row mb-6 ">
-                                            <div className="basis-1/2 ">
-                                                <p className="ml-32  mt-8 text-base">Member in this rank</p>
-                                                <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
-                                                <div>
-                                                    <div className="grid ml-32 mr-10">
-                                                        <div className="mt-2 ">
-                                                            <Field type="number" name="memberID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                <option className="font-semibold text-xl w-full">Member</option>
-                                                                {members?.map((mem: Member) => (
-                                                                    <option value={mem.memberID}>{mem.nameEng}</option>
-                                                                ))}
-                                                            </Field>
-                                                        </div>
-                                                    </div>
+                                        <p className="  ml-32 mt-8 text-base">Course in this rank</p>
+                                        <hr className=" ml-20 mr-20 my-3 bg-[#000000]" />
+                                        <div>
+                                            <div className="grid ">
+                                                <div className="mt-2 ml-32 mr-32 my-3">
+                                                    <Field type="number" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                        <option className="font-semibold text-xl w-full">Course</option>
+                                                        {courses?.map((co: Course) => (
+                                                            <option value={co.courseID}>{co.courseName}</option>
+                                                        ))}
+                                                    </Field>
                                                 </div>
-
-
-
                                             </div>
-                                            <div className="basis-1/2">
-                                                <p className="  ml-10 mt-8 text-base">Course in this rank</p>
-                                                <hr className=" mr-20 my-3 bg-[#000000]" />
-                                                <div>
-                                                    <div className="grid ">
-                                                        <div className="mt-2 ml-10 mr-20 my-3">
-                                                            <Field type="number" name={`courseID[${cnt_c}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                 <option className="font-semibold text-xl w-full">Course</option>
-                                                                {courses?.map((co: Course) => (
-                                                                    <option value={co.courseID}>{co.courseName}</option>
-                                                                ))}
-                                                            </Field>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            
-                                            </div>
-
-
-
                                         </div>
+
+
                                     </div>
 
                                 </div>
@@ -314,3 +283,31 @@ export default function RankCreate() {
     );
 }
 
+const onSubmit = async (values: any, { setSubmitting }: any) => {
+
+    try {
+        const response1 = await fetch(`http://localhost:4000/rank`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+        });
+        const data1 = await response1.json();
+        console.log(data1);
+
+        // const response2 = await fetch('/api/other', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(values),
+        // });
+        // const data2 = await response2.json();
+        // console.log(data2);
+    } catch (error) {
+        console.log(error);
+    } finally {
+        setSubmitting(false);
+    }
+};

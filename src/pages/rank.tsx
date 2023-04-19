@@ -2,75 +2,89 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import 'src/app/globals.css'
 import TabNavbar from "src/app/navbar/navbar.js";
+import "src/app/rankcard.css";
 
 interface Rank {
-  rankID:number,
-  rankPic: string;
-  rankName : string,
-  rankDetail: string,
-  createAt: Date;
-  
+    rankID: number,
+    rankName: string,
+    rankDetail: string,
+    rankPic: string
+    rankPrice:number
 }
 
-
 export default function allRank() {
-  const [rankData, setData] = useState<Rank | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+    const [rankData, setData] = useState<Rank | null>(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
+    useEffect(() => {
+        async function fetchData() {
+            setLoading(true);
 
-      try {
-        const res = await fetch('http://localhost:4000/rank');
-        const json = await res.json();
-        setData(json);
-        setError(null);
-      } catch (error) {
-        console.error(error);
-        setError('An error occurred while fetching the data.');
-        setData(null);
-      }
+            try {
+                const res = await fetch('http://localhost:4000/rank');
+                const json = await res.json();
+                setData(json);
+                setError(null);
+            } catch (error) {
+                console.error(error);
+                setError('An error occurred while fetching the data.');
+                setData(null);
+            }
 
-      setLoading(false);
+            setLoading(false);
+        }
+
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
     }
 
-    fetchData();
-  }, []);
+    if (error) {
+        return <div>{error}</div>;
+    }
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+    if (!rankData) {
+        return <div>No data to display.</div>;
+    }
+    const ranks = JSON.parse(JSON.stringify(rankData));
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+    return (
+        <body className='bg-black'>
+            <div>
+                <div >
+                    <TabNavbar />
+                </div>
 
-  if (!rankData) {
-    return <div>No data to display.</div>;
-  }
+                <div className='grid gap-6 grid-cols-1-250 md:grid-cols-2-250 lg:grid-cols-3-250 place-content-center md:px-40 pt-10'> {/*rank all*/}
+                    {ranks.map((rank: Rank) => ( ///loop course
+                        <div className='grid justify-items-center p-6'>
+                            <Link href={`/rank/${rank.rankID}`}>
+                                <div className="card">
+                                    <img className='object-top' src={rank.rankPic} />
+                                    <div className="cardcontainer">
+                                        <p className="title font-[900]">{rank.rankName}</p>
+                                        <p className='Price'>{rank.rankPrice} Bath/Month</p>
 
-  const ranks = JSON.parse(JSON.stringify(rankData));
+                                    </div>
+                                </div>
 
-     return (
-      <div>
-      <div>
-        <TabNavbar />
-      </div>
-      <div className=' bg-black'>
-    <div className=' bg-black flex flex-wrap p-5'>
-      {ranks.map((rank:Rank) => (
-        <div>
-          <Link href={`/rank/${rank.rankID}`}>
-        
-        </Link>
-        </div>
-      ))}
-      
-    </div>
-   
-    </div>
-    </div>
-  )
+                            </Link>
+                        </div>
+                    ))}
+
+                    {/* button add */}
+                    < div className='grid justify-items-center p-6'>
+                        <div className="card" >
+                            <button type="button" className="btn" >+</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </body>
+
+    )
 }
