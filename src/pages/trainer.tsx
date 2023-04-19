@@ -82,7 +82,9 @@ export default function Trainer() {
         ))}
         <div className=' bg-[#D9D9D9] p-4 rounded-3xl  w-70 h-28 grid ' >
           <div className='grid justify-items-center'>
-            <button type="button" className="bttn" >+</button>
+            <Link href={`/trainer/createTrainer`}>
+              <button type="button" className="bttn" >+</button>
+            </Link>
           </div>
         </div>
       </div>
