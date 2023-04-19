@@ -50,7 +50,7 @@ export default function allMember() {
         const json2 = await res2.json();
         setRankData(json2)
         setError(null);
-        
+
 
 
       } catch (error) {
@@ -100,8 +100,8 @@ export default function allMember() {
 
                   <p className="font-semibold text-lg">{member.nameEng}</p>
                   {/* need rank */}
-                  <p className="font-semibold text-md">{rankData?.find(rank => rank.rankID===member.rankID)?.rankName}</p>
-                  
+                  <p className="font-semibold text-md">{rankData?.find(rank => rank.rankID === member.rankID)?.rankName}</p>
+
                   {/* <p>{member.phone}</p> */}
                 </div>
               </div>

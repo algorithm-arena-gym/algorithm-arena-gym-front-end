@@ -9,7 +9,7 @@ interface Rank {
     rankName: string,
     rankDetail: string,
     rankPic: string
-    rankPrice:number
+    rankPrice: number
 }
 
 export default function allRank() {
