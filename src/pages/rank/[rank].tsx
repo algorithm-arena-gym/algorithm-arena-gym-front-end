@@ -196,7 +196,7 @@ export default function RankDetail() {
 
                         {/* ก้อน2 */}
                         <div>
-                            <p className="ml-32 mt-48 ">Information</p>
+                            <p className="ml-32 mt-48 ">Rank Information</p>
                             <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
                             <span className="font-light text-base ml-32">{rankData.rankDetail}</span>
                         </div>

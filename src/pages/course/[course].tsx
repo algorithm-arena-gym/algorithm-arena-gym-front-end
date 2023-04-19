@@ -50,8 +50,7 @@ export default function CourseDetail() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
+    async function fetchCourseData() {
       try {
         const courseID = router.query.course as string;
         const apiURL = `http://localhost:4000/course/${courseID}`;
@@ -61,13 +60,15 @@ export default function CourseDetail() {
         setError(null);
       } catch (error) {
         console.error(error);
-        setError("An error occurred while fetching the data.");
+        setError("An error occurred while fetching the courseData.");
         setCourseData(null);
       }
-      setLoading(false);
     }
 
-    fetchData();
+    setLoading(true);
+    setError(null);
+    fetchCourseData();
+    setLoading(false);
   }, [router.query.course]);
 
   useEffect(() => {
@@ -122,35 +123,35 @@ export default function CourseDetail() {
     }
   }, [courseData]);
 
-  // useEffect(() => {
-  //   async function fetchRankData() {
-  //     try {
-  //       const memberID = courseData?.memberID as number;
-  //       const apiURL4 = `http://localhost:4000/pm-course/${memberID}`;
-  //       const res4 = await fetch(apiURL4);
-  //       const json4 = await res4.json();
-  //       setCourseData(json4);
-  //       setError(null);
+  useEffect(() => {
+    async function fetchRankData() {
+      try {
+        const courseID = courseData?.courseID as number;
+        const apiURL4 = `http://localhost:4000/pc-rank/${courseID}`;
+        const res4 = await fetch(apiURL4);
+        const json4 = await res4.json();
+        setCourseData(json4);
+        setError(null);
 
-  //       //  console.log(json4)
+        //  console.log(json4)
 
-  //     } catch (error) {
-  //       console.error(error);
-  //       setError("An error occurred while fetching the CourseData.");
-  //       setCourseData(null);
-  //     }
-  //   }
-  //   if (courseData) {
-  //     setLoading(true);
-  //     setError(null);
-  //     fetchMemberData();
-  //     setLoading(false);
-  //   }
-  // }, [courseData]);
+      } catch (error) {
+        console.error(error);
+        setError("An error occurred while fetching the CourseData.");
+        setCourseData(null);
+      }
+    }
+    if (courseData) {
+      setLoading(true);
+      setError(null);
+      fetchRankData();
+      setLoading(false);
+    }
+  }, [courseData]);
 
 
 
-  if (loading) {
+   if (loading) {
     return <div>Loading...</div>;
   }
 
@@ -164,8 +165,14 @@ export default function CourseDetail() {
         <TabNavbar />
       </div>
       <p className="font-AzeretMono font-semibold">No courseData to display.</p>
+      {/* <Link href="/member" className="bg-[#EF4444] font-AzeretMono font-semibold">
+       Go back
+      </Link> */}
     </div>;
+
   }
+
+  
 
 
   const onDelete = async (courseID: any) => {
@@ -182,6 +189,9 @@ export default function CourseDetail() {
     }
 
   };
+
+  const ranks = JSON.parse(JSON.stringify(rankData));
+  const members = JSON.parse(JSON.stringify(memberData));
 
   return (
     <div>
@@ -214,7 +224,7 @@ export default function CourseDetail() {
             </div>
 
             {/* ก้อน2 */}
-             <div>
+            <div>
               <p className="ml-32 mt-28 ">Course Name(ENG)</p>
               <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
               <span className="font-semibold text-xl ml-32">{courseData.courseName}</span>
@@ -277,7 +287,11 @@ export default function CourseDetail() {
                   <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
                   <div>
                     <div className="grid ">
-                      <span className="font-semibold text-xl ml-32 ">ดึงname</span>
+                     
+                        {/* {ranks?.map((rank: Rank) => (
+                          <span className="font-semibold text-xl ml-32 ">{rank.rankName}</span>
+                        ))} */}
+                      
                     </div>
                   </div>
                 </div>
@@ -286,7 +300,9 @@ export default function CourseDetail() {
                   <hr className=" mr-20 my-3 bg-[#000000]" />
                   <div>
                     <div className="grid ">
-                      <span className="font-semibold text-xl ml-10 ">ดึงrank</span>
+                       {/* {members.map((mem: Member) => (
+                          <span className="font-semibold text-xl ml-32 ">{mem.nameEng}</span>
+                        ))} */}
                     </div>
                   </div>
                 </div>

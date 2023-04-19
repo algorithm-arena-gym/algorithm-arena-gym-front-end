@@ -273,7 +273,7 @@ export default function createMember() {
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="rank" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                        {ranks.map((rank: Rank) => (
+                                                        {ranks?.map((rank: Rank) => (
                                                             <option value={rank.rankID}>{rank.rankName}</option>
                                                         ))}
                                                     </Field>

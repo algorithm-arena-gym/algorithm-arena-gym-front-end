@@ -187,7 +187,7 @@ export default function CourseCreate() {
             >
                 {({ isSubmitting }) => (
                     <Form>
-                        <div className=" bg-black w-full h-screen">
+                        <div className=" bg-black w-full h-full">
                             <div className="grid place-items-center  font-AzeretMono">
                                 <div className="rounded-3xl m-12 w-9/12 pb-6 text-black bg-[#D9D9D9]">
                                     <div className="rounded-3xl rounded-b-none  w-full h-[95px] text-black bg-[#FFFFFF]">
