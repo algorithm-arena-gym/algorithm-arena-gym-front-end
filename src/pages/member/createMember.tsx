@@ -98,6 +98,9 @@ export default function createMember() {
     const [trainerData, setTrainerData] = useState<Trainer | null>(null);
     const [courseData, setCourseData] = useState<Course | null>(null);
 
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -210,6 +213,55 @@ export default function createMember() {
     const trainers = JSON.parse(JSON.stringify(trainerData));
     const courses = JSON.parse(JSON.stringify(courseData));
 
+    const handleSubmit = () => {
+        setSuccessMessage('Form Member submitted successfully!');
+    };
+
+    const onSubmit = async (values: any, { setSubmitting }: any) => {
+        try {
+            const response1 = await fetch(`http://localhost:4000/member`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+                body: JSON.stringify({
+                    nameEng: values.nameEng,
+                    nameTh: values.nameTh,
+                    rankID: values.rankID,
+                    point: values.point,
+                    cID: values.cID,
+                    phone: values.phone,
+                    email: values.email,
+                    address: values.address,
+
+                    profilePic: values.profilePic,
+
+                    drugAllergy: values.drugAllergy,
+                    congenitalDisease: values.congenitalDisease,
+                    emergencyContact: values.emergencyContact,
+                }),
+            });
+            const data1 = await response1.json();
+
+            const apiMemberID = data1.insertId;
+            const apiTrainerID = values.trainerID;
+
+            const response2 = await fetch('/api/other', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
+            const data2 = await response2.json();
+            console.log(data2);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setSubmitting(false);
+        }
+    };
 
 
 
@@ -612,49 +664,4 @@ export default function createMember() {
     );
 }
 
-const onSubmit = async (values: any, { setSubmitting }: any) => {
-    const dataMember = {
-        nameEng: values.nameEng,
-        nameTh: values.nameTh,
-        rankID: values.rankID,
-        point: values.point,
-        cID: values.cID,
-        phone: values.phone,
-        email: values.email,
-        address: values.address,
-
-        profilePic: values.profilePic,
-
-        drugAllergy: values.drugAllergy,
-        congenitalDisease: values.congenitalDisease,
-        emergencyContact: values.emergencyContact,
-
-    }
-    try {
-        const response1 = await fetch(`http://localhost:4000/member`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-
-            body: JSON.stringify(dataMember),
-        });
-        const data1 = await response1.json();
-        console.log("post"+data1);
-
-        // const response2 = await fetch('/api/other', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(values),
-        // });
-        // const data2 = await response2.json();
-        // console.log(data2);
-    } catch (error) {
-        console.log(error);
-    } finally {
-        setSubmitting(false);
-    }
-};
 

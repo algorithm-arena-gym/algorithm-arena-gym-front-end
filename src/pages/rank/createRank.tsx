@@ -149,8 +149,7 @@ export default function RankCreate() {
     const courses = JSON.parse(JSON.stringify(courseData));
 
     const handleSubmit = () => {
-    // Your form submission logic here
-    setSuccessMessage('Form submitted successfully!');
+    setSuccessMessage('Form Rank submitted successfully!');
   };
     
     const onSubmit = async (values: any, { setSubmitting }: any) => {
