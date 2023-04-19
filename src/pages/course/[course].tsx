@@ -58,6 +58,9 @@ export default function CourseDetail() {
         const json = await res.json();
         setCourseData(json[0]);
         setError(null);
+
+        console.log(json[0]
+          )
       } catch (error) {
         console.error(error);
         setError("An error occurred while fetching the courseData.");
@@ -130,15 +133,15 @@ export default function CourseDetail() {
         const apiURL4 = `http://localhost:4000/pc-rank/${courseID}`;
         const res4 = await fetch(apiURL4);
         const json4 = await res4.json();
-        setCourseData(json4);
+        setRankData(json4);
         setError(null);
 
         //  console.log(json4)
 
       } catch (error) {
         console.error(error);
-        setError("An error occurred while fetching the CourseData.");
-        setCourseData(null);
+        setError("An error occurred while fetching the RankData.");
+        setRankData(null);
       }
     }
     if (courseData) {
@@ -271,7 +274,7 @@ export default function CourseDetail() {
                   <div>
                     <div className="grid ml-8">
                       <span className="font-light text-base ">Email</span>
-                      <span className="font-semibold text-xl ">{trainerData?.email}</span>
+                      <span className="font-semibold text-xl mr-20">{trainerData?.email}</span>
                     </div>
                   </div>
                 </div>
@@ -288,9 +291,9 @@ export default function CourseDetail() {
                   <div>
                     <div className="grid ">
                      
-                        {/* {ranks?.map((rank: Rank) => (
+                        {ranks?.map((rank: Rank) => (
                           <span className="font-semibold text-xl ml-32 ">{rank.rankName}</span>
-                        ))} */}
+                        ))}
                       
                     </div>
                   </div>
@@ -300,9 +303,9 @@ export default function CourseDetail() {
                   <hr className=" mr-20 my-3 bg-[#000000]" />
                   <div>
                     <div className="grid ">
-                       {/* {members.map((mem: Member) => (
-                          <span className="font-semibold text-xl ml-32 ">{mem.nameEng}</span>
-                        ))} */}
+                       {members?.map((mem: Member) => (
+                          <span className="font-semibold text-xl ml-10 ">{mem.nameEng}</span>
+                        ))}
                     </div>
                   </div>
                 </div>
