@@ -96,13 +96,12 @@ export default function allMember() {
             <Link href={`/member/${member.memberID}`}>
               <div className='flex flex-row '>
                 <img className='flex border-[#E2FEA7] border-4 w-20 h-20 rounded-full' src={member.profilePic} alt="profilePicture" />
-                <div className='pl-4 '>
+                <div className='pl-4 self-center'>
 
                   <p className="font-semibold text-lg">{member.nameEng}</p>
                   {/* need rank */}
                   <p className="font-semibold text-md">{rankData?.find(rank => rank.rankID===member.rankID)?.rankName}</p>
-                  { }
-                  <br/>
+                  
                   {/* <p>{member.phone}</p> */}
                 </div>
               </div>
