@@ -512,9 +512,9 @@ export default function TrainerCreate() {
                                                 <hr className="mr-20 my-3 bg-[#000000]" />
 
                                                 <div>
-                                                    <div className="grid mr-20">
+                                                    <div className="grid ml-10 mr-20">
                                                         <label htmlFor="first-name" className="font-light text-base ">Name</label>
-                                                        <div className="mt-2 ">
+                                                        <div className="mt-2  ">
                                                             <Field type="number" name={`course[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
                                                                 <option className="font-semibold text-xl w-full">Course</option>
                                                                 {courses?.map((co: Course) => (

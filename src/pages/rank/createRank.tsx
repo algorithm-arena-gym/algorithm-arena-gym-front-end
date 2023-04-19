@@ -202,7 +202,7 @@ export default function RankCreate() {
                                     <div>
                                         <p className="ml-32 mt-40 ">Rank Information</p>
                                         <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
-                                        <div className="mt-2 ml-20 mr-20 ">
+                                        <div className="mt-2 ml-32 mr-32 ">
                                             <div className="mt-2">
                                                 <Field type="string" name="rankDetail" as="textarea"
                                                     className="font-semibold text-xl rounded-md block w-full" required
@@ -220,7 +220,7 @@ export default function RankCreate() {
                                                 <p className="ml-32  mt-8 text-base">Rank Name (ENG)</p>
                                                 <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
                                                 <div>
-                                                    <div className="grid ml-20 mr-10">
+                                                    <div className="grid ml-32 mr-10">
                                                         <div className="mt-2 ">
                                                             <Field type="string" name="rankName"
                                                                 className="font-semibold text-xl rounded-md block w-full" required
@@ -233,7 +233,7 @@ export default function RankCreate() {
                                                 <p className="  ml-10 mt-8 text-base">Rank Price</p>
                                                 <hr className="  my-3 mr-20 bg-[#000000]" />
                                                 <div>
-                                                    <div className="grid mr-20 ">
+                                                    <div className="grid ml-10 mr-20 ">
                                                         <div className="mt-2 ">
                                                             <Field type="number" name="rankPrice"
                                                                 className="font-semibold text-xl rounded-md block w-full " required
@@ -253,9 +253,10 @@ export default function RankCreate() {
                                                 <p className="ml-32  mt-8 text-base">Member in this rank</p>
                                                 <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
                                                 <div>
-                                                    <div className="grid ml-20 mr-10">
+                                                    <div className="grid ml-32 mr-10">
                                                         <div className="mt-2 ">
-                                                            <Field type="number" name={`memberID[${cnt_m}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                            <Field type="number" name="memberID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                <option className="font-semibold text-xl w-full">Member</option>
                                                                 {members?.map((mem: Member) => (
                                                                     <option value={mem.memberID}>{mem.nameEng}</option>
                                                                 ))}
@@ -265,11 +266,6 @@ export default function RankCreate() {
                                                 </div>
 
 
-                                               <div >
-                                                    <div className=" ml-20 mr-10 mt-3 ">
-                                                        <button type="submit" onClick={changeCntM} className=" text-black bg-[#FFFFFF]  rounded-md  w-full flex justify-center " >+</button>
-                                                    </div>
-                                                </div>
 
                                             </div>
                                             <div className="basis-1/2">
@@ -277,8 +273,9 @@ export default function RankCreate() {
                                                 <hr className=" mr-20 my-3 bg-[#000000]" />
                                                 <div>
                                                     <div className="grid ">
-                                                        <div className="mt-2 mr-20 my-3">
+                                                        <div className="mt-2 ml-10 mr-20 my-3">
                                                             <Field type="number" name={`courseID[${cnt_c}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                 <option className="font-semibold text-xl w-full">Course</option>
                                                                 {courses?.map((co: Course) => (
                                                                     <option value={co.courseID}>{co.courseName}</option>
                                                                 ))}
@@ -287,11 +284,7 @@ export default function RankCreate() {
                                                     </div>
                                                 </div>
 
-                                                <div >
-                                                    <div className=" mr-20  ">
-                                                        <button type="submit" onClick={changeCntC} className=" text-black bg-[#FFFFFF]  rounded-md  w-full flex justify-center " >+</button>
-                                                    </div>
-                                                </div>
+                                            
                                             </div>
 
 

@@ -540,7 +540,7 @@ export default function createMember() {
                                                 <hr className="mr-20 my-3 bg-[#000000]" />
 
                                                 <div>
-                                                    <div className="grid ">
+                                                    <div className="grid ml-10">
                                                         <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                         <div className="mt-2 mr-20">
                                                             <Field type="number" name={`course[0]`} as="select"

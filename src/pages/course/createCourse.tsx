@@ -48,7 +48,7 @@ const initialValues = {
     rankID: '',
     memberID: ''
 
-   
+
 }
 
 export default function CourseCreate() {
@@ -60,7 +60,7 @@ export default function CourseCreate() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    
+
 
     useEffect(() => {
         async function fetchRankData() {
@@ -71,7 +71,7 @@ export default function CourseCreate() {
                 setRankData(json);
                 setError(null);
 
-                console.error(json);
+                // console.error(json);
 
 
             } catch (error) {
@@ -133,13 +133,13 @@ export default function CourseCreate() {
         async function fetchMemberData() {
             setLoading(true);
             try {
-                
+
                 const res4 = await fetch('http://localhost:4000/member');
                 const json4 = await res4.json();
                 setMemberData(json4);
                 setError(null);
 
-                console.error(json4);
+                // console.error(json4);
 
 
             } catch (error) {
@@ -166,7 +166,7 @@ export default function CourseCreate() {
         return <div>No data to display.</div>;
     }
 
-    
+
     const trainers = JSON.parse(JSON.stringify(trainerData));
     const ranks = JSON.parse(JSON.stringify(rankData));
     const members = JSON.parse(JSON.stringify(memberData));
@@ -261,13 +261,14 @@ export default function CourseCreate() {
                                         <div>
                                             <div className="grid ml-32 mr-32">
                                                 <label htmlFor="first-name" className="font-light text-base ">Name</label>
-                                                                <div className="mt-2 ">
-                                                                    <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        {trainers?.map((tr: Trainer) => (
-                                                                            <option value={tr.trainerID}>{tr.nameEng}</option>
-                                                                        ))}
-                                                                    </Field>
-                                                                </div>
+                                                <div className="mt-2 ">
+                                                    <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                        <option className="font-semibold text-xl w-full">Trainer</option>
+                                                        {trainers?.map((tr: Trainer) => (
+                                                            <option value={tr.trainerID}>{tr.nameEng}</option>
+                                                        ))}
+                                                    </Field>
+                                                </div>
                                             </div>
 
 
@@ -286,10 +287,11 @@ export default function CourseCreate() {
                                                     <div className="grid ml-32 mr-10 ">
                                                         <div className="mt-2  ">
                                                             <Field type="number" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        {ranks?.map((rank: Rank) => (
-                                                                            <option value={rank.rankID}>{rank.rankName}</option>
-                                                                        ))}
-                                                                    </Field>
+                                                                <option className="font-semibold text-xl w-full">Rank</option>
+                                                                {ranks?.map((rank: Rank) => (
+                                                                    <option value={rank.rankID}>{rank.rankName}</option>
+                                                                ))}
+                                                            </Field>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -300,17 +302,12 @@ export default function CourseCreate() {
                                                 <div>
                                                     <div className="grid ml-10">
                                                         <div className="mt-2 mr-20 my-3">
-                                                            <select
-                                                                id="country"
-                                                                name="country"
-                                                                autoComplete="off"
-                                                                className="font-semibold text-xl rounded-md block w-full"
-                                                            >
-                                                                <option>เทรนเนอร์</option>
-                                                                <option>Monday</option>
-
-
-                                                            </select>
+                                                            <Field type="number" name="memberID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                <option className="font-semibold text-xl w-full">Member</option>
+                                                                {members?.map((mem: Member) => (
+                                                                    <option value={mem.memberID}>{mem.nameEng}</option>
+                                                                ))}
+                                                            </Field>
                                                         </div>
                                                     </div>
                                                 </div>
