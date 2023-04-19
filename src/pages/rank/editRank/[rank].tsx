@@ -191,7 +191,7 @@ export default function EditRank() {
     const cOld = coursesOld?.map((cod: CourseOld) => {
         arrayRankCourseID.push(cod.rankCourseID);
         arrayCourseOld.push(cod.courseName);
-        console.log(cod.rankCourseID);
+        console.log(arrayRankCourseID);
     });
 
 
@@ -200,6 +200,7 @@ export default function EditRank() {
     const onSubmit = async (values: any, { setSubmitting }: any) => {
 
         try {
+           
             const rankID = rankData?.rankID as number;
             const response1 = await fetch(`http://localhost:4000/rank/${rankID}`, {
                 method: 'PATCH',
@@ -213,12 +214,14 @@ export default function EditRank() {
                     "rankPrice": values.rankPrice,
                 }),
             });
+        
             const data1 = await response1.json();
             console.log(values);
+            
 
 
             const apiRankID = data1.insertId;
-            for (let j = 0; j < values.courseID.length; j++) {
+            for (let j = 0; j < 3; j++) {
                 
                 if (values.courseID[j] != null && arrayRankCourseID[j] !=null) {
                     const response2 = await fetch(`http://localhost:4000/rank-course/${arrayRankCourseID[j]}`, {
@@ -227,7 +230,7 @@ export default function EditRank() {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            "rankID": apiRankID,
+                            "rankID": rankID,
                             "courseID": values.courseID[j],
                         }),
                     });
@@ -235,14 +238,14 @@ export default function EditRank() {
                     // console.log(data2);
 
                 }
-                else if (values.courseID[j] != null){
+                else if (values.courseID[j] != null ){
                     const response2 = await fetch(`http://localhost:4000/rank-course`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        "rankID": apiRankID,
+                        "rankID": rankID,
                         "courseID": values.courseID[j],
                     }),
                 });
@@ -373,6 +376,7 @@ export default function EditRank() {
                                                         {courses?.map((co: Course) => (
                                                             <option value={co.courseID}>{co.courseName}</option>
                                                         ))}
+                                                         <option value= "null" className="font-semibold text-xl w-full">delete Rank</option>
                                                     </Field>
                                                     <Field type="number" name={`courseID[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
                                                         <option className="font-semibold text-xl w-full">{null ? "Day" : arrayCourseOld[1]}</option>
