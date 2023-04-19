@@ -209,7 +209,8 @@ export default function createMember() {
 
 
 
-    const onSubmit = async (values: any, { setSubmitting }: any) => {
+    const onSubmit = async ( values: any, { setSubmitting }: any) => {
+        console.log(values);
         try {
             const res1 = await fetch(`http://localhost:4000/member`, {
                 method: 'POST',
@@ -275,7 +276,7 @@ export default function createMember() {
 
 
 
-            if (res1.ok && res3.ok)
+            if (res1.ok )
                 setSuccessMessage('Form Member submitted successfully!');
 
         } catch (error) {

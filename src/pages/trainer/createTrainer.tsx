@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
+import * as Yup from 'yup';
 
 interface Trainer {
     trainerID: number;
@@ -30,7 +30,13 @@ interface Course {
     courseName: string,
 }
 
+const validationSchema = Yup.object({
 
+    rankPic: Yup.string().required('Required'),
+    rankName: Yup.string().required('Required'),
+    rankDetail: Yup.string().required('Required'),
+    rankPrice: Yup.number().required('Required'),
+});
 
 
 const initialValues = {
@@ -62,6 +68,7 @@ export default function TrainerCreate() {
 
     const [memberData, setMemberData] = useState<Member | null>(null);
     const [courseData, setCourseData] = useState<Course | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
 
     const [loading, setLoading] = useState(false);
@@ -152,6 +159,53 @@ export default function TrainerCreate() {
     const members = JSON.parse(JSON.stringify(memberData));
     const courses = JSON.parse(JSON.stringify(courseData));
 
+    const handleSubmit = () => {
+        // Your form submission logic here
+        setSuccessMessage('Form submitted successfully!');
+    };
+    const onSubmit = async (values: any, { setSubmitting }: any) => {
+
+        try {
+            const response1 = await fetch(`http://localhost:4000/rank`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "rankName": values.rankName,
+                    "rankPic": values.rankPic,
+                    "rankDetail": values.rankDetail,
+                    "rankPrice": values.rankPrice,
+                }),
+            });
+            const data1 = await response1.json();
+            // console.log(data1);
+
+
+            const apiRankID = data1.insertId;
+            const response2 = await fetch(`http://localhost:4000/rank-course`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "rankID": apiRankID,
+                    "courseID": values.courseID,
+                }),
+            });
+            const data2 = await response2.json();
+            // console.log(data2);
+            if (response2.ok)
+                setSuccessMessage('Form submitted successfully!');
+            // Do any other logic you need on successful form submission
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
+
 
 
     return (
@@ -160,11 +214,13 @@ export default function TrainerCreate() {
                 <TabNavbar />
             </div>
 
+            {successMessage &&
+                <p>{successMessage}</p>}
+
             <Formik
                 initialValues={initialValues}
-                onSubmit={(values, action) => {
-                    console.log(values)
-                }}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
             >
                 {({ isSubmitting }) => (
                     <Form>
@@ -323,7 +379,7 @@ export default function TrainerCreate() {
                                                                             <option value={mem.memberID}>{mem.nameEng}</option>
                                                                         ))}
                                                                     </Field>
-                                                                   
+
                                                                     <Field type="number" name={`memberID[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-12" >
                                                                         <option className="font-semibold text-xl w-full">Member</option>
                                                                         {members?.map((mem: Member) => (
@@ -405,7 +461,7 @@ export default function TrainerCreate() {
                                                                         <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
                                                                         <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                                     </Field>
-                                                                    
+
 
                                                                 </div>
                                                             </div>
@@ -494,7 +550,7 @@ export default function TrainerCreate() {
                                                                         <option value="18-19" className="font-semibold text-xl w-full">18-19</option>
                                                                         <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
                                                                     </Field>
-                                                                    
+
 
                                                                 </div>
                                                             </div>
