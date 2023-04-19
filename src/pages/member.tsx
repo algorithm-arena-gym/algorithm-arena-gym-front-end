@@ -48,7 +48,7 @@ export default function allMember() {
         setMemberData(json);
         const res2 = await fetch('http://localhost:4000/rank');
         const json2 = await res2.json();
-        setRankData(json2);
+        setRankData(json2)
         setError(null);
         
 
@@ -98,11 +98,12 @@ export default function allMember() {
                 <img className='flex border-[#E2FEA7] border-4 w-20 h-20 rounded-full' src={member.profilePic} alt="profilePicture" />
                 <div className='pl-4 '>
 
-                  <p>{member.nameEng}</p>
+                  <p className="font-semibold text-lg">{member.nameEng}</p>
                   {/* need rank */}
-                  <p className="font-semibold text-xl">{rankData?.find(rank => rank.rankID===member.rankID)?.rankName}</p>
+                  <p className="font-semibold text-md">{rankData?.find(rank => rank.rankID===member.rankID)?.rankName}</p>
                   { }
-                  <p>{member.phone}</p>
+                  <br/>
+                  {/* <p>{member.phone}</p> */}
                 </div>
               </div>
             </Link>

@@ -72,8 +72,8 @@ export default function Trainer() {
               <div className='flex flex-row '>
                 <img className='flex border-[#E2FEA7] border-4 w-20 h-20 rounded-full' src={trainer.profilePic} alt="profilePicture" />
                 <div className='pl-4'>
-                  <p>{trainer.nameEng}</p>
-                  <p className=''>Phone : {trainer.phone}</p>
+                  <p className="font-semibold text-lg">{trainer.nameEng}</p>
+                  <p className="font-semibold text-md">Phone : {trainer.phone}</p>
 
                 </div>
               </div>
