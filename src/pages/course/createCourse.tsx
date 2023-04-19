@@ -38,13 +38,7 @@ interface Member {
     nameEng: string;
 
 }
-const validationSchema = Yup.object({
 
-    rankPic: Yup.string().required('Required'),
-    rankName: Yup.string().required('Required'),
-    rankDetail: Yup.string().required('Required'),
-    rankPrice: Yup.number().required('Required'),
-});
 
 
 
@@ -55,7 +49,7 @@ const initialValues = {
     trainerID: '',
 
     rankID: '',
-    memberID: ''
+    
 
 
 }
@@ -181,27 +175,24 @@ export default function CourseCreate() {
     const ranks = JSON.parse(JSON.stringify(rankData));
     const members = JSON.parse(JSON.stringify(memberData));
 
-    const handleSubmit = () => {
-        // Your form submission logic here
-        setSuccessMessage('Form submitted successfully!');
-    };
+
     const onSubmit = async (values: any, { setSubmitting }: any) => {
 
         try {
-            const response1 = await fetch(`http://localhost:4000/rank`, {
+            const response1 = await fetch(`http://localhost:4000/course`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    "rankName": values.rankName,
-                    "rankPic": values.rankPic,
-                    "rankDetail": values.rankDetail,
-                    "rankPrice": values.rankPrice,
+                    "courseName": values.courseName,
+                    "coursePic": values.coursePic,
+                    "detail": values.detail,
+                    "trainerID": values.trainerID,
                 }),
             });
             const data1 = await response1.json();
-            // console.log(data1);
+            console.log(values);
 
 
             const apiRankID = data1.insertId;
@@ -241,7 +232,7 @@ export default function CourseCreate() {
 
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                // validationSchema={validationSchema}
                 onSubmit={onSubmit}
             >
 
@@ -281,7 +272,7 @@ export default function CourseCreate() {
                                         <p className="ml-32 mt-28 ">Course Name(ENG)</p>
                                         <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
                                         <div className="mt-2 ml-32 mr-32">
-                                            <Field type="string" name="nameEng"
+                                            <Field type="string" name="courseName"
                                                 className="font-semibold text-xl rounded-md block w-full"
                                             />
                                         </div>
@@ -295,7 +286,7 @@ export default function CourseCreate() {
                                         <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
                                         <div className="mt-2 ml-32 mr-32 ">
                                             <div className="mt-2">
-                                                <Field type="string" name="rankDetail" as="textarea"
+                                                <Field type="string" name="detail" as="textarea"
 
                                                     className="font-semibold text-xl rounded-md block w-full"
                                                 />
@@ -309,7 +300,10 @@ export default function CourseCreate() {
                                     <div>
                                         <p className="ml-32 mt-5">Available Days of The Week</p>
                                         <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
-                                        <span className="font-light text-base ml-32">ดึงวันเวลา</span>
+                                       <div className="flex flex-row ml-20 mr-20 bg-[#E2FEA7]">
+                                                <div className="basis-5/6 flex justify-start ...">
+                                                    </div>
+                                                    </div>
                                     </div>
 
                                     {/* ก้อน5*/}
