@@ -1,6 +1,7 @@
 .tabNavbar  {
   background-color: #484646;
   height: 50px;
+  /* position: absolute,fixed; */
 }
 
 .textLOGO {
@@ -16,3 +17,5 @@
   color:white;
   
 }
+
+

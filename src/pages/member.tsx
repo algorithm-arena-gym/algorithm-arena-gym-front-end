@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useRouter } from "next/router";
 import 'src/app/globals.css'
 import TabNavbar from "src/app/navbar/navbar.js";
+import "src/app/rankcard.css";
 
 interface Member {
   memberID: number,
@@ -19,12 +21,22 @@ interface Member {
   point: number,
   subscriptionDate: Date;
 }
-
+interface Rank {
+  rankID: number,
+  rankName: string,
+  rankDetail: string,
+  rankPic: string
+  rankPrice: number
+}
 
 export default function allMember() {
-  const [memberData, setData] = useState<Member | null>(null);
+  const router = useRouter();
+  const [memberData, setMemberData] = useState<Array<Member> | null>(null);
+  const [rankData, setRankData] = useState<Array<Rank> | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+
 
   useEffect(() => {
     async function fetchData() {
@@ -33,17 +45,22 @@ export default function allMember() {
       try {
         const res = await fetch('http://localhost:4000/member');
         const json = await res.json();
-        setData(json);
+        setMemberData(json);
+        const res2 = await fetch('http://localhost:4000/rank');
+        const json2 = await res2.json();
+        setRankData(json2)
         setError(null);
+        
+
+
       } catch (error) {
         console.error(error);
         setError('An error occurred while fetching the data.');
-        setData(null);
+        setMemberData(null);
       }
 
       setLoading(false);
     }
-
     fetchData();
   }, []);
 
@@ -58,45 +75,47 @@ export default function allMember() {
   if (!memberData) {
     return <div>No data to display.</div>;
   }
+  // if (!rankData) {
+  //   return <div>No rankData to display.</div>;
+  // }
 
   const members = JSON.parse(JSON.stringify(memberData));
+  // const ranks = JSON.parse(JSON.stringify(rankData));
+  // console.log(ranks);
+
 
   return (
-    <div>
-      <div>
+    <body className=' bg-black'>
+      <div >
         <TabNavbar />
       </div>
-      {/* <div className=' bg-[#000000] max-h-full'>
-      <div className="flex flex-row">
-        <div className="basis-2/12">01</div>
-        <div className="basis-8/12">02</div>
-        <div className="basis-2/12">03</div>
-      </div>
-      </div> */}
-      <div className=' bg-black'>
-    <div className=' bg-black flex flex-wrap p-5'>
-      {members.map((member:Member) => (
-        <div>
-          <Link href={`/member/${member.memberID}`}>
-        <div className=' bg-[#D9D9D9] p-5 flex mlr-10 rounded-3xl m-2 content-center  w-96'>
-          <img className=' border-[#E2FEA7] border-4 w-20 h-20 rounded-full' src={member.profilePic} alt="profilePicture"/>
-          <div className=' ml-10'>
-    
-            <p>{member.nameEng}</p>
-            <p>{member.nameTh}</p>
-            <p>{member.phone}</p>
+      <div className='grid gap-6 grid-cols-3 place-content-center md:px-20 pt-10'>
+
+        {members.map((member: Member, index: number) => (
+          <div className='  bg-[#D9D9D9] p-4 rounded-3xl  w-70 '>
+            <Link href={`/member/${member.memberID}`}>
+              <div className='flex flex-row '>
+                <img className='flex border-[#E2FEA7] border-4 w-20 h-20 rounded-full' src={member.profilePic} alt="profilePicture" />
+                <div className='pl-4 self-center'>
+
+                  <p className="font-semibold text-lg">{member.nameEng}</p>
+                  {/* need rank */}
+                  <p className="font-semibold text-md">{rankData?.find(rank => rank.rankID===member.rankID)?.rankName}</p>
+                  
+                  {/* <p>{member.phone}</p> */}
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
+        <div className=' bg-[#D9D9D9] p-4 rounded-3xl  w-70 h-28 grid ' >
+          <div className='grid justify-items-center'>
+            <button type="button" className="bttn" >+</button>
           </div>
         </div>
-        </Link>
-        </div>
-      ))}
-       <div className=' bg-[#D9D9D9] p-5 flex mlr-10 rounded-3xl m-2 content-center  w-96' >
-        <Link href="/member/createMember" className="focus:outline-none text-black bg-[#46FFBD]  hover:bg-[#E2FEA7] focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">+</Link>
 
-       </div>
-    </div>
-   
-    </div>
-    </div>
+
+      </div>
+    </body>
   )
 }

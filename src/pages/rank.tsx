@@ -2,12 +2,14 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import 'src/app/globals.css'
 import TabNavbar from "src/app/navbar/navbar.js";
+import "src/app/rankcard.css";
 
 interface Rank {
     rankID: number,
     rankName: string,
     rankDetail: string,
     rankPic: string
+    rankPrice:number
 }
 
 export default function allRank() {
