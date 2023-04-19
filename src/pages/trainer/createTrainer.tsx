@@ -31,23 +31,7 @@ interface Course {
 }
 
 
-let cnt_md = 0;
-let cnt_mt = 0;
 
-const changeCntM = () => {
-    cnt_md = cnt_md + 1;
-    cnt_mt = cnt_mt + 1;
-    console.log("m" + cnt_md, cnt_mt);
-}
-
-let cnt_cd = 0;
-let cnt_ct = 0;
-
-const changeCntC = () => {
-    cnt_cd = cnt_cd + 1;
-    cnt_ct = cnt_ct + 1;
-    console.log("c" + cnt_cd, cnt_ct);
-}
 
 const initialValues = {
     nameEng: '',
@@ -64,12 +48,11 @@ const initialValues = {
     emergencyContact: '',
 
     memberID: '',
-    day_m: '',
-    time_m: '',
+    day: '',
+    time: '',
 
     courseID: '',
-    day_c: '',
-    time_c: '',
+
 
 }
 
@@ -153,7 +136,7 @@ export default function TrainerCreate() {
 
 
 
-     if (loading) {
+    if (loading) {
         return <div>Loading...</div>;
     }
 
@@ -334,7 +317,21 @@ export default function TrainerCreate() {
                                                             <div className="grid ml-20">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                                 <div className="mt-2 ">
-                                                                    <Field type="number" name="memberID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                    <Field type="number" name={`memberID[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        <option className="font-semibold text-xl w-full">Member</option>
+                                                                        {members?.map((mem: Member) => (
+                                                                            <option value={mem.memberID}>{mem.nameEng}</option>
+                                                                        ))}
+                                                                    </Field>
+                                                                   
+                                                                    <Field type="number" name={`memberID[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-12" >
+                                                                        <option className="font-semibold text-xl w-full">Member</option>
+                                                                        {members?.map((mem: Member) => (
+                                                                            <option value={mem.memberID}>{mem.nameEng}</option>
+                                                                        ))}
+                                                                    </Field>
+                                                                    <Field type="number" name={`memberID[2]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-12" >
+                                                                        <option className="font-semibold text-xl w-full">Member</option>
                                                                         {members?.map((mem: Member) => (
                                                                             <option value={mem.memberID}>{mem.nameEng}</option>
                                                                         ))}
@@ -348,8 +345,8 @@ export default function TrainerCreate() {
                                                             <div className="grid  ">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                                                 <div className="mt-2 ">
-                                                                    <Field type="string" name={`day_m[${cnt_md}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
-
+                                                                    <Field type="string" name={`day[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        <option className="font-semibold text-xl w-full">Day</option>
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                         <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -358,6 +355,57 @@ export default function TrainerCreate() {
                                                                         <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
                                                                         <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                                     </Field>
+                                                                    <Field type="string" name={`day[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                    </Field>
+                                                                    <Field type="string" name={`day[2]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                    </Field>
+                                                                    <Field type="string" name={`day[3]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                    </Field>
+                                                                    <Field type="string" name={`day[4]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                    </Field>
+                                                                    <Field type="string" name={`day[5]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                    </Field>
+                                                                    
 
                                                                 </div>
                                                             </div>
@@ -368,8 +416,8 @@ export default function TrainerCreate() {
                                                             <div className="grid ">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                                                 <div className="mt-2 mr-5">
-                                                                    <Field type="string" name={`time_m[${cnt_mt}]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
-
+                                                                    <Field type="string" name={`time[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                        <option className="font-semibold text-xl w-full">Time</option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -381,6 +429,72 @@ export default function TrainerCreate() {
                                                                         <option value="18-19" className="font-semibold text-xl w-full">18-19</option>
                                                                         <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
                                                                     </Field>
+                                                                    <Field type="string" name={`time[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
+                                                                        <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
+                                                                        <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
+                                                                        <option value="13-14" className="font-semibold text-xl w-full">13-14</option>
+                                                                        <option value="14-15" className="font-semibold text-xl w-full">14-15</option>
+                                                                        <option value="15-16" className="font-semibold text-xl w-full">15-16</option>
+                                                                        <option value="16-17" className="font-semibold text-xl w-full">16-17</option>
+                                                                        <option value="17-18" className="font-semibold text-xl w-full">17-18</option>
+                                                                        <option value="18-19" className="font-semibold text-xl w-full">18-19</option>
+                                                                        <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
+                                                                    </Field>
+                                                                    <Field type="string" name={`time[2]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
+                                                                        <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
+                                                                        <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
+                                                                        <option value="13-14" className="font-semibold text-xl w-full">13-14</option>
+                                                                        <option value="14-15" className="font-semibold text-xl w-full">14-15</option>
+                                                                        <option value="15-16" className="font-semibold text-xl w-full">15-16</option>
+                                                                        <option value="16-17" className="font-semibold text-xl w-full">16-17</option>
+                                                                        <option value="17-18" className="font-semibold text-xl w-full">17-18</option>
+                                                                        <option value="18-19" className="font-semibold text-xl w-full">18-19</option>
+                                                                        <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
+                                                                    </Field>
+                                                                    <Field type="string" name={`time[3]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
+                                                                        <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
+                                                                        <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
+                                                                        <option value="13-14" className="font-semibold text-xl w-full">13-14</option>
+                                                                        <option value="14-15" className="font-semibold text-xl w-full">14-15</option>
+                                                                        <option value="15-16" className="font-semibold text-xl w-full">15-16</option>
+                                                                        <option value="16-17" className="font-semibold text-xl w-full">16-17</option>
+                                                                        <option value="17-18" className="font-semibold text-xl w-full">17-18</option>
+                                                                        <option value="18-19" className="font-semibold text-xl w-full">18-19</option>
+                                                                        <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
+                                                                    </Field>
+                                                                    <Field type="string" name={`time[4]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
+                                                                        <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
+                                                                        <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
+                                                                        <option value="13-14" className="font-semibold text-xl w-full">13-14</option>
+                                                                        <option value="14-15" className="font-semibold text-xl w-full">14-15</option>
+                                                                        <option value="15-16" className="font-semibold text-xl w-full">15-16</option>
+                                                                        <option value="16-17" className="font-semibold text-xl w-full">16-17</option>
+                                                                        <option value="17-18" className="font-semibold text-xl w-full">17-18</option>
+                                                                        <option value="18-19" className="font-semibold text-xl w-full">18-19</option>
+                                                                        <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
+                                                                    </Field>
+                                                                    <Field type="string" name={`time[5]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
+                                                                        <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
+                                                                        <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
+                                                                        <option value="13-14" className="font-semibold text-xl w-full">13-14</option>
+                                                                        <option value="14-15" className="font-semibold text-xl w-full">14-15</option>
+                                                                        <option value="15-16" className="font-semibold text-xl w-full">15-16</option>
+                                                                        <option value="16-17" className="font-semibold text-xl w-full">16-17</option>
+                                                                        <option value="17-18" className="font-semibold text-xl w-full">17-18</option>
+                                                                        <option value="18-19" className="font-semibold text-xl w-full">18-19</option>
+                                                                        <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
+                                                                    </Field>
+                                                                    
 
                                                                 </div>
                                                             </div>
@@ -390,95 +504,49 @@ export default function TrainerCreate() {
 
 
                                                 </div>
-                                                <div className="flex flex-row  ">
-                                                    <div className="basis-1/2 " />
-                                                    <div className="basis-1/2  " >
-                                                        <div className=" mt-3 mr-5">
-                                                            <button type="submit" onClick={changeCntM} className=" text-black bg-[#FFFFFF]  rounded-md  w-full flex justify-center " >+</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
 
                                             </div>
                                             <div className="basis-1/2">
                                                 <p className=" ml-10 mt-8 text-base">Registered Course</p>
                                                 <hr className="mr-20 my-3 bg-[#000000]" />
-                                                <div className="flex flex-row ">
-                                                    <div className="basis-1/3 ">
-                                                        <div>
-                                                            <div className="grid ">
-                                                                <label htmlFor="first-name" className="font-light text-base ">Name</label>
-                                                                <div className="mt-2 ">
-                                                                    <Field type="number" name="courseID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        {courses?.map((co: Course) => (
-                                                                            <option value={co.courseID}>{co.courseName}</option>
-                                                                        ))}
-                                                                    </Field>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="basis-1/3 flex justify-start ... ">
-                                                        <div>
-                                                            <div className="grid  ">
-                                                                <label className="font-light text-base ">Days</label>
-                                                                <div className="mt-2">
-                                                                    <Field type="string" name={`day_c[${cnt_cd}]`} as="select" className="font-semibold text-xl rounded-md block w-full">
 
-                                                                        <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
-                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
-                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
-                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                        <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
-                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
-                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
-
-                                                                    </Field>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="basis-1/3 ">
-                                                        <div>
-                                                            <div className="grid ">
-                                                                <label className="font-light text-base ">Time</label>
-                                                                <div className="mt-2 mr-14">
-                                                                    <Field type="string" name={`time_c[${cnt_ct}]`} as="select" className="font-semibold text-xl rounded-md block w-full">
-
-                                                                        <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
-                                                                        <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
-                                                                        <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
-                                                                        <option value="13-14" className="font-semibold text-xl w-full">13-14</option>
-                                                                        <option value="14-15" className="font-semibold text-xl w-full">14-15</option>
-                                                                        <option value="15-16" className="font-semibold text-xl w-full">15-16</option>
-                                                                        <option value="16-17" className="font-semibold text-xl w-full">16-17</option>
-                                                                        <option value="17-18" className="font-semibold text-xl w-full">17-18</option>
-                                                                        <option value="18-19" className="font-semibold text-xl w-full">18-19</option>
-                                                                        <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
-
-                                                                    </Field>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="flex flex-row  ">
-                                                    <div className="basis-1/3 " />
-                                                    <div className="basis-2/3  " >
-                                                        <div className=" mt-3 mr-14">
-                                                            <button type="submit" onClick={changeCntC} className=" text-black bg-[#FFFFFF]  rounded-md  w-full flex justify-center " >+</button>
+                                                <div>
+                                                    <div className="grid mr-20">
+                                                        <label htmlFor="first-name" className="font-light text-base ">Name</label>
+                                                        <div className="mt-2 ">
+                                                            <Field type="number" name={`course[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                <option className="font-semibold text-xl w-full">Course</option>
+                                                                {courses?.map((co: Course) => (
+                                                                    <option value={co.courseID}>{co.courseName}</option>
+                                                                ))}
+                                                            </Field>
+                                                            <Field type="number" name={`course[0]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                <option className="font-semibold text-xl w-full">Course</option>
+                                                                {courses?.map((co: Course) => (
+                                                                    <option value={co.courseID}>{co.courseName}</option>
+                                                                ))}
+                                                            </Field>
+                                                            <Field type="number" name={`course[0]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
+                                                                <option className="font-semibold text-xl w-full">Course</option>
+                                                                {courses?.map((co: Course) => (
+                                                                    <option value={co.courseID}>{co.courseName}</option>
+                                                                ))}
+                                                            </Field>
                                                         </div>
                                                     </div>
                                                 </div>
 
                                             </div>
+
+
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
+
 
 
 
@@ -486,7 +554,7 @@ export default function TrainerCreate() {
                 )}
             </Formik>
 
-        </div>
+        </div >
 
 
     );
