@@ -54,8 +54,7 @@ const validationSchema = Yup.object({
 
     emergencyContact: Yup.string().required('Required'),
 
-    // trainerID: Yup.number().required('Required'),
-    // courseID: Yup.number().required('Required'),
+    
 });
 
 
@@ -89,7 +88,6 @@ export default function createMember() {
     const [memberData, setMemberData] = useState<Member | null>(null);
 
     const [rankData, setRankData] = useState<Rank | null>(null);
-
     const [trainerData, setTrainerData] = useState<Trainer | null>(null);
     const [courseData, setCourseData] = useState<Course | null>(null);
 
@@ -306,9 +304,7 @@ export default function createMember() {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}
-            // onSubmit={(values, action) => {
-            //     console.log(values)
-            // }}
+            
             >
                 {({ isSubmitting }) => (
                     <Form>
