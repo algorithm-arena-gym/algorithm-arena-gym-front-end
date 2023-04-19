@@ -50,10 +50,39 @@ export default function allRank() {
     const ranks = JSON.parse(JSON.stringify(rankData));
 
     return (
-        <div>
+        <body className='bg-black'>
             <div>
-                <TabNavbar />
+                <div >
+                    <TabNavbar />
+                </div>
+
+                <div className='grid gap-6 grid-cols-1-250 md:grid-cols-2-250 lg:grid-cols-3-250 place-content-center md:px-40 pt-10'> {/*rank all*/}
+                    {ranks.map((rank: Rank) => ( ///loop course
+                        <div className='grid justify-items-center p-6'>
+                            <Link href={`/rank/${rank.rankID}`}>
+                                <div className="card">
+                                    <img className='object-top' src={rank.rankPic} />
+                                    <div className="cardcontainer">
+                                        <p className="title font-[900]">{rank.rankName}</p>
+                                        <p className='Price'>{rank.rankPrice} Bath/Month</p>
+
+                                    </div>
+                                </div>
+
+                            </Link>
+                        </div>
+                    ))}
+
+                    {/* button add */}
+                    < div className='grid justify-items-center p-6'>
+                        <div className="card" >
+                            <button type="button" className="btn" >+</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </body>
+
     )
 }

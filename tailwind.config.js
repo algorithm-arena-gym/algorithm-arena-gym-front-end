@@ -8,7 +8,13 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'AzeretMono': ['Azeret Mono', 'monospace'],
+        'Anton' : ['Anton', 'sans-serif'],
+        'AudioWide' : ['Audiowide', 'cursive'],
+      },
+    },
   },
   plugins: [],
 }

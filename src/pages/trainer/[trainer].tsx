@@ -5,8 +5,8 @@ import 'src/app/globals.css';
 import TabNavbar from "src/app/navbar/navbar.js";
 
 
-interface Member {
-  memberID: number;
+interface Trainer {
+  trainerID: number;
   nameEng: string;
   nameTh: string;
   profilePic: string;
@@ -15,40 +15,21 @@ interface Member {
   cID: string;
   drugAllergy: string;
   congenitalDisease: string;
-  rankID: number;
   address: string;
   emergencyContact: string;
-  point: number;
-  subscriptionDate: Date;
+  hireDate: Date;
 }
-
-interface Rank {
-  rankID: number;
-  rankPic: string;
-  rankName: string;
-  rankDetail: string;
-  rankPrice: number;
-  createAt: Date;
-
-}
-
-
-interface Trainer {
-  trainerID: number,
-  nameEng: string,
-
-  trainerMemberID: number;
+interface Member {
   memberID: number;
+  nameEng: string;
   trainingDate: string;
   trainingTime: string;
-  createAt: Date;
+  
 }
 
 interface Course {
   courseID: number,
   courseName: string,
-
-  courseMemberID: number;
   memberID: number;
 
   courseDateTimeID: number;
@@ -58,128 +39,88 @@ interface Course {
   createAt: Date;
 }
 
-
-
-
-export default function MemberDetail() {
+export default function TrainerDetail() {
   const router = useRouter();
-  const [memberData, setMemberData] = useState<Member | null>(null);
-  const [rankData, setRankData] = useState<Rank | null>(null);
-
   const [trainerData, setTrainerData] = useState<Trainer | null>(null);
 
+  const [memberData, setMemberData] = useState<Member | null>(null);
   const [courseData, setCourseData] = useState<Course | null>(null);
-
   const [loading, setLoading] = useState(false);
+
   const [error, setError] = useState<string | null>(null);
 
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const trainerID = router.query.trainer as string;
+        const apiURL = `http://localhost:4000/trainer/${trainerID}`;
+        const res = await fetch(apiURL);
+        const json = await res.json();
+        setTrainerData(json[0]);
+        setError(null);
+      } catch (error) {
+        console.error(error);
+        setError("An error occurred while fetching the data.");
+        setTrainerData(null);
+      }
+      setLoading(false);
+    }
+
+    fetchData();
+  }, [router.query.trainer]);
 
   useEffect(() => {
     async function fetchMemberData() {
       try {
-        const memberID = router.query.member as string;
-        const apiURL = `http://localhost:4000/member/${memberID}`;
-        const res = await fetch(apiURL);
-        const json = await res.json();
-        setMemberData(json[0]);
-        setError(null);
-      } catch (error) {
-        console.error(error);
-        setError("An error occurred while fetching the memberData.");
-        setMemberData(null);
-      }
-    }
-
-    setLoading(true);
-    setError(null);
-    fetchMemberData();
-    setLoading(false);
-  }, [router.query.member]);
-
-
-
-
-  useEffect(() => {
-    async function fetchRankData() {
-      try {
-        const rankID = memberData?.rankID as number;
-        const apiURL2 = `http://localhost:4000/rank/${rankID}`;
+        const trainerID = trainerData?.trainerID as number;
+        const apiURL2 = `http://localhost:4000/pt-member/${trainerID}`;
         const res2 = await fetch(apiURL2);
         const json2 = await res2.json();
-        setRankData(json2[0]);
+        setMemberData(json2);
         setError(null);
+
+        console.log(json2);
+
       } catch (error) {
         console.error(error);
         setError("An error occurred while fetching the rankData.");
-        setRankData(null);
+        setMemberData(null);
       }
     }
-    if (memberData) {
+    if (trainerData) {
       setLoading(true);
       setError(null);
-      fetchRankData();
+      fetchMemberData();
       setLoading(false);
     }
-  }, [memberData]);
-
-
-  useEffect(() => {
-    async function fetchTrainerData() {
-      try {
-        const memberID = memberData?.memberID as number;
-        const apiURL3 = `http://localhost:4000/pm-trainer/${memberID}`;
-        const res3 = await fetch(apiURL3);
-        const json3 = await res3.json();
-        setTrainerData(json3);
-        setError(null);
-
-         console.log(json3)
-
-      } catch (error) {
-        console.error(error);
-        setError("An error occurred while fetching the trainerData.");
-        setTrainerData(null);
-      }
-    }
-    if (memberData) {
-      setLoading(true);
-      setError(null);
-      fetchTrainerData();
-      setLoading(false);
-    }
-  }, [memberData]);
-
-
-
+  }, [trainerData]);
 
   useEffect(() => {
     async function fetchCourseData() {
       try {
-        const memberID = memberData?.memberID as number;
-        const apiURL4 = `http://localhost:4000/pm-course/${memberID}`;
-        const res4 = await fetch(apiURL4);
-        const json4 = await res4.json();
-        setCourseData(json4);
+        const trainerID = trainerData?.trainerID as number;
+        const apiURL3 = `http://localhost:4000/pm-course/${trainerID}`;
+        const res3 = await fetch(apiURL3);
+        const json3 = await res3.json();
+        setCourseData(json3);
         setError(null);
 
-        //  console.log(json4)
-
+        console.log(json3)
+        
       } catch (error) {
         console.error(error);
-        setError("An error occurred while fetching the CourseData.");
+        setError("An error occurred while fetching the trainerData.");
         setCourseData(null);
       }
     }
-    if (memberData) {
+   if (trainerData) {
       setLoading(true);
       setError(null);
       fetchCourseData();
       setLoading(false);
     }
-  }, [memberData]);
-
-
-
+  }, [trainerData]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -189,102 +130,94 @@ export default function MemberDetail() {
     return <div>{error}</div>;
   }
 
-  if (!memberData) {
+  if (!trainerData) {
     return <div>
-      <div>
+       <div>
         <TabNavbar />
       </div>
-      <p className="font-AzeretMono font-semibold">No memberData to display.</p>
+      <p className="font-AzeretMono font-semibold">No trainerData to display.</p> 
       {/* <Link href="/member" className="bg-[#EF4444] font-AzeretMono font-semibold">
        Go back
       </Link> */}
-    </div>;
-
+      </div>;
   }
-
-  // if (!rankData) {
-  //   return <div>No rankData to display.</div>;
-  // }
-
-
-  const listTrainer = trainerData?.map((tr: Trainer) => {
+  
+  const listMember = memberData?.map((mem:Member) => {
     return (
-
+      
       <div className="flex flex-row mb-2 ">
-        <div className="basis-1/2 ">
-          <div>
-            <div className="grid ml-20">
-              <span className="font-semibold text-xl ">{tr.nameEng}</span>
+                    <div className="basis-1/2 ">
+                      <div>
+                        <div className="grid ml-20">
+                           <span className="font-semibold text-xl ">{mem.nameEng}</span>
+                         
+                        </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/4 flex justify-center ...">
+                      <div>
+                        <div className="grid  ">
+                          <span className="font-semibold text-xl ">{mem.trainingDate}</span>
 
-            </div>
-          </div>
-        </div>
-        <div className="basis-1/4 flex justify-center ...">
-          <div>
-            <div className="grid  ">
-              <span className="font-semibold text-xl ">{tr.trainingDate}</span>
-
-            </div>
-          </div>
-        </div>
-        <div className="basis-1/4 flex justify-center ...">
-          <div>
-            <div className="grid ">
-              <span className="font-semibold text-xl ">{tr.trainingTime}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  });
-  const listCourse = courseData?.map((co: Course) => {
-    return (
-
-      <div className="flex flex-row mb-2 ">
-        <div className="basis-1/3 ">
-          <div>
-            <div className="grid ">
-              <span className="font-semibold text-xl ">{co.courseName}</span>
-            </div>
-          </div>
-        </div>
-        <div className="basis-1/3 flex justify-center ...">
-          <div>
-            <div className="grid  ">
-              <span className="font-semibold text-xl ">{co.courseDate}</span>
-            </div>
-          </div>
-        </div>
-        <div className="basis-1/3 ">
-          <div>
-            <div className="grid ">
-              <span className="font-semibold text-xl">{co.courseTime}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/4 flex justify-center ...">
+                      <div>
+                        <div className="grid ">
+                         <span className="font-semibold text-xl ">{mem.trainingTime}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
     )
   });
 
-  const onDelete = async (memberID: any) => {
-    try {
-        let response = await fetch(`http://localhost:4000/member/${memberID}`, {
-        headers: {
-          "Contene-Type": "application/json",
-        },
-        method: "DELETE",
-      })
+  const listCourse= courseData?.map((co:Course) => {
+    return (
+      
+      <div className="flex flex-row mb-2 ">
+                    <div className="basis-1/3 ">
+                      <div>
+                        <div className="grid ">
+                          <span className="font-semibold text-xl ">{co.courseName}</span>
+                          </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/3 flex justify-center ...">
+                      <div>
+                        <div className="grid  ">
+                          <span className="font-semibold text-xl ">{co.courseDate}</span>
+                          </div>
+                      </div>
+                    </div>
+                    <div className="basis-1/3 ">
+                      <div>
+                        <div className="grid ">
+                          <span className="font-semibold text-xl">{co.courseTime}</span>
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+    )
+  });
 
-    } catch (error) {
-      console.log("An error occured while deleting member", error);
+  const onDelete = async (trainerID : any) => {
+    try{
+      
+      // const memberID = router.query.member as string;
+      let response = await fetch(`http://localhost:4000/trainer/${trainerID}` , {
+         headers: {
+       "Contene-Type" : "application/json",
+      },
+      method: "DELETE",
+    })
+
+    }catch(error) {
+      console.log("An error occured while deleting trainer",error);
     }
-
+    
   };
-
-
-
-
-
 
   return (
     <div>
@@ -297,24 +230,27 @@ export default function MemberDetail() {
           <div className="rounded-3xl m-6 w-9/12 pb-6 text-black bg-[#D9D9D9]">
             <div className="rounded-3xl rounded-b-none  w-full h-[95px] text-black bg-[#FFFFFF]">
               {/* ก้อน1 */}
+
               <div className="flex flex-row ">
                 <div className="basis-5/6 flex justify-start ...">
-                  <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " src={memberData.profilePic} />
+                  <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] " src={trainerData.profilePic} />
                   <div>
                     <div className="grid pt-24 ">
-                      <span className="font-semibold text-4xl">{memberData.nameEng}</span>
-                      <span className="font-light text-3xl pb-24" >ID : {memberData.memberID}</span>
+                      <span className="font-semibold text-4xl">{trainerData.nameEng}</span>
+                      <span className="font-light text-3xl pb-24" >ID : {trainerData.trainerID}</span>
                     </div>
                   </div>
                 </div>
                 <div className="basis-1/6 flex justify-end ...mr-10">
-                  <Link href={`/member/editMember/${memberData.memberID}`}>
-                    <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
+                  <Link href= {`/trainer/editTrainer/${trainerData.trainerID}`}>
+                      <button className="bg-[#FCD34D] rounded-md border-black h-10 p-2 mt-5 mr-5 font-semibold text-base pl-4 pr-4"> EDIT</button>
                   </Link>
-                  <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base"
-                    onClick={() => onDelete(memberData.memberID)}>DELETE</button>
+                  <button className="bg-[#EF4444]  rounded-md h-10 p-2 mt-5 mr-5 font-semibold text-white-base" 
+                          onClick={() => onDelete(trainerData.trainerID )}>DELETE</button>
                 </div>
               </div>
+
+
             </div>
 
 
@@ -327,33 +263,27 @@ export default function MemberDetail() {
                 <div className="grid ml-32 ">
 
                   <span font-light text-base>Name(Eng)</span>
-                  <span className="font-semibold text-xl ">{memberData.nameEng}</span>
+                  <span className="font-semibold text-xl ">{trainerData.nameEng}</span>
 
                   <span font-light text-base>Name(TH)</span>
-                  <span className="font-semibold text-xl ">{memberData.nameTh}</span>
+                  <span className="font-semibold text-xl ">{trainerData.nameTh}</span>
 
-                  <span font-light text-base>Rank</span>
-                  <p className="font-semibold text-xl">{rankData?.rankName ? rankData.rankName:" None" }</p>
-
-                  <span font-light text-base>Point</span>
-                  <span className="font-semibold text-xl">{memberData.point}</span>
+                  <span font-light text-base>Citizen ID</span>
+                  <span className="font-semibold text-xl ">{trainerData.cID}</span>
                 </div>
               </div>
 
               <div className="basis-1/2 flex justify-start ...">
                 <div className="grid  ">
 
-                  <span font-light text-base>Citizen ID</span>
-                  <span className="font-semibold text-xl ">{memberData.cID}</span>
-
                   <span font-light text-base>Phone number</span>
-                  <span className="font-semibold text-xl ">{memberData.phone}</span>
+                  <span className="font-semibold text-xl ">{trainerData.phone}</span>
 
                   <span font-light text-base>Email</span>
-                  <span className="font-semibold text-xl ">{memberData.email}</span>
+                  <span className="font-semibold text-xl ">{trainerData.email}</span>
 
                   <span font-light text-base>Address</span>
-                  <span className="font-semibold text-xl ">{memberData.address}</span>
+                  <span className="font-semibold text-xl ">{trainerData.address}</span>
                 </div>
               </div>
 
@@ -370,7 +300,7 @@ export default function MemberDetail() {
                   <div>
                     <div className="grid ml-32">
                       <span className="font-light text-base ">Drug Allergy</span>
-                      <span className="font-semibold text-xl ">{memberData.drugAllergy}</span>
+                      <span className="font-semibold text-xl ">{trainerData.drugAllergy}</span>
                     </div>
                   </div>
                 </div>
@@ -379,7 +309,7 @@ export default function MemberDetail() {
                   <div >
                     <div className="grid ">
                       <span className="font-light text-base ">Congenital Disease</span>
-                      <span className="font-semibold text-xl ">{memberData.congenitalDisease}</span>
+                      <span className="font-semibold text-xl ">{trainerData.congenitalDisease}</span>
                     </div>
                   </div>
                 </div>
@@ -388,7 +318,7 @@ export default function MemberDetail() {
                   <div>
                     <div className="grid ">
                       <span className="font-light text-base ">Emergency Contact</span>
-                      <span className="font-semibold text-xl ">{memberData.emergencyContact}</span>
+                      <span className="font-semibold text-xl ">{trainerData.emergencyContact}</span>
                     </div>
                   </div>
                 </div>
@@ -401,34 +331,35 @@ export default function MemberDetail() {
             <div>
               <div className="flex flex-row mb-6 ">
                 <div className="basis-1/2 ">
-                  <p className="ml-32  mt-8 text-base">Trainer Information</p>
+                  <p className="ml-32  mt-8 text-base">Trainee Information</p>
                   <hr className="ml-20 mr-5 my-3 bg-[#000000]" />
-                  <div className="flex flex-row  ">
+                  <div className="flex flex-row ">
                     <div className="basis-1/2 ">
                       <div>
                         <div className="grid ml-20">
-                          <span className="font-light text-base ">Name </span>
-                        </div>
+                          <span className="font-light text-base ">Name</span>
+                          </div>
                       </div>
                     </div>
                     <div className="basis-1/4 flex justify-center ...">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>
-                        </div>
+                          </div>
                       </div>
                     </div>
                     <div className="basis-1/4 flex justify-center ...">
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Time</span>
-                        </div>
+                          </div>
                       </div>
                     </div>
                   </div>
-                  {listTrainer}
-
+                   {listMember}
                 </div>
+
+
                 <div className="basis-1/2">
                   <p className=" ml-10 mt-8 text-base">Registered Course</p>
                   <hr className="mr-20 my-3 bg-[#000000]" />
@@ -437,34 +368,31 @@ export default function MemberDetail() {
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Name</span>
-                        </div>
+                          </div>
                       </div>
                     </div>
                     <div className="basis-1/3 flex justify-center ...">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>
-                        </div>
+                          </div>
                       </div>
                     </div>
                     <div className="basis-1/3 ">
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Time</span>
-                        </div>
+                          </div>
                       </div>
                     </div>
                   </div>
-                  {listCourse}
-
+{listCourse}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+ </div>
+</div>
+      </div>
       </div>
     </div >
   );
 }
-
-
