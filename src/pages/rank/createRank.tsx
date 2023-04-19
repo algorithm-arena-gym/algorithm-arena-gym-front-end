@@ -58,6 +58,8 @@ export default function RankCreate() {
 
     const [courseData, setCourseData] = useState<Course | null>(null);
 
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -148,6 +150,52 @@ export default function RankCreate() {
     const members = JSON.parse(JSON.stringify(memberData));
     const courses = JSON.parse(JSON.stringify(courseData));
 
+    const handleSubmit = () => {
+        // Your form submission logic here
+        setSuccessMessage('Form submitted successfully!');
+    };
+    const onSubmit = async (values: any, { setSubmitting }: any) => {
+
+        try {
+            const response1 = await fetch(`http://localhost:4000/rank`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "rankName": values.rankName,
+                    "rankPic": values.rankPic,
+                    "rankDetail": values.rankDetail,
+                    "rankPrice": values.rankPrice,
+                }),
+            });
+            const data1 = await response1.json();
+            // console.log(data1);
+
+
+            const apiRankID = data1.insertId;
+            const response2 = await fetch(`http://localhost:4000/rank-course`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "rankID": apiRankID,
+                    "courseID": values.courseID,
+                }),
+            });
+            const data2 = await response2.json();
+            // console.log(data2);
+            if (response2.ok)
+                setSuccessMessage('Form submitted successfully!');
+            // Do any other logic you need on successful form submission
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setSubmitting(false);
+        }
+    };
+
 
 
     return (
@@ -155,6 +203,8 @@ export default function RankCreate() {
             <div>
                 <TabNavbar />
             </div>
+            {successMessage &&
+                <p>{successMessage}</p>}
 
             <Formik
                 initialValues={initialValues}
