@@ -78,10 +78,16 @@ export default function allCourse() {
             </div>
           ))}
           < div className="grid justify-items-center p-6">
-            <div className="card" >
+            <div className="card justify-center" >
+              <div >
               <Link href={`/course/createCourse`}>
-                <button type="button" className="btn" >+</button>
+                <button type="button" className="btn" >+
+                {/* <Link href={`/course/createCourse`}> 
+                  
+                </Link> */}
+                </button>
               </Link>
+              </div>
             </div>
           </div>
 
