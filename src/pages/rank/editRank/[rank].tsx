@@ -221,7 +221,7 @@ export default function EditRank() {
 
 
             const apiRankID = data1.insertId;
-            for (let j = 0; j < 3; j++) {
+             for (let j = 0; j < values.courseID.length; j++) {
                 
                 if (values.courseID[j] != null && arrayRankCourseID[j] !=null) {
                     const response2 = await fetch(`http://localhost:4000/rank-course/${arrayRankCourseID[j]}`, {
