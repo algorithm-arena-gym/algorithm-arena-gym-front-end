@@ -237,7 +237,7 @@ useEffect(() => {
 useEffect(() => {
     async function fetchRanOldkData() {
         try {
-            const rankID = memberOldData?.rankID as number;
+            const rankID = memberData?.rankID as number;
             const apiURL2 = `http://localhost:4000/rank/${rankID}`;
             const res2 = await fetch(apiURL2);
             const json2 = await res2.json();
@@ -383,16 +383,16 @@ return (
                                     {/* ก้อน1 */}
                                     <div className="flex flex-row ">
                                         <div className="basis-5/6 flex justify-start ... ">
-                                            <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] src= {memberOldData.profilePic} " />
+                                            <img className=" rounded-full w-36 h-36 m-6 border-8 border-[#FFFFFF] "src= {memberData?.profilePic}  />
                                             <div>
                                                 <div className="grid pt-24 ">
                                                     <span className="font-semibold text-4xl mt-2 w-full">
                                                         <Field type="string" name="profilePic"
                                                             className="font-semibold text-xl rounded-md block w-full"
-                                                            placeholder={memberOldData?.profilePic}
+                                                            placeholder={memberData?.profilePic}
                                                         />
                                                     </span>
-                                                    <span className="font-light text-3xl pb-24" >ID : {memberOldData?.memberID}</span>
+                                                    <span className="font-light text-3xl pb-24" >ID : {memberData?.memberID}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -414,7 +414,7 @@ return (
                                             <div className="mt-2">
                                                 <Field type="string" name="nameEng"
                                                     className="font-semibold text-xl rounded-md block w-full"
-                                                    placeholder={memberOldData?.nameEng}
+                                                    placeholder={memberData?.nameEng}
                                                 />
                                             </div>
 
@@ -423,7 +423,7 @@ return (
                                             <div className="mt-2">
                                                 <Field type="string" name="nameTh"
                                                     className="font-semibold text-xl rounded-md block w-full"
-                                                    placeholder={memberOldData?.nameTh}
+                                                    placeholder={memberData?.nameTh}
                                                 />
                                             </div>
 
@@ -443,7 +443,7 @@ return (
                                             <div className="mt-2">
                                                 <Field type="number" name="point"
                                                     className="font-semibold text-xl rounded-md block w-full"
-                                                    placeholder={memberOldData?.point}
+                                                    placeholder={memberData?.point}
                                                 />
                                             </div>
 
@@ -457,7 +457,7 @@ return (
                                             <div className="mt-2">
                                                 <Field type="string" name="cID"
                                                     className="font-semibold text-xl rounded-md block w-full "
-                                                    placeholder={memberOldData?.cID}
+                                                    placeholder={memberData?.cID}
                                                 />
                                             </div>
 
@@ -465,7 +465,7 @@ return (
                                             <div className="mt-2">
                                                 <Field type="string" name="phone"
                                                     className="font-semibold text-xl rounded-md block w-full"
-                                                    placeholder={memberOldData?.phone}
+                                                    placeholder={memberData?.phone}
                                                 />
                                             </div>
 
@@ -473,7 +473,7 @@ return (
                                             <div className="mt-2">
                                                 <Field type="email" name="email"
                                                     className="font-semibold text-xl rounded-md block w-full"
-                                                    placeholder={memberOldData?.email}
+                                                    placeholder={memberData?.email}
                                                 />
                                             </div>
 
@@ -482,7 +482,7 @@ return (
                                                 <Field type="string" name="address" as="textarea"
                                                     rows={2}
                                                     className="font-semibold text-xl rounded-md block w-full"
-                                                    placeholder={memberOldData?.address}
+                                                    placeholder={memberData?.address}
                                                 />
                                             </div>
                                         </div>
@@ -504,7 +504,7 @@ return (
                                                     <div className="mt-2">
                                                         <Field type="string" name="drugAllergy"
                                                             className="font-semibold text-xl rounded-md block w-full"
-                                                            placeholder={memberOldData?.drugAllergy}
+                                                            placeholder={memberData?.drugAllergy}
                                                         />
                                                     </div>
                                                 </div>
@@ -518,7 +518,7 @@ return (
                                                     <div className="mt-2">
                                                         <Field type="string" name="congenitalDisease"
                                                             className="font-semibold text-xl rounded-md block w-full"
-                                                            placeholder={memberOldData?.congenitalDisease}
+                                                            placeholder={memberData?.congenitalDisease}
                                                         />
                                                     </div>
                                                 </div>
@@ -532,7 +532,7 @@ return (
                                                     <div className="mt-2">
                                                         <Field type="string" name="emergencyContact"
                                                             className="font-semibold text-xl rounded-md block w-full"
-                                                            placeholder={memberOldData?.emergencyContact}
+                                                            placeholder={memberData?.emergencyContact}
                                                         />
                                                     </div>
                                                 </div>
