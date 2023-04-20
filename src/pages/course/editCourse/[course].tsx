@@ -44,12 +44,19 @@ interface Member {
 interface TrainerOld {
   trainerID: number;
   nameEng: string;
- 
+
 }
 
 interface RankOld {
   rankID: number,
   rankName: string,
+}
+interface DateTimeOld {
+  courseDateTimeID: number,
+  courseID: number,
+  courseDate: string,
+  courseTime: string,
+
 }
 
 const validationSchema = Yup.object({
@@ -92,9 +99,11 @@ export default function EditCourse() {
   const [trainerData, setTrainerData] = useState<Trainer | null>(null);
   const [memberData, setMemberData] = useState<Member | null>(null);
   const [rankData, setRankData] = useState<Rank | null>(null);
-  
+
   const [trainerOldData, setTrainerOldData] = useState<TrainerOld | null>(null);
   const [rankOldData, setRankOldData] = useState<RankOld | null>(null);
+  const [dateTimeOldData, setDateTimeOldData] = useState<DateTimeOld | null>(null);
+
 
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -110,8 +119,7 @@ export default function EditCourse() {
         setCourseData(json[0]);
         setError(null);
 
-        console.log(json[0]
-        )
+        // console.log(json[0])
       } catch (error) {
         console.error(error);
         setError("An error occurred while fetching the courseData.");
@@ -218,7 +226,7 @@ export default function EditCourse() {
     fetchMemberData();
   }, []);
 
-   useEffect(() => {
+  useEffect(() => {
     async function fetchTrainerOldData() {
       try {
         const trainerID = courseData?.trainerID as number;
@@ -270,6 +278,34 @@ export default function EditCourse() {
     }
   }, [courseData]);
 
+  useEffect(() => {
+    async function fetchDateTimeOldData() {
+      try {
+        const courseID = courseData?.courseID as number;
+        const apiURL4 = `http://localhost:4000/pc-date-time/${courseID}`;
+        const res4 = await fetch(apiURL4);
+        const json4 = await res4.json();
+        setDateTimeOldData(json4);
+        setError(null);
+
+        //  console.log(json4)
+
+      } catch (error) {
+        console.error(error);
+        setError("An error occurred while fetching the RankData.");
+        setDateTimeOldData(null);
+      }
+    }
+    if (courseData) {
+      setLoading(true);
+      setError(null);
+      fetchDateTimeOldData();
+      setLoading(false);
+    }
+  }, [courseData]);
+
+
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -286,12 +322,39 @@ export default function EditCourse() {
   const trainers = JSON.parse(JSON.stringify(trainerData));
   const ranks = JSON.parse(JSON.stringify(rankData));
   const members = JSON.parse(JSON.stringify(memberData));
+  const dtOld = JSON.parse(JSON.stringify(dateTimeOldData));
+  
 
-  const handleSubmit = () => {
-    // Your form submission logic here
-    setSuccessMessage('Form submitted successfully!');
-  };
 
+  const listCDT: number[] = [];
+  const listDay: String[] = [];
+  const listTime1: String[] = [];
+  const listTime2: String[] = [];
+  const listTime3: String[] = [];
+
+ console.log(dtOld);
+
+
+  // dtOld?.map((dt: DateTimeOld) => {
+  //   console.log(dt.courseDateTimeID)
+  //   if (listCDT.indexOf(dt.courseDateTimeID) == -1)
+  //     listCDT.push(dt.courseDateTimeID);
+
+  //   if (listDay.indexOf(dt.courseDate) == -1)
+  //     listDay.push(dt.courseDate);
+  // });
+
+  // dateTimeOld?.map((dt: DateTimeOld) => {
+  //   console.log(listDay[0])
+  //   if (listDay[0] == dt.courseDate)
+  //     listTime1.push(dt.courseTime);
+
+  //   if (listDay[1] == dt.courseDate)
+  //     listTime2.push(dt.courseTime);
+
+  //   if (listDay[2] == dt.courseDate)
+  //     listTime3.push(dt.courseTime);
+  // });
 
 
 
@@ -482,8 +545,8 @@ export default function EditCourse() {
                               <div className="mt-2 ">
                                 <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                 <Field type="string" name="day1" as="select"
-                                  className="font-semibold text-xl rounded-md block w-full " required>
-                                  <option className="font-semibold text-xl w-full"></option>
+                                  className="font-semibold text-xl rounded-md block w-full " >
+                                  <option className="font-semibold text-xl w-full">{null ? null : listDay[0]}</option>
                                   <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                   <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                   <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -525,7 +588,7 @@ export default function EditCourse() {
                               <div className="mt-2 ">
                                 <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                 <Field type="string" name={`time1[0]`} as="select"
-                                  className="font-semibold text-xl rounded-md block w-full" required>
+                                  className="font-semibold text-xl rounded-md block w-full" >
                                   <option className="font-semibold text-xl w-full"></option>
                                   <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                   <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
@@ -685,7 +748,7 @@ export default function EditCourse() {
                   <div>
                     <p className="ml-32 mt-5 ">Trainer</p>
                     <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
- <div>
+                    <div>
                       <div className="grid ml-32 mr-32">
                         <label htmlFor="first-name" className="font-light text-base ">Name</label>
                         <div className="mt-2 ">
