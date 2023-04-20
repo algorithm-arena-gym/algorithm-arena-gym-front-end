@@ -282,7 +282,7 @@ export default function EditRank() {
             >
                 {({ isSubmitting }) => (
                     <Form>
-                        <div className=" bg-black w-full h-full">
+                        <div className=" bg-black w-full h-screen">
                             <div className="grid place-items-center  font-AzeretMono">
                                 <div className="rounded-3xl m-12 w-9/12 pb-6 text-black bg-[#D9D9D9]">
                                     <div className="rounded-3xl rounded-b-none  w-full h-[95px] text-black bg-[#FFFFFF]">
@@ -376,19 +376,21 @@ export default function EditRank() {
                                                         {courses?.map((co: Course) => (
                                                             <option value={co.courseID}>{co.courseName}</option>
                                                         ))}
-                                                         <option value= "null" className="font-semibold text-xl w-full">delete Rank</option>
+                                                         
                                                     </Field>
                                                     <Field type="number" name={`courseID[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
                                                         <option className="font-semibold text-xl w-full">{null ? "Day" : arrayCourseOld[1]}</option>
                                                         {courses?.map((co: Course) => (
                                                             <option value={co.courseID}>{co.courseName}</option>
                                                         ))}
+                                                        <option value= "null" className="font-semibold text-xl w-full">delete Rank</option>
                                                     </Field>
                                                     <Field type="number" name={`courseID[2]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
                                                         <option className="font-semibold text-xl w-full">{null ? "Day" : arrayCourseOld[2]}</option>
                                                         {courses?.map((co: Course) => (
                                                             <option value={co.courseID}>{co.courseName}</option>
                                                         ))}
+                                                        <option value= "null" className="font-semibold text-xl w-full">delete Rank</option>
                                                     </Field>
 
 
