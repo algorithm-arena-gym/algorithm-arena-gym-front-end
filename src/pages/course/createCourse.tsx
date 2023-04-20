@@ -384,6 +384,7 @@ export default function CourseCreate() {
                                                         <div className="grid ">
 
                                                             <div className="mt-2 ">
+                                                                 <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                                                 <Field type="string" name="day1" as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full " required>
                                                                     <option className="font-semibold text-xl w-full"></option>
@@ -426,6 +427,7 @@ export default function CourseCreate() {
                                                         <div className="grid  ">
 
                                                             <div className="mt-2 ">
+                                                                 <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                                                 <Field type="string" name={`time1[0]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full" required>
                                                                     <option className="font-semibold text-xl w-full"></option>
@@ -479,6 +481,7 @@ export default function CourseCreate() {
                                                         <div className="grid  ">
 
                                                             <div className="mt-2 ">
+                                                                <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                                                 <Field type="string" name={`time1[1]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full" >
                                                                     <option className="font-semibold text-xl w-full"></option>
@@ -530,6 +533,7 @@ export default function CourseCreate() {
                                                     <div>
                                                         <div className="grid ">
                                                             <div className="mt-2 mr-5">
+                                                                <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                                                 <Field type="string" name={`time1[3]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full" >
                                                                     <option className="font-semibold text-xl w-full"></option>
