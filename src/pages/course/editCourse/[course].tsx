@@ -333,6 +333,9 @@ export default function EditCourse() {
   const listTime3: String[] = [];
 
  console.log(dtOld);
+ dtOld?.map((dtt : DateTimeOld) => {
+ console.log(dtt.courseDateTimeID)
+ })
 
 
   // dtOld?.map((dt: DateTimeOld) => {

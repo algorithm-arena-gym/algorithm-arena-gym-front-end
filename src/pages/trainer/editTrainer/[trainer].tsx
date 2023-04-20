@@ -214,8 +214,6 @@ export default function TrainerEdit() {
     const courses = JSON.parse(JSON.stringify(courseData));
     const trainerMemberOld = JSON.parse(JSON.stringify(trainerMemberData));
 
-
-
     const listTrainerMemberID: number[] = [];
     const listTMname: String[] = [];
     const listMemberID: number[] = [];
@@ -227,12 +225,6 @@ export default function TrainerEdit() {
     const timeM1: String[] = [];
     const timeM2: String[] = [];
     const timeM3: String[] = [];
-
-
-
-
-
-
 
     trainerMemberOld?.map((tm: TrainerMember) => {
         console.log(tm.trainerMemberID)
