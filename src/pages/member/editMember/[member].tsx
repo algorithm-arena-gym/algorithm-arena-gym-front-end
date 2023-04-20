@@ -54,6 +54,12 @@ interface MemberOld {
     point: number;
     subscriptionDate: Date;
 }
+
+interface RankOld{
+    rankID: number,
+    rankName: string,
+}
+
 const validationSchema = Yup.object({
     nameEng: Yup.string().required('Required'),
     nameTh: Yup.string().required('Required'),
@@ -77,26 +83,26 @@ const validationSchema = Yup.object({
 
 
 const initialValues = {
-    nameEng: '',
-    nameTh: '',
-    rankID: '',
-    point: '',
-    cID: '',
-    phone: '',
-    email: '',
-    address: '',
+    nameEng: null,
+    nameTh: null,
+    rankID: null,
+    point: null,
+    cID: null,
+    phone: null,
+    email: null,
+    address: null,
 
-    profilePic: '',
+    profilePic: null,
 
-    drugAllergy: 'None',
-    congenitalDisease: 'None',
-    emergencyContact: '',
+    drugAllergy: null,
+    congenitalDisease: null,
+    emergencyContact: null,
 
-    trainerID: '',
+    trainerID: null,
     day: null,
     time: null,
 
-    courseID: '',
+    courseID: null,
 
 
 }
@@ -110,6 +116,7 @@ export default function EditMember() {
     const [courseData, setCourseData] = useState<Course | null>(null);
 
     const [memberOldData,  setMemberOldData] = useState<MemberOld | null>(null);
+    const [rankOldData, setRankOldData] = useState<RankOld | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const [loading, setLoading] = useState(false);
@@ -217,7 +224,7 @@ export default function EditMember() {
         setError(null);
       } catch (error) {
         console.error(error);
-        setError("An error occurred while fetching the rankData.");
+        setError("An error occurred while fetching the memberOldData.");
         setMemberOldData(null);
       }
     }
@@ -228,6 +235,31 @@ export default function EditMember() {
       setLoading(false);
     }
   }, [memberData]);
+    
+    useEffect(() => {
+    async function fetchRanOldkData() {
+      try {
+        const rankID = memberOldData?.rankID as number;
+        const apiURL2 = `http://localhost:4000/rank/${rankID}`;
+        const res2 = await fetch(apiURL2);
+        const json2 = await res2.json();
+        setRankOldData(json2[0]);
+        setError(null);
+      } catch (error) {
+        console.error(error);
+        setError("An error occurred while fetching the rankOldData.");
+        setRankOldData(null);
+      }
+    }
+    if (memberData) {
+      setLoading(true);
+      setError(null);
+      fetchRanOldkData();
+      setLoading(false);
+    }
+  }, [memberData]);
+    
+    
 
     if (loading) {
         return <div>Loading...</div>;
@@ -240,6 +272,29 @@ export default function EditMember() {
     if (!memberData) {
         return <div>No data to display.</div>;
     }
+    
+    useEffect(() => {
+    async function fetchRankOldData() {
+      try {
+        const rankID = memberData?.rankID as number;
+        const apiURL2 = `http://localhost:4000/rank/${rankID}`;
+        const res2 = await fetch(apiURL2);
+        const json2 = await res2.json();
+        setRankData(json2[0]);
+        setError(null);
+      } catch (error) {
+        console.error(error);
+        setError("An error occurred while fetching the rankData.");
+        setRankData(null);
+      }
+    }
+    if (memberData) {
+      setLoading(true);
+      setError(null);
+      fetchRankOldData();
+      setLoading(false);
+    }
+  }, [memberData]);
 
 
 
@@ -253,7 +308,7 @@ export default function EditMember() {
         console.log(values);
         try {
             const res1 = await fetch(`http://localhost:4000/member`, {
-                method: 'POST',
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -400,7 +455,7 @@ export default function EditMember() {
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                        <option className="font-semibold text-xl w-full">{memberOldData.rankID}</option>
+                                                        <option className="font-semibold text-xl w-full">{rankOldData.rankName}</option>
                                                         {ranks?.map((rank: Rank) => (
                                                             <option value={rank.rankID}>{rank.rankName}</option>
                                                         ))}
