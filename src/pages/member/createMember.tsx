@@ -269,11 +269,6 @@ export default function createMember() {
             }
 
 
-
-
-
-
-
             if (res1.ok )
                 setSuccessMessage('Form Member submitted successfully!');
 

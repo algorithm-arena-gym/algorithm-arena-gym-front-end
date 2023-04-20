@@ -46,7 +46,7 @@ const initialValues = {
 
     memberID: '',
 
-    courseID: [null,null,null]
+    courseID: '',
 
 }
 
