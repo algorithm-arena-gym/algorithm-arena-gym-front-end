@@ -79,7 +79,7 @@ export default function TrainerCreate() {
 
     const [memberData, setMemberData] = useState<Member | null>(null);
     const [courseData, setCourseData] = useState<Course | null>(null);
-
+    
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
 
@@ -170,6 +170,13 @@ export default function TrainerCreate() {
 
     const members = JSON.parse(JSON.stringify(memberData));
     const courses = JSON.parse(JSON.stringify(courseData));
+
+    const handleSubmit = () => {
+        // Your form submission logic here
+        setSuccessMessage('Form submitted successfully!');
+    };
+   
+
 
 
     const onSubmit = async (values: any, { setSubmitting }: any) => {

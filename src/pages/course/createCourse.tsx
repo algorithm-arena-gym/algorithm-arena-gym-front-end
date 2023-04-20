@@ -38,6 +38,14 @@ interface Member {
     nameEng: string;
 
 }
+const validationSchema = Yup.object({
+
+    rankPic: Yup.string().required('Required'),
+    rankName: Yup.string().required('Required'),
+    rankDetail: Yup.string().required('Required'),
+    rankPrice: Yup.number().required('Required'),
+});
+
 
 
 
@@ -183,6 +191,13 @@ export default function CourseCreate() {
     const trainers = JSON.parse(JSON.stringify(trainerData));
     const ranks = JSON.parse(JSON.stringify(rankData));
     const members = JSON.parse(JSON.stringify(memberData));
+
+    const handleSubmit = () => {
+        // Your form submission logic here
+        setSuccessMessage('Form submitted successfully!');
+    };
+   
+
 
 
     const onSubmit = async (values: any, { setSubmitting }: any) => {

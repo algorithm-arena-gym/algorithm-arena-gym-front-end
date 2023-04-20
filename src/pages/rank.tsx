@@ -9,7 +9,7 @@ interface Rank {
     rankName: string,
     rankDetail: string,
     rankPic: string
-    rankPrice:number
+    rankPrice: number
 }
 
 export default function allRank() {
@@ -77,8 +77,12 @@ export default function allRank() {
 
                     {/* button add */}
                     < div className='grid justify-items-center p-6'>
-                        <div className="card" >
-                            <button type="button" className="btn" >+</button>
+                        <div className="card justify-center" >
+                            <div>
+                            <Link href={`/rank/createRank`}>
+                                <button type="button" className="btn" >+</button>
+                            </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
