@@ -196,7 +196,7 @@ export default function CourseCreate() {
         // Your form submission logic here
         setSuccessMessage('Form submitted successfully!');
     };
-   
+
 
 
 
@@ -269,7 +269,7 @@ export default function CourseCreate() {
                 // console.log(data1);
             }
 
-           
+
 
             const response3 = await fetch(`http://localhost:4000/rank-course`, {
                 method: 'POST',
@@ -391,18 +391,18 @@ export default function CourseCreate() {
                                                                     <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                     <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
                                                                     <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                    <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
+                                                                    <option value="Thursday" className="font-semibold text-xl w-full">Thursday</option>
                                                                     <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
                                                                     <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                                 </Field>
                                                                 <Field type="string" name="day2" as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full"></option>
+                                                                   <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                     <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                     <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
                                                                     <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                    <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
+                                                                    <option value="Thursday" className="font-semibold text-xl w-full">Thursday</option>
                                                                     <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
                                                                     <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                                 </Field>
@@ -413,7 +413,7 @@ export default function CourseCreate() {
                                                                     <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                     <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
                                                                     <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                    <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
+                                                                    <option value="Thursday" className="font-semibold text-xl w-full">Thursday</option>
                                                                     <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
                                                                     <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                                 </Field>

@@ -218,26 +218,17 @@ export default function TrainerEdit() {
 
     const listTrainerMemberID: number[] = [];
     const listTMname: String[] = [];
-    c
+    const listMemberID: number[] = [];
+    
+    
     const dayM1: String[] = [];
     const dayM2: String[] = [];
     const dayM3: String[] = [];
-    const dayM4: String[] = [];
-    const dayM5: String[] = [];
-    const dayM6: String[] = [];
-
+    
     const timeM1: String[] = [];
     const timeM2: String[] = [];
     const timeM3: String[] = [];
-    const timeM4: String[] = [];
-    const timeM5: String[] = [];
-    const timeM6: String[] = [];
-
-     const dayM: String[] = [];
-     const timeM: String[] = [];
-
-     const m1: String[] = [];
-
+   
 
 
 
@@ -249,45 +240,34 @@ export default function TrainerEdit() {
         if (listTrainerMemberID.indexOf(tm.trainerMemberID) == -1 && listTMname.indexOf(tm.nameEng) == -1) {
             listTrainerMemberID.push(tm.trainerMemberID);
             listTMname.push(tm.nameEng);
-
         }
+        if(listMemberID.indexOf(tm.memberID) == -1)
+        listMemberID.push(tm.memberID)
     });
 
 
     trainerMemberOld?.map((tm: TrainerMember) => {
         
 
-        // if (listTrainerMemberID[0] == tm.trainerMemberID ) {
-        //     dayM1.push(tm.trainingDate);
-        //     timeM1.push(tm.trainingTime)
+        if (listMemberID[0] == tm.memberID ) {
+            dayM1.push(tm.trainingDate);
+            timeM1.push(tm.trainingTime)
             
 
-        // } else if (listTrainerMemberID[1] == tm.trainerMemberID ) {
-        //     dayM2.push(tm.trainingDate);
-        //     timeM2.push(tm.trainingTime)
+        } else if (listMemberID[1] == tm.memberID ) {
+            dayM2.push(tm.trainingDate);
+            timeM2.push(tm.trainingTime)
             
 
-        // }else if (listTrainerMemberID[2] == tm.trainerMemberID ) {
-        //     dayM3.push(tm.trainingDate);
-        //     timeM3.push(tm.trainingTime)
+        }else if (listMemberID[2] == tm.memberID ) {
+            dayM3.push(tm.trainingDate);
+            timeM3.push(tm.trainingTime)
+                }}
+                );
             
-        // }else if (listTrainerMemberID[3] == tm.trainerMemberID ) {
-        //     dayM4.push(tm.trainingDate);
-        //     timeM4.push(tm.trainingTime)
-            
-        // }
-        // else if (listTrainerMemberID[4] == tm.trainerMemberID ) {
-        //     dayM5.push(tm.trainingDate);
-        //     timeM5.push(tm.trainingTime)
-            
-        // }
-        // else if (listTrainerMemberID[5] == tm.trainerMemberID ) {
-        //     dayM6.push(tm.trainingDate);
-        //     timeM6.push(tm.trainingTime)
-            
-        // }
+        
 
-    });
+
 
 
 
@@ -587,64 +567,64 @@ export default function TrainerEdit() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                                         <div className="mt-2 ">
                                                             <Field type="string" name={`day_m1[0]`} as="select" className=" font-semibold text-xl rounded-md block w-full" required>
-                                                                <option className="font-semibold text-xl w-full">{null ? null :dayM1}</option>
+                                                                <option className="font-semibold text-xl w-full">{null ? null : dayM1[0]}</option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
-                                                                <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
-                                                                <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
-                                                                <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
-                                                                <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
-                                                                <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thursday" className="font-semibold text-xl w-full">Thursday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m1[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">{null ? null :dayM2}</option>
-                                                                <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
-                                                                <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
-                                                                <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
-                                                                <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
-                                                                <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
-                                                                <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                <option className="font-semibold text-xl w-full">{null ? null :dayM1[1]}</option>
+                                                               <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thursday" className="font-semibold text-xl w-full">Thursday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m2[0]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">{null ? null :dayM2}</option>
+                                                                <option className="font-semibold text-xl w-full">{null ? null :dayM2[0]}</option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
-                                                                <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
-                                                                <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
-                                                                <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
-                                                                <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
-                                                                <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thursday" className="font-semibold text-xl w-full">Thursday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m2[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full"> {null ? null :dayM2}</option>
+                                                                <option className="font-semibold text-xl w-full"> {null ? null :dayM2[1]}</option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
-                                                                <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
-                                                                <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
-                                                                <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
-                                                                <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
-                                                                <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thursday" className="font-semibold text-xl w-full">Thursday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m3[0]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">{null ? null :dayM3}</option>
+                                                                <option className="font-semibold text-xl w-full">{null ? null :dayM3[0]}</option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
-                                                                <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
-                                                                <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
-                                                                <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
-                                                                <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
-                                                                <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thursday" className="font-semibold text-xl w-full">Thursday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m3[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
                                                                 <option className="font-semibold text-xl w-full">{null ? null :dayM3[1]}</option>
-                                                                <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
-                                                                <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
-                                                                <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
-                                                                <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
-                                                                <option value="Thrusday" className="font-semibold text-xl w-full">Thrusday</option>
-                                                                <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
-                                                                <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
+                                                               <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
+                                                                        <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
+                                                                        <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
+                                                                        <option value="Wednesday" className="font-semibold text-xl w-full">Wednesday</option>
+                                                                        <option value="Thursday" className="font-semibold text-xl w-full">Thursday</option>
+                                                                        <option value="Friday" className="font-semibold text-xl w-full">Friday</option>
+                                                                        <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
 
 
