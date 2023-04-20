@@ -9,7 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      
+    fontFamily: {
+      autiowide: ["Audiowide","cursive"],
+      azeretmono: ["Azeret Mono", "monospace"],
+    },
+    
     },
   },
   plugins: [],
