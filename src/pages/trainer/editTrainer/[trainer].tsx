@@ -31,6 +31,19 @@ interface Course {
     courseName: string,
 }
 
+interface TrainerMember {
+    memberID: number;
+    nameEng: string;
+
+    trainerMemberID: number;
+
+    trainerID: number;
+    trainingDate: string;
+    trainingTime: string;
+
+
+}
+
 const validationSchema = Yup.object({
     nameEng: Yup.string().required('Required'),
     nameTh: Yup.string().required('Required'),
@@ -76,12 +89,13 @@ const initialValues = {
 
 
 export default function TrainerEdit() {
-     const router = useRouter();
+    const router = useRouter();
     const [trainerData, setTrainerData] = useState<Trainer | null>(null);
 
     const [memberData, setMemberData] = useState<Member | null>(null);
     const [courseData, setCourseData] = useState<Course | null>(null);
 
+    const [trainerMemberData, setTrainerMemberData] = useState<TrainerMember | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
 
@@ -89,25 +103,25 @@ export default function TrainerEdit() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-    async function fetchTrainerData() {
-      setLoading(true);
-      try {
-        const trainerID = router.query.trainer as string;
-        const apiURL = `http://localhost:4000/trainer/${trainerID}`;
-        const res = await fetch(apiURL);
-        const json = await res.json();
-        setTrainerData(json[0]);
-        setError(null);
-      } catch (error) {
-        console.error(error);
-        setError("An error occurred while fetching the data.");
-        setTrainerData(null);
-      }
-      setLoading(false);
-    }
+        async function fetchTrainerData() {
+            setLoading(true);
+            try {
+                const trainerID = router.query.trainer as string;
+                const apiURL = `http://localhost:4000/trainer/${trainerID}`;
+                const res = await fetch(apiURL);
+                const json = await res.json();
+                setTrainerData(json[0]);
+                setError(null);
+            } catch (error) {
+                console.error(error);
+                setError("An error occurred while fetching the data.");
+                setTrainerData(null);
+            }
+            setLoading(false);
+        }
 
-    fetchTrainerData();
-  }, [router.query.trainer]);
+        fetchTrainerData();
+    }, [router.query.trainer]);
 
     useEffect(() => {
         async function fetchMemberData() {
@@ -154,6 +168,32 @@ export default function TrainerEdit() {
         fetchCourseData();
     }, []);
 
+    useEffect(() => {
+        async function fetchTrainerMemberData() {
+            try {
+                const trainerID = trainerData?.trainerID as number;
+                const apiURL2 = `http://localhost:4000/pt-member/${trainerID}`;
+                const res2 = await fetch(apiURL2);
+                const json2 = await res2.json();
+                setTrainerMemberData(json2);
+                setError(null);
+
+                // console.log(json2);
+
+            } catch (error) {
+                console.error(error);
+                setError("An error occurred while fetching the rankData.");
+                setTrainerMemberData(null);
+            }
+        }
+        if (trainerData) {
+            setLoading(true);
+            setError(null);
+            fetchTrainerMemberData();
+            setLoading(false);
+        }
+    }, [trainerData]);
+
 
 
     if (loading) {
@@ -171,94 +211,135 @@ export default function TrainerEdit() {
 
     const members = JSON.parse(JSON.stringify(memberData));
     const courses = JSON.parse(JSON.stringify(courseData));
-
-
-    const onSubmit = async (values: any, { setSubmitting }: any) => {
-
-        try {
-            const response1 = await fetch(`http://localhost:4000/trainer`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    "nameEng": values.nameEng,
-                    "nameTh": values.nameTh,
-                    "profilePic": values.profilePic,
-                    "phone": values.phone,
-                    "email": values.email,
-                    "cID": values.cID,
-                    "drugAllergy": values.drugAllergy,
-                    "congenitalDisease": values.congenitalDisease,
-                    "address": values.address,
-                    "emergencyContact": values.emergencyContact,
-                }),
-            });
-            const data1 = await response1.json();
-            // console.log(data1);
-
-
-            const apiTrainerID = data1.insertId;
-
-            for (let i = 0; i < values.day_m1.length; i++) {
-                const res2 = await fetch(`http://localhost:4000/trainer-member`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        "trainerID": apiTrainerID,
-                        "memberID": values.memberID[0],
-                        "trainingDate": values.day_m1[i],
-                        "trainingTime": values.time_m1[i],
-                    }),
-                });
-                const data2 = await res2.json();
-            }
-
-            for (let i = 0; i < values.day_m2.length; i++) {
-                const res3 = await fetch(`http://localhost:4000/trainer-member`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        "trainerID": apiTrainerID,
-                        "memberID": values.memberID[1],
-                        "trainingDate": values.day_m2[i],
-                        "trainingTime": values.time_m2[i],
-                    }),
-                });
-                const data3 = await res3.json();
-            }
-
-            for (let i = 0; i < values.day_m3.length; i++) {
-                const res4 = await fetch(`http://localhost:4000/trainer-member`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        "trainerID": apiTrainerID,
-                        "memberID": values.memberID[2],
-                        "trainingDate": values.day_m3[i],
-                        "trainingTime": values.time_m3[i],
-                    }),
-                });
-                const data4 = await res4.json();
-            }
+    const trainerMemberOld = JSON.parse(JSON.stringify(trainerMemberData));
 
 
 
-            if (response1.ok)
-                setSuccessMessage('Form Trainer submitted successfully!');
-            // Do any other logic you need on successful form submission
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setSubmitting(false);
-        }
-    };
+    const listTrainerMemberID: number[] = [];
+    const listmemberID: number[] = [];
+    const dayM1: String[] = [];
+    const dayM2: String[] = [];
+    const dayM3: String[] = [];
+
+    const timeM1: String[] = [];
+    const timeM2: String[] = [];
+    const timeM3: String[] = [];
+
+
+
+    trainerMemberOld?.map((tm: TrainerMember) => {
+        if (listTrainerMemberID.indexOf(tm.trainerMemberID) == -1)
+            listTrainerMemberID.push(tm.trainerMemberID)
+        if (listmemberID.indexOf(tm.memberID) == -1)
+            listmemberID.push(tm.memberID)
+    });
+
+    trainerMemberOld?.map((tm: TrainerMember) => {
+       if (listTrainerMemberID[0]==tm.trainerMemberID && listmemberID[0]==tm.memberID){
+        dayM1.push(tm.trainingDate);
+        timeM1.push(tm.trainingTime)
+
+       }else if (listTrainerMemberID[1]==tm.trainerMemberID && listmemberID[1]==tm.memberID){
+        dayM2.push(tm.trainingDate);
+        timeM2.push(tm.trainingTime)
+       }else if (listTrainerMemberID[2]==tm.trainerMemberID && listmemberID[2]==tm.memberID){
+        dayM3.push(tm.trainingDate);
+        timeM3.push(tm.trainingTime)
+       }
+
+    });
+
+
+     
+
+
+
+    // const onSubmit = async (values: any, { setSubmitting }: any) => {
+
+    //     try {
+    //         const response1 = await fetch(`http://localhost:4000/trainer`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 "nameEng": values.nameEng,
+    //                 "nameTh": values.nameTh,
+    //                 "profilePic": values.profilePic,
+    //                 "phone": values.phone,
+    //                 "email": values.email,
+    //                 "cID": values.cID,
+    //                 "drugAllergy": values.drugAllergy,
+    //                 "congenitalDisease": values.congenitalDisease,
+    //                 "address": values.address,
+    //                 "emergencyContact": values.emergencyContact,
+    //             }),
+    //         });
+    //         const data1 = await response1.json();
+    //         // console.log(data1);
+
+
+    //         const apiTrainerID = data1.insertId;
+
+    //         for (let i = 0; i < values.day_m1.length; i++) {
+    //             const res2 = await fetch(`http://localhost:4000/trainer-member`, {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //                 body: JSON.stringify({
+    //                     "trainerID": apiTrainerID,
+    //                     "memberID": values.memberID[0],
+    //                     "trainingDate": values.day_m1[i],
+    //                     "trainingTime": values.time_m1[i],
+    //                 }),
+    //             });
+    //             const data2 = await res2.json();
+    //         }
+
+    //         for (let i = 0; i < values.day_m2.length; i++) {
+    //             const res3 = await fetch(`http://localhost:4000/trainer-member`, {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //                 body: JSON.stringify({
+    //                     "trainerID": apiTrainerID,
+    //                     "memberID": values.memberID[1],
+    //                     "trainingDate": values.day_m2[i],
+    //                     "trainingTime": values.time_m2[i],
+    //                 }),
+    //             });
+    //             const data3 = await res3.json();
+    //         }
+
+    //         for (let i = 0; i < values.day_m3.length; i++) {
+    //             const res4 = await fetch(`http://localhost:4000/trainer-member`, {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json',
+    //                 },
+    //                 body: JSON.stringify({
+    //                     "trainerID": apiTrainerID,
+    //                     "memberID": values.memberID[2],
+    //                     "trainingDate": values.day_m3[i],
+    //                     "trainingTime": values.time_m3[i],
+    //                 }),
+    //             });
+    //             const data4 = await res4.json();
+    //         }
+
+
+
+    //         if (response1.ok)
+    //             setSuccessMessage('Form Trainer submitted successfully!');
+    //         // Do any other logic you need on successful form submission
+    //     } catch (error) {
+    //         console.log(error);
+    //     } finally {
+    //         setSubmitting(false);
+    //     }
+    // };
 
 
 
@@ -293,9 +374,9 @@ export default function TrainerEdit() {
                                                 <div>
                                                     <div className="grid pt-24 ">
                                                         <Field type="string" name="profilePic"
-                                                                className="font-semibold text-xl rounded-md block w-full" 
-                                                                placeholder={trainerData?.profilePic}
-                                                            />
+                                                            className="font-semibold text-xl rounded-md block w-full"
+                                                            placeholder={trainerData?.profilePic}
+                                                        />
                                                         <span className="font-light text-3xl pb-24" >ID : {trainerData?.trainerID}</span>
                                                     </div>
                                                 </div>

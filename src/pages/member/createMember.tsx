@@ -355,7 +355,7 @@ export default function createMember() {
 
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
                                                 <div className="mt-2">
-                                                    <Field type="string" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                    <Field type="string" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" >
                                                         <option className="font-semibold text-xl w-full"></option>
                                                         {ranks?.map((rank: Rank) => (
                                                             <option value={rank.rankID}>{rank.rankName}</option>
@@ -471,7 +471,7 @@ export default function createMember() {
                                                             <div className="grid ml-20">
                                                                 <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                                 <div className="mt-2 ">
-                                                                    <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                                    <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" >
                                                                         <option className="font-semibold text-xl w-full"></option>
                                                                         {trainers?.map((tr: Trainer) => (
                                                                             <option value={tr.trainerID}>{tr.nameEng}</option>
@@ -487,7 +487,7 @@ export default function createMember() {
                                                                 <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                                                 <div className="mt-2 ">
                                                                     <Field type="string" name={`day[0]`} as="select"
-                                                                        className="font-semibold text-xl rounded-md block w-full " required>
+                                                                        className="font-semibold text-xl rounded-md block w-full " >
                                                                         <option className="font-semibold text-xl w-full"></option>
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -646,7 +646,7 @@ export default function createMember() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                         <div className="mt-2 mr-20">
                                                             <Field type="number" name={`courseID[0]`} as="select"
-                                                                className="font-semibold text-xl rounded-md block w-full " required>
+                                                                className="font-semibold text-xl rounded-md block w-full " >
                                                                 <option className="font-semibold text-xl w-full"></option>
                                                                 {courses?.map((co: Course) => (
                                                                     <option value={co.courseID}>{co.courseName}</option>

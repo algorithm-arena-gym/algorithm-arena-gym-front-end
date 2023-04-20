@@ -591,7 +591,7 @@ export default function CourseCreate() {
                                             <div className="grid ml-32 mr-32">
                                                 <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                 <div className="mt-2 ">
-                                                    <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                    <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" >
                                                         <option className="font-semibold text-xl w-full"></option>
                                                         {trainers?.map((tr: Trainer) => (
                                                             <option value={tr.trainerID}>{tr.nameEng}</option>
@@ -614,7 +614,7 @@ export default function CourseCreate() {
                                         <div>
                                             <div className="grid ml-32 mr-32 ">
                                                 <div className="mt-2  ">
-                                                    <Field type="number" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                    <Field type="number" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" >
                                                         <option className="font-semibold text-xl w-full"></option>
                                                         {ranks?.map((rank: Rank) => (
                                                             <option value={rank.rankID}>{rank.rankName}</option>

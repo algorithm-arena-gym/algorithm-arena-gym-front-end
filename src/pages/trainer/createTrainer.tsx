@@ -440,7 +440,7 @@ export default function TrainerCreate() {
                                                     <div className="grid ml-20">
                                                         <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                         <div className="mt-2 ">
-                                                            <Field type="number" name={`memberID[0]`} as="select" className=" font-semibold text-xl rounded-md block w-full" required>
+                                                            <Field type="number" name={`memberID[0]`} as="select" className=" font-semibold text-xl rounded-md block w-full" >
                                                                 <option className="font-semibold text text-xl w-full"></option>
                                                                 {members?.map((mem: Member) => (
                                                                     <option value={mem.memberID} className="font-semibold">{mem.nameEng}</option>
@@ -468,7 +468,7 @@ export default function TrainerCreate() {
                                                     <div className="grid  ">
                                                         <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                                         <div className="mt-2 ">
-                                                            <Field type="string" name={`day_m1[0]`} as="select" className=" font-semibold text-xl rounded-md block w-full" required>
+                                                            <Field type="string" name={`day_m1[0]`} as="select" className=" font-semibold text-xl rounded-md block w-full" >
                                                                 <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                 <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -539,7 +539,7 @@ export default function TrainerCreate() {
                                                     <div className="grid ">
                                                         <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                                         <div className="mt-2 mr-5">
-                                                            <Field type="string" name={`time_m1[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                            <Field type="string" name={`time_m1[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" >
                                                                 <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                 <option value="11-12" className="font-semibold text-xl w-full">11-12</option>

@@ -295,7 +295,7 @@ export default function RankCreate() {
                                                     <div className="grid ml-10 mr-20 ">
                                                         <div className="mt-2 ">
                                                             <Field type="number" name="rankPrice"
-                                                                className="font-semibold text-xl rounded-md block w-full " required
+                                                                className="font-semibold text-xl rounded-md block w-full " 
                                                             />
                                                         </div>
                                                     </div>
@@ -312,7 +312,7 @@ export default function RankCreate() {
                                         <div>
                                             <div className="grid ">
                                                 <div className="mt-2 ml-32 mr-32 my-3">
-                                                    <Field type="number" name={`courseID[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
+                                                    <Field type="number" name={`courseID[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" >
                                                         <option className="font-semibold text-xl w-full"></option>
                                                         {courses?.map((co: Course) => (
                                                             <option value={co.courseID}>{co.courseName}</option>
