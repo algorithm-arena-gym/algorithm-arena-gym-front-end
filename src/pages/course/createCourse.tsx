@@ -386,7 +386,7 @@ export default function CourseCreate() {
                                                             <div className="mt-2 ">
                                                                 <Field type="string" name="day1" as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full " required>
-                                                                    <option className="font-semibold text-xl w-full">Day</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                     <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                     <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -397,7 +397,7 @@ export default function CourseCreate() {
                                                                 </Field>
                                                                 <Field type="string" name="day2" as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full">Day</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                     <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                     <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -408,7 +408,7 @@ export default function CourseCreate() {
                                                                 </Field>
                                                                 <Field type="string" name="day3" as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full">Day</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                     <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                     <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -428,7 +428,7 @@ export default function CourseCreate() {
                                                             <div className="mt-2 ">
                                                                 <Field type="string" name={`time1[0]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full" required>
-                                                                    <option className="font-semibold text-xl w-full">Time</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                     <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                     <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -442,7 +442,7 @@ export default function CourseCreate() {
                                                                 </Field>
                                                                 <Field type="string" name={`time2[0]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full">Time</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                     <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                     <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -456,7 +456,7 @@ export default function CourseCreate() {
                                                                 </Field>
                                                                 <Field type="string" name={`time3[0]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full">Time</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                     <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                     <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -481,7 +481,7 @@ export default function CourseCreate() {
                                                             <div className="mt-2 ">
                                                                 <Field type="string" name={`time1[1]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full" >
-                                                                    <option className="font-semibold text-xl w-full">Time</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                     <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                     <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -495,7 +495,7 @@ export default function CourseCreate() {
                                                                 </Field>
                                                                 <Field type="string" name={`time2[1]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full">Time</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                     <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                     <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -509,7 +509,7 @@ export default function CourseCreate() {
                                                                 </Field>
                                                                 <Field type="string" name={`time3[1]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full">Time</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                     <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                     <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -532,7 +532,7 @@ export default function CourseCreate() {
                                                             <div className="mt-2 mr-5">
                                                                 <Field type="string" name={`time1[3]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full" >
-                                                                    <option className="font-semibold text-xl w-full">Time</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                     <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                     <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -546,7 +546,7 @@ export default function CourseCreate() {
                                                                 </Field>
                                                                 <Field type="string" name={`time2[3]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full">Time</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                     <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                     <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -560,7 +560,7 @@ export default function CourseCreate() {
                                                                 </Field>
                                                                 <Field type="string" name={`time3[3]`} as="select"
                                                                     className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                    <option className="font-semibold text-xl w-full">Time</option>
+                                                                    <option className="font-semibold text-xl w-full"></option>
                                                                     <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                     <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                     <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -592,7 +592,7 @@ export default function CourseCreate() {
                                                 <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                 <div className="mt-2 ">
                                                     <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                        <option className="font-semibold text-xl w-full">Trainer</option>
+                                                        <option className="font-semibold text-xl w-full"></option>
                                                         {trainers?.map((tr: Trainer) => (
                                                             <option value={tr.trainerID}>{tr.nameEng}</option>
                                                         ))}
@@ -615,7 +615,7 @@ export default function CourseCreate() {
                                             <div className="grid ml-32 mr-32 ">
                                                 <div className="mt-2  ">
                                                     <Field type="number" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                        <option className="font-semibold text-xl w-full">Rank</option>
+                                                        <option className="font-semibold text-xl w-full"></option>
                                                         {ranks?.map((rank: Rank) => (
                                                             <option value={rank.rankID}>{rank.rankName}</option>
                                                         ))}

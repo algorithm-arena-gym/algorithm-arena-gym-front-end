@@ -71,8 +71,8 @@ const initialValues = {
 
     profilePic: '',
 
-    drugAllergy: 'None',
-    congenitalDisease: 'None',
+    drugAllergy: '',
+    congenitalDisease: '',
     emergencyContact: '',
 
     trainerID: '',
@@ -356,7 +356,7 @@ export default function createMember() {
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                        <option className="font-semibold text-xl w-full">Rank</option>
+                                                        <option className="font-semibold text-xl w-full"></option>
                                                         {ranks?.map((rank: Rank) => (
                                                             <option value={rank.rankID}>{rank.rankName}</option>
                                                         ))}
@@ -472,7 +472,7 @@ export default function createMember() {
                                                                 <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                                 <div className="mt-2 ">
                                                                     <Field type="number" name="trainerID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        <option className="font-semibold text-xl w-full">Trainer</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
                                                                         {trainers?.map((tr: Trainer) => (
                                                                             <option value={tr.trainerID}>{tr.nameEng}</option>
                                                                         ))}
@@ -488,7 +488,7 @@ export default function createMember() {
                                                                 <div className="mt-2 ">
                                                                     <Field type="string" name={`day[0]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full " required>
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                         <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -499,7 +499,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[1]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -511,7 +511,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[2]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -523,7 +523,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[3]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -535,7 +535,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[4]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Day</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
 
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
@@ -557,7 +557,7 @@ export default function createMember() {
                                                                 <div className="mt-2 mr-5">
                                                                     <Field type="string" name={`time[0]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -571,7 +571,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[1]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -585,7 +585,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[2]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -599,7 +599,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[3]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -613,7 +613,7 @@ export default function createMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[4]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">Time</option>
+                                                                        <option className="font-semibold text-xl w-full"></option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -647,14 +647,14 @@ export default function createMember() {
                                                         <div className="mt-2 mr-20">
                                                             <Field type="number" name={`courseID[0]`} as="select"
                                                                 className="font-semibold text-xl rounded-md block w-full " required>
-                                                                <option className="font-semibold text-xl w-full">Course</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 {courses?.map((co: Course) => (
                                                                     <option value={co.courseID}>{co.courseName}</option>
                                                                 ))}
                                                             </Field>
                                                             <Field type="number" name={`courseID[1]`} as="select"
                                                                 className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Course</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 {courses?.map((co: Course) => (
                                                                     <option value={co.courseID}>{co.courseName}</option>
                                                                 ))}

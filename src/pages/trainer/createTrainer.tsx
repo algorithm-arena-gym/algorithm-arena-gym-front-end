@@ -55,11 +55,11 @@ const initialValues = {
 
     profilePic: '',
 
-    drugAllergy: 'None',
-    congenitalDisease: 'None',
+    drugAllergy: '',
+    congenitalDisease: '',
     emergencyContact: '',
 
-    memberID: '',
+    memberID: null,
     day_m1: null,
     day_m2: null,
     day_m3: null,
@@ -79,7 +79,7 @@ export default function TrainerCreate() {
 
     const [memberData, setMemberData] = useState<Member | null>(null);
     const [courseData, setCourseData] = useState<Course | null>(null);
-    
+
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
 
@@ -171,11 +171,11 @@ export default function TrainerCreate() {
     const members = JSON.parse(JSON.stringify(memberData));
     const courses = JSON.parse(JSON.stringify(courseData));
 
-    const handleSubmit = () => {
-        // Your form submission logic here
-        setSuccessMessage('Form submitted successfully!');
-    };
-   
+    // const handleSubmit = () => {
+    //     // Your form submission logic here
+    //     setSuccessMessage('Form submitted successfully!');
+    // };
+
 
 
 
@@ -222,36 +222,40 @@ export default function TrainerCreate() {
                 const data2 = await res2.json();
             }
 
-            for (let i = 0; i < values.day_m2.length; i++) {
-                const res3 = await fetch(`http://localhost:4000/trainer-member`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                         "trainerID": apiTrainerID,
-                        "memberID": values.memberID[1],
-                        "trainingDate": values.day_m2[i],
-                        "trainingTime": values.time_m2[i],
-                    }),
-                });
-                const data3 = await res3.json();
+            if (values.memberID[1] != null) {
+                for (let i = 0; i < values.day_m2.length; i++) {
+                    const res3 = await fetch(`http://localhost:4000/trainer-member`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "trainerID": apiTrainerID,
+                            "memberID": values.memberID[1],
+                            "trainingDate": values.day_m2[i],
+                            "trainingTime": values.time_m2[i],
+                        }),
+                    });
+                    const data3 = await res3.json();
+                }
             }
 
-            for (let i = 0; i < values.day_m3.length; i++) {
-                const res4 = await fetch(`http://localhost:4000/trainer-member`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                         "trainerID": apiTrainerID,
-                        "memberID": values.memberID[2],
-                        "trainingDate": values.day_m3[i],
-                        "trainingTime": values.time_m3[i],
-                    }),
-                });
-                const data4 = await res4.json();
+            if (values.memberID[2] != null) {
+                for (let i = 0; i < values.day_m3.length; i++) {
+                    const res4 = await fetch(`http://localhost:4000/trainer-member`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "trainerID": apiTrainerID,
+                            "memberID": values.memberID[2],
+                            "trainingDate": values.day_m3[i],
+                            "trainingTime": values.time_m3[i],
+                        }),
+                    });
+                    const data4 = await res4.json();
+                }
             }
 
 
@@ -436,21 +440,21 @@ export default function TrainerCreate() {
                                                     <div className="grid ml-20">
                                                         <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                         <div className="mt-2 ">
-                                                            <Field type="number" name={`memberID[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                <option className="font-semibold text-xl w-full">Member</option>
+                                                            <Field type="number" name={`memberID[0]`} as="select" className=" font-semibold text-xl rounded-md block w-full" required>
+                                                                <option className="font-semibold text text-xl w-full"></option>
                                                                 {members?.map((mem: Member) => (
-                                                                    <option value={mem.memberID}>{mem.nameEng}</option>
+                                                                    <option value={mem.memberID} className="font-semibold">{mem.nameEng}</option>
                                                                 ))}
                                                             </Field>
 
                                                             <Field type="number" name={`memberID[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-12" >
-                                                                <option className="font-semibold text-xl w-full">Member</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 {members?.map((mem: Member) => (
                                                                     <option value={mem.memberID}>{mem.nameEng}</option>
                                                                 ))}
                                                             </Field>
                                                             <Field type="number" name={`memberID[2]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-12" >
-                                                                <option className="font-semibold text-xl w-full">Member</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 {members?.map((mem: Member) => (
                                                                     <option value={mem.memberID}>{mem.nameEng}</option>
                                                                 ))}
@@ -464,8 +468,8 @@ export default function TrainerCreate() {
                                                     <div className="grid  ">
                                                         <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                                         <div className="mt-2 ">
-                                                            <Field type="string" name={`day_m1[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                <option className="font-semibold text-xl w-full">Day</option>
+                                                            <Field type="string" name={`day_m1[0]`} as="select" className=" font-semibold text-xl rounded-md block w-full" required>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                 <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                 <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -475,7 +479,7 @@ export default function TrainerCreate() {
                                                                 <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m1[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Day</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                 <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                 <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -485,7 +489,7 @@ export default function TrainerCreate() {
                                                                 <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m2[0]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Day</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                 <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                 <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -495,7 +499,7 @@ export default function TrainerCreate() {
                                                                 <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m2[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Day</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                 <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                 <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -505,7 +509,7 @@ export default function TrainerCreate() {
                                                                 <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m3[0]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Day</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                 <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                 <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -515,7 +519,7 @@ export default function TrainerCreate() {
                                                                 <option value="Saturday" className="font-semibold text-xl w-full">Saturday</option>
                                                             </Field>
                                                             <Field type="string" name={`day_m3[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Day</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                 <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                 <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -536,7 +540,7 @@ export default function TrainerCreate() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                                         <div className="mt-2 mr-5">
                                                             <Field type="string" name={`time_m1[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                                <option className="font-semibold text-xl w-full">Time</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                 <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                 <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -549,7 +553,7 @@ export default function TrainerCreate() {
                                                                 <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
                                                             </Field>
                                                             <Field type="string" name={`time_m1[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Time</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                 <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                 <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -562,7 +566,7 @@ export default function TrainerCreate() {
                                                                 <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
                                                             </Field>
                                                             <Field type="string" name={`time_m2[0]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Time</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                 <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                 <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -575,7 +579,7 @@ export default function TrainerCreate() {
                                                                 <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
                                                             </Field>
                                                             <Field type="string" name={`time_m2[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Time</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                 <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                 <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -588,7 +592,7 @@ export default function TrainerCreate() {
                                                                 <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
                                                             </Field>
                                                             <Field type="string" name={`time_m3[0]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Time</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                 <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                 <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -601,7 +605,7 @@ export default function TrainerCreate() {
                                                                 <option value="19-20" className="font-semibold text-xl w-full">19-20</option>
                                                             </Field>
                                                             <Field type="string" name={`time_m3[1]`} as="select" className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                <option className="font-semibold text-xl w-full">Time</option>
+                                                                <option className="font-semibold text-xl w-full"></option>
                                                                 <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                 <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                 <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
