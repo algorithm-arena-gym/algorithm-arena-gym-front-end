@@ -382,7 +382,8 @@ export default function EditMember() {
                                                 <label htmlFor="first-name" className="font-light text-base">Name(Eng)</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="nameEng"
-                                                        className="font-semibold text-xl rounded-md block w-full" required
+                                                        className="font-semibold text-xl rounded-md block w-full" 
+                                                        placeholder= {memberOldData.nameEng}
                                                     />
                                                 </div>
 
@@ -390,7 +391,8 @@ export default function EditMember() {
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Name(TH)</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="nameTh"
-                                                        className="font-semibold text-xl rounded-md block w-full" required
+                                                        className="font-semibold text-xl rounded-md block w-full" 
+                                                        placeholder= {memberOldData.nameTh}
                                                     />
                                                 </div>
 
@@ -398,17 +400,19 @@ export default function EditMember() {
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Rank</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="rankID" as="select" className="font-semibold text-xl rounded-md block w-full" required>
-                                                        <option className="font-semibold text-xl w-full">Rank</option>
+                                                        <option className="font-semibold text-xl w-full">{memberOldData.rankID}</option>
                                                         {ranks?.map((rank: Rank) => (
                                                             <option value={rank.rankID}>{rank.rankName}</option>
                                                         ))}
+                                                        
                                                     </Field>
                                                 </div>
 
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Point</label>
                                                 <div className="mt-2">
                                                     <Field type="number" name="point"
-                                                        className="font-semibold text-xl rounded-md block w-full" required
+                                                        className="font-semibold text-xl rounded-md block w-full" 
+                                                        placeholder= {memberOldData.point}
                                                     />
                                                 </div>
 
@@ -421,21 +425,24 @@ export default function EditMember() {
                                                 <label htmlFor="first-name" className="font-light text-base ">Citizen ID</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="cID"
-                                                        className="font-semibold text-xl rounded-md block w-full " required
+                                                        className="font-semibold text-xl rounded-md block w-full " 
+                                                        placeholder= {memberOldData.cID}
                                                     />
                                                 </div>
 
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Phone number</label>
                                                 <div className="mt-2">
                                                     <Field type="string" name="phone"
-                                                        className="font-semibold text-xl rounded-md block w-full" required
+                                                        className="font-semibold text-xl rounded-md block w-full" 
+                                                        placeholder= {memberOldData.phone}
                                                     />
                                                 </div>
 
                                                 <label htmlFor="first-name" className="font-light text-base mt-2">Email</label>
                                                 <div className="mt-2">
                                                     <Field type="email" name="email"
-                                                        className="font-semibold text-xl rounded-md block w-full" required
+                                                        className="font-semibold text-xl rounded-md block w-full" 
+                                                        placeholder= {memberOldData.email}
                                                     />
                                                 </div>
 
@@ -443,7 +450,8 @@ export default function EditMember() {
                                                 <div className="mt-2">
                                                     <Field type="string" name="address" as="textarea"
                                                         rows={2}
-                                                        className="font-semibold text-xl rounded-md block w-full" required
+                                                        className="font-semibold text-xl rounded-md block w-full" 
+                                                        placeholder= {memberOldData.address}
                                                     />
                                                 </div>
                                             </div>
@@ -465,6 +473,7 @@ export default function EditMember() {
                                                         <div className="mt-2">
                                                             <Field type="string" name="drugAllergy"
                                                                 className="font-semibold text-xl rounded-md block w-full"
+                                                                placeholder= {memberOldData.drugAllergy}
                                                             />
                                                         </div>
                                                     </div>
@@ -478,6 +487,7 @@ export default function EditMember() {
                                                         <div className="mt-2">
                                                             <Field type="string" name="congenitalDisease"
                                                                 className="font-semibold text-xl rounded-md block w-full"
+                                                                placeholder= {memberOldData.congenitalDisease}
                                                             />
                                                         </div>
                                                     </div>
@@ -490,7 +500,8 @@ export default function EditMember() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Emergency Contact</label>
                                                         <div className="mt-2">
                                                             <Field type="string" name="emergencyContact"
-                                                                className="font-semibold text-xl rounded-md block w-full" required
+                                                                className="font-semibold text-xl rounded-md block w-full" 
+                                                                placeholder= {memberOldData.emergencyContact}
                                                             />
                                                         </div>
                                                     </div>
