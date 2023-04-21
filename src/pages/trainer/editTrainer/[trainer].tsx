@@ -551,7 +551,7 @@ export default function TrainerEdit() {
 
             }
             //ไม่เคยมีเลย
-            else if (values.memberID[0] != null) {
+             if (values.memberID[0] != null) {
                 for (let i = 0; i < values.day_m1.length; i++) {
 
                     const res2 = await fetch(`http://localhost:4000/trainer-member`, {
@@ -570,7 +570,7 @@ export default function TrainerEdit() {
                 }
             }
 
-            else if (values.memberID[1] != null) {
+             if (values.memberID[1] != null) {
                 for (let i = 0; i < values.day_m2.length; i++) {
                     const res3 = await fetch(`http://localhost:4000/trainer-member`, {
                         method: 'POST',
@@ -588,7 +588,7 @@ export default function TrainerEdit() {
                 }
             }
 
-            else if (values.memberID[2] != null) {
+             if (values.memberID[2] != null) {
                 console.log(values.memberID[2]);
                 for (let i = 0; i < values.day_m3.length; i++) {
                     const res4 = await fetch(`http://localhost:4000/trainer-member`, {
