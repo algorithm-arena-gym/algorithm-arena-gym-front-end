@@ -1,0 +1,6 @@
+.chart .chart-label img {
+    display: block;
+    margin: auto;
+    width: 20px; /* adjust as needed */
+    height: 20px; /* adjust as needed */
+  }
