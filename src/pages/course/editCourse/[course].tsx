@@ -322,7 +322,9 @@ export default function EditCourse() {
   const trainers = JSON.parse(JSON.stringify(trainerData));
   const ranks = JSON.parse(JSON.stringify(rankData));
   const members = JSON.parse(JSON.stringify(memberData));
-  const dtOld = JSON.parse(JSON.stringify(dateTimeOldData));
+  // const trainerOld = JSON.parse(JSON.stringify(trainerOldData));
+
+  const dateTimeOld = JSON.parse(JSON.stringify(dateTimeOldData));
   
 
 
@@ -332,10 +334,18 @@ export default function EditCourse() {
   const listTime2: String[] = [];
   const listTime3: String[] = [];
 
- console.log(dtOld);
- dtOld?.map((dtt : DateTimeOld) => {
- console.log(dtt.courseDateTimeID)
- })
+//  console.log(dateTimeOlds);
+  dateTimeOld?.map((dt: DateTimeOld) => {
+        // console.log(t.trainerID)
+        if (listCDT.indexOf(dt.courseDateTimeID) == -1 && listDay.indexOf(dt.courseDate) == -1) {
+            listCDT.push(dt.courseDateTimeID);
+            listDay.push(dt.courseDate);
+        }
+     });
+
+//  datrTimeOld?.map((dateTime : DateTimeOld) => {
+//  console.log(dateTime.courseDateTimeID)
+//  })
 
 
   // dtOld?.map((dt: DateTimeOld) => {

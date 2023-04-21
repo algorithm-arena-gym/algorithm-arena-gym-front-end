@@ -74,16 +74,16 @@ const updateValues = {
     congenitalDisease: null,
     emergencyContact: null,
 
-    memberID: '',
-    day_m1: [null, null],
-    day_m2: [null, null],
-    day_m3: [null, null],
+    memberID: null,
+    day_m1: null,
+    day_m2: null,
+    day_m3: null,
 
-    time_m1: [null, null],
-    time_m2: [null, null],
-    time_m3: [null, null],
+    time_m1: null,
+    time_m2: null,
+    time_m3: null,
 
-    courseID: '',
+    courseID: null,
 
 
 }
@@ -227,7 +227,7 @@ export default function TrainerEdit() {
     const timeM3: String[] = [];
 
     trainerMemberOld?.map((tm: TrainerMember) => {
-        console.log(tm.trainerMemberID)
+
 
         if (listTrainerMemberID.indexOf(tm.trainerMemberID) == -1 && listTMname.indexOf(tm.nameEng) == -1) {
             listTrainerMemberID.push(tm.trainerMemberID);
@@ -252,6 +252,8 @@ export default function TrainerEdit() {
     }
     );
 
+    console.log(listTrainerMemberID);
+
 
 
 
@@ -264,7 +266,9 @@ export default function TrainerEdit() {
     const onSubmit = async (values: any, { setSubmitting }: any) => {
         console.log(values);
         try {
-            const response1 = await fetch(`http://localhost:4000/trainer`, {
+            const trainerID = trainerData?.trainerID as number;
+
+            const response1 = await fetch(`http://localhost:4000/trainer/${trainerID}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -287,7 +291,7 @@ export default function TrainerEdit() {
 
 
             const apiTrainerID = data1.insertId;
-             // เพิ่ม member
+            // เพิ่ม member
             // if (values.memberID[0] != null) {
             //     for (let i = 0; i < values.day_m1.length; i++) {
             //         const res2 = await fetch(`http://localhost:4000/trainer-member`, {
@@ -306,7 +310,7 @@ export default function TrainerEdit() {
             //     }
             // }
 
-            
+
             // if (values.memberID[1] != null) {
             //     for (let i = 0; i < values.day_m2.length; i++) {
             //         const res3 = await fetch(`http://localhost:4000/trainer-member`, {
@@ -491,12 +495,121 @@ export default function TrainerEdit() {
             //         const data4 = await res4.json();
             //     }
             // };
-           
+
+            //เคยมีเลย วันไม่เปลี่ยน
+            if (values.memberID[0] != null && listTrainerMemberID[0] != null && values.day_m1 == null && values.time_m1 == null) {
+                console.log(values.memberID[0]);
+                 console.log(listTrainerMemberID[0]);
+                const res2 = await fetch(`http://localhost:4000/trainer-member/${listTrainerMemberID[0]}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "trainerID": trainerID,
+                        "memberID": values.memberID[0],
+
+                    }),
+                });
+                const data2 = await res2.json();
+
+            }
+
+            if (values.memberID[1] != null && listTrainerMemberID[1] != null && values.day_m2 == null && values.time_m2 == null) {
+                console.log(values.memberID[1]);
+                console.log(listTrainerMemberID[1]);
+                
+                const res3 = await fetch(`http://localhost:4000/trainer-member${listTrainerMemberID[1]}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "trainerID": trainerID,
+                        "memberID": values.memberID[1],
+                    }),
+                });
+                const data3 = await res3.json();
+
+            }
+
+            if (values.memberID[2] != null && listTrainerMemberID[2] != null && values.day_m3 == null && values.time_m3 == null) {
+                console.log(values.memberID[2]);
+
+                const res4 = await fetch(`http://localhost:4000/trainer-member${listTrainerMemberID[2]}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "trainerID": trainerID,
+                        "memberID": values.memberID[2],
+
+                    }),
+                });
+                const data4 = await res4.json();
+
+            }
+            //ไม่เคยมีเลย
+            else if (values.memberID[0] != null) {
+                for (let i = 0; i < values.day_m1.length; i++) {
+
+                    const res2 = await fetch(`http://localhost:4000/trainer-member`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "trainerID": trainerID,
+                            "memberID": values.memberID[0],
+                            "trainingDate": values.day_m1[i],
+                            "trainingTime": values.time_m1[i],
+                        }),
+                    });
+                    const data2 = await res2.json();
+                }
+            }
+
+            else if (values.memberID[1] != null) {
+                for (let i = 0; i < values.day_m2.length; i++) {
+                    const res3 = await fetch(`http://localhost:4000/trainer-member`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "trainerID": trainerID,
+                            "memberID": values.memberID[1],
+                            "trainingDate": values.day_m2[i],
+                            "trainingTime": values.time_m2[i],
+                        }),
+                    });
+                    const data3 = await res3.json();
+                }
+            }
+
+            else if (values.memberID[2] != null) {
+                console.log(values.memberID[2]);
+                for (let i = 0; i < values.day_m3.length; i++) {
+                    const res4 = await fetch(`http://localhost:4000/trainer-member`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "trainerID": trainerID,
+                            "memberID": values.memberID[2],
+                            "trainingDate": values.day_m3[i],
+                            "trainingTime": values.time_m3[i],
+                        }),
+                    });
+                    const data4 = await res4.json();
+                }
+            }
 
 
-
-            if (response1.ok)
-                setSuccessMessage('Form Trainer submitted successfully!');
+            // if (response1.ok)
+            setSuccessMessage('Form Trainer submitted successfully!');
             // Do any other logic you need on successful form submission
         } catch (error) {
             console.log(error);
@@ -712,6 +825,7 @@ export default function TrainerEdit() {
                                                         <div className="mt-2 ">
                                                             <Field type="string" name={`day_m1[0]`} as="select" className=" font-semibold text-xl rounded-md block w-full" required>
                                                                 <option className="font-semibold text-xl w-full">{null ? null : dayM1[0]}</option>
+                                                                <option value="null" className="font-semibold text-xl w-full">delete Day</option>
                                                                 <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                 <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                 <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -783,6 +897,7 @@ export default function TrainerEdit() {
                                                         <div className="mt-2 mr-5">
                                                             <Field type="string" name={`time_m1[0]`} as="select" className="font-semibold text-xl rounded-md block w-full" required>
                                                                 <option className="font-semibold text-xl w-full">{timeM1[0]}</option>
+                                                                <option value="null" className="font-semibold text-xl w-full">delete Time</option>
                                                                 <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                 <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                 <option value="12-13" className="font-semibold text-xl w-full">12-13</option>

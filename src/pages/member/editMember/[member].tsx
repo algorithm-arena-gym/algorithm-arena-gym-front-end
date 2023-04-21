@@ -368,14 +368,14 @@ export default function EditMember() {
 
         dayT.push(t.trainingDate);
         timeT.push(t.trainingTime);
-        
+
     });
 
     const listCourseMemberID: number[] = [];
     const listCname: String[] = [];
     const listCourseID: number[] = [];
 
-//    console.log(courseOld)
+    //    console.log(courseOld)
 
     courseOld?.map((c: CourseOld) => {
         // console.log(t.trainerID)
@@ -385,18 +385,19 @@ export default function EditMember() {
         }
         if (listCourseID.indexOf(c.courseID) == -1)
             listCourseID.push(c.courseID);
-        
+
 
     });
     // console.log(listCourseMemberID)
 
-    
+
 
 
     const onSubmit = async (values: any, { setSubmitting }: any) => {
         console.log(values);
         try {
-            const res1 = await fetch(`http://localhost:4000/member`, {
+            const memberID = memberData?.memberID as number;
+            const res1 = await fetch(`http://localhost:4000/member/${memberID}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -417,46 +418,94 @@ export default function EditMember() {
                 }),
             });
             const data1 = await res1.json();
-            // console.log(data1);
+            //  console.log(data1);
 
-
+console.log(values.
+    trainerID);
             const apiMemberID = data1.insertId;
 
-            for (let i = 0; i < values.day.length; i++) {
-                const res2 = await fetch(`http://localhost:4000/trainer-member`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        "trainerID": values.trainerID,
-                        "memberID": apiMemberID,
-                        "trainingDate": values.day[i],
-                        "trainingTime": values.time[i],
-                    }),
-                });
-                const data2 = await res2.json();
+            for (let i = 0; i < 2; i++) {
+
+                // console.log(listTrainerMemberID[i]);
+                // console.log(memberID);
+
+                if (values.trainerID[i] != null && listTrainerMemberID[i] != null) {
+                    const res2 = await fetch(`http://localhost:4000/trainer-member/${listTrainerMemberID[i]}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "trainerID": values.trainerID,
+                            "memberID": memberID,
+                            "trainingDate": null ? null :values.day[i],
+                            "trainingTime": null ? null :values.time[i],
+                             
+        
+                            
+                        }),
+                    });
+                    const data2 = await res2.json();
+                }
+                if (values.trainerID[i] != null ) {
+                    const res2 = await fetch(`http://localhost:4000/trainer-member`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "trainerID": values.trainerID,
+                            "memberID": memberID,
+                            "trainingDate": values.day[i],
+                            "trainingTime": values.time[i],
+                        }),
+                    });
+                    const data2 = await res2.json();
+                }
             }
+
 
             for (let j = 0; j < values.courseID.length; j++) {
-                const res3 = await fetch(`http://localhost:4000/course-member`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        "courseID": values.courseID[j],
-                        "memberID": apiMemberID,
+                if (values.courseID[j] != null && listCourseMemberID[j] != null) {
+                    const res3 = await fetch(`http://localhost:4000/course-member/${listCourseMemberID[j]}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "courseID": values.courseID[j],
+                            "memberID": memberID,
 
-                    }),
-                });
-                const data3 = await res3.json();
-                // console.log(data1);
+                        }),
+                    });
+                    const data3 = await res3.json();
+                    // console.log(data1);
+                } else if (values.courseID[j] != null) {
+
+
+                    const res3 = await fetch(`http://localhost:4000/course-member`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "courseID": values.courseID[j],
+                            "memberID": memberID,
+
+                        }),
+                    });
+                    const data3 = await res3.json();
+                    // console.log(data1);
+                    // console.log(data1);
+
+                }
+
+
             }
 
 
-            if (res1.ok)
-                setSuccessMessage('Form Member submitted successfully!');
+            // if (res1.ok)
+            setSuccessMessage('Form Member ediited successfully!');
 
         } catch (error) {
             console.log(error);
@@ -483,7 +532,7 @@ export default function EditMember() {
 
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                // validationSchema={validationSchema}
                 onSubmit={onSubmit}
 
             >
@@ -685,7 +734,7 @@ export default function EditMember() {
                                                                 <div className="mt-2 ">
                                                                     <Field type="string" name={`day[0]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full " >
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: dayT[0]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : dayT[0]}</option>
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                         <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -696,7 +745,7 @@ export default function EditMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[1]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: dayT[1]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : dayT[1]}</option>
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                         <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -707,7 +756,7 @@ export default function EditMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[2]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: dayT[2]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : dayT[2]}</option>
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                         <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -718,7 +767,7 @@ export default function EditMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[3]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: dayT[3]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : dayT[3]}</option>
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                         <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -729,7 +778,7 @@ export default function EditMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`day[4]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: dayT[4]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : dayT[4]}</option>
                                                                         <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                                                         <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                                                         <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -750,7 +799,7 @@ export default function EditMember() {
                                                                 <div className="mt-2 mr-5">
                                                                     <Field type="string" name={`time[0]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full" required>
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: timeT[0]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : timeT[0]}</option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -764,7 +813,7 @@ export default function EditMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[1]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: timeT[1]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : timeT[1]}</option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -778,7 +827,7 @@ export default function EditMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[2]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: timeT[2]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : timeT[2]}</option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -792,7 +841,7 @@ export default function EditMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[3]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: timeT[3]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : timeT[3]}</option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -806,7 +855,7 @@ export default function EditMember() {
                                                                     </Field>
                                                                     <Field type="string" name={`time[4]`} as="select"
                                                                         className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                                                        <option className="font-semibold text-xl w-full">{null ? null: timeT[4]}</option>
+                                                                        <option className="font-semibold text-xl w-full">{null ? null : timeT[4]}</option>
                                                                         <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                                                         <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                                                         <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -839,18 +888,22 @@ export default function EditMember() {
                                                         <label htmlFor="first-name" className="font-light text-base ">Name</label>
                                                         <div className="mt-2 mr-20">
                                                             <Field type="number" name={`courseID[0]`} as="select"
-                                                                className="font-semibold text-xl rounded-md block w-full " required>
+                                                                className="font-semibold text-xl rounded-md block w-full " >
                                                                 <option className="font-semibold text-xl w-full">{null ? null : listCname[0]}</option>
+                                                                <option value="null" className="font-semibold text-xl w-full">delete Course</option>
                                                                 {courses?.map((co: Course) => (
                                                                     <option value={co.courseID}>{co.courseName}</option>
                                                                 ))}
+
                                                             </Field>
                                                             <Field type="number" name={`courseID[1]`} as="select"
                                                                 className="font-semibold text-xl rounded-md block w-full mt-3" >
                                                                 <option className="font-semibold text-xl w-full">{null ? null : listCname[1]}</option>
+                                                                <option value="null" className="font-semibold text-xl w-full">delete Course</option>
                                                                 {courses?.map((co: Course) => (
                                                                     <option value={co.courseID}>{co.courseName}</option>
                                                                 ))}
+
                                                             </Field>
                                                         </div>
                                                     </div>
