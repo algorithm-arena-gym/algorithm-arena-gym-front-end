@@ -1,37 +1,25 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+import { Chart } from "chart.js/auto";
 
 function HorizonChart({ chartData }) {
 
   const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
     scales: {
       x: {
-        ticks: {
-          color: 'slate-950',
-
-        },
-        grid: {
-          color: 'slate-950',
-        }
+        display: false,
       },
       y: {
-        ticks: {
-          color: 'slate-950'
-        },
-        grid: {
-          color: 'slate-950',
-
-        },
-
-
+        display: false,
       }
     },
-
-  };
-
-
-  return <Bar data={chartData} options={options}  />;
+  }
+  return <Bar data={chartData} options={options} />;
 }
 
 

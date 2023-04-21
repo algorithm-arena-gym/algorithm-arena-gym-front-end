@@ -13,19 +13,10 @@ function DonutChart({ chartData }) {
         layout: {
             padding: 10
         },
-        title: {
-            display: true,
-            text: 'Custom Chart Title',
-            textAlign: "center",
-            font: {
-                size: 24,
-                color: "white",
-            }
-
-        }
+       
+        
     }
-
-        return<Doughnut data = { chartData } options = { options } />;
+    return <Doughnut data={chartData} options={options} />;
 }
 
 export default DonutChart;

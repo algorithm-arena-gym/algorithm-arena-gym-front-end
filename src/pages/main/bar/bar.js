@@ -2,32 +2,36 @@ import React from "react";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 
+
 function BarChart({ chartData }) {
   const options = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
     scales: {
       x: {
-        ticks: {
-          color: 'slate-950',
+
+        grid: {
+          display: false,
 
         },
-        grid: {
-          color: 'slate-950',
+        ticks: {
+          display: false,
         }
       },
       y: {
         ticks: {
-          color: 'slate-950'
+          display: false,
         },
         grid: {
-          color: 'slate-950',
-
-        },
+          display: false,
 
 
+        }
       }
-    },
-
-
+    }
   }
 
 
