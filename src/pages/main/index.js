@@ -159,7 +159,7 @@ export default function Main() {
                 const colorbar = topThree.map(d => d.num_course === max ? '#46FFBD' : '#E2FEA7');
                 const labels = topThree.map(d => d.memberID);
 
-                // fetch the  member names for each
+                // fetch the  member names for each one
                 const memberNamePromises = data.map(d => fetch(`http://localhost:4000/member/${d.memberID}`));
                 const memberNameResponses = await Promise.all(memberNamePromises);
                 const memberNameData = await Promise.all(memberNameResponses.map(res => res.json()));
