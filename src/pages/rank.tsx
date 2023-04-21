@@ -8,8 +8,14 @@ interface Rank {
     rankID: number,
     rankName: string,
     rankDetail: string,
+<<<<<<< Updated upstream
     rankPic: string
     rankPrice:number
+=======
+    rankPic: string,
+    rankPrice: number,
+    
+>>>>>>> Stashed changes
 }
 
 export default function allRank() {
