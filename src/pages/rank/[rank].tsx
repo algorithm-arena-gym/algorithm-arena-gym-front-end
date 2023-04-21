@@ -11,7 +11,7 @@ interface Rank {
     rankName: string;
     rankDetail: string;
     rankPrice: number;
-
+   
 }
 interface Member {
     memberID: number;
@@ -121,12 +121,27 @@ export default function RankDetail() {
     }
 
 
+    const listMember = memberData?.map((mem: Member) => {
+        return (
+            <div>
+                <div className="grid ml-10">
+                    <span className="font-semibold text-xl ">{mem.nameEng}</span>
+                </div>
+            </div>
+        )
+    });
+
+    const listCourse = courseData?.map((co: Course) => {
+        return (
+            <div>
+                <div className="grid ml-32">
+                    <span className="font-semibold text-xl  ">{co.courseName}</span>
+                </div>
+            </div>
 
 
-
-
-    const courses = JSON.parse(JSON.stringify(courseData));
-    const members = JSON.parse(JSON.stringify(memberData));
+        )
+    });
 
     const onDelete = async (rankID: any) => {
         try {
@@ -192,31 +207,13 @@ export default function RankDetail() {
                                 <div className="basis-1/2 ">
                                     <p className="ml-32  mt-8 text-base">Course in this rank</p>
                                     <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
-                                    <div>
-                                        <div className="grid ml-32">
-                                            {courses?.map((co: Course) => (
-                                                <span className="font-semibold text-xl  ">{co.courseName}</span>
-                                            ))}
-
-                                        </div>
-                                    </div>
+                                   {listCourse}
                                 </div>
                                 <div className="basis-1/2">
                                     <p className="  ml-10 mt-8 text-base"> Member in this rank</p>
                                     <hr className=" mr-20 my-3 bg-[#000000]" />
-
-                                    <div>
-                                        <div className="grid ml-10">
-                                            {members?.map((mem: Member) => (
-                                                <span className="font-semibold text-xl ">{mem.nameEng}</span>
-                                            ))}
-
-                                        </div>
-                                    </div>
                                     
- 
-
-
+                                    {listMember}
                                 </div>
 
 

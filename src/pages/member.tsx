@@ -50,7 +50,7 @@ export default function allMember() {
         const json2 = await res2.json();
         setRankData(json2)
         setError(null);
-
+        
 
 
       } catch (error) {
@@ -100,8 +100,8 @@ export default function allMember() {
 
                   <p className="font-semibold text-lg">{member.nameEng}</p>
                   {/* need rank */}
-                  <p className="font-semibold text-md">{rankData?.find(rank => rank.rankID === member.rankID)?.rankName}</p>
-
+                  <p className="font-semibold text-md">{rankData?.find(rank => rank.rankID===member.rankID)?.rankName}</p>
+                  
                   {/* <p>{member.phone}</p> */}
                 </div>
               </div>
@@ -110,9 +110,7 @@ export default function allMember() {
         ))}
         <div className=' bg-[#D9D9D9] p-4 rounded-3xl  w-70 h-28 grid ' >
           <div className='grid justify-items-center'>
-            <Link href={`/member/createMember`}>
-              <button type="button" className="bttn " >+</button>
-            </Link>
+            <button type="button" className="bttn" >+</button>
           </div>
         </div>
 

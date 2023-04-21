@@ -38,14 +38,6 @@ interface Member {
 
 }
 
-interface DateTime {
-  courseID: number,
-  courseDate: string,
-  courseTime: string,
-
-
-}
-
 export default function CourseDetail() {
   const router = useRouter();
   const [courseData, setCourseData] = useState<Course | null>(null);
@@ -53,8 +45,6 @@ export default function CourseDetail() {
   const [trainerData, setTrainerData] = useState<Trainer | null>(null);
   const [memberData, setMemberData] = useState<Member | null>(null);
   const [rankData, setRankData] = useState<Rank | null>(null);
-
-  const [dateTimeData, setDateTimeData] = useState<DateTime | null>(null);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -70,7 +60,7 @@ export default function CourseDetail() {
         setError(null);
 
         console.log(json[0]
-        )
+          )
       } catch (error) {
         console.error(error);
         setError("An error occurred while fetching the courseData.");
@@ -162,35 +152,9 @@ export default function CourseDetail() {
     }
   }, [courseData]);
 
-  useEffect(() => {
-    async function fetchDateTimeData() {
-      try {
-        const courseID = courseData?.courseID as number;
-        const apiURL4 = `http://localhost:4000/pc-date-time/${courseID}`;
-        const res4 = await fetch(apiURL4);
-        const json4 = await res4.json();
-        setDateTimeData(json4);
-        setError(null);
-
-        //  console.log(json4)
-
-      } catch (error) {
-        console.error(error);
-        setError("An error occurred while fetching the RankData.");
-        setDateTimeData(null);
-      }
-    }
-    if (courseData) {
-      setLoading(true);
-      setError(null);
-      fetchDateTimeData();
-      setLoading(false);
-    }
-  }, [courseData]);
 
 
-
-  if (loading) {
+   if (loading) {
     return <div>Loading...</div>;
   }
 
@@ -211,7 +175,7 @@ export default function CourseDetail() {
 
   }
 
-
+  
 
 
   const onDelete = async (courseID: any) => {
@@ -231,39 +195,6 @@ export default function CourseDetail() {
 
   const ranks = JSON.parse(JSON.stringify(rankData));
   const members = JSON.parse(JSON.stringify(memberData));
-  const dateTime = JSON.parse(JSON.stringify(dateTimeData));
-
-
-  const sunTime: string[] = [];
-  const monTime: string[] = [];
-  const tueTime: string[] = [];
-  const wedTime: string[] = [];
-  const thrTime: string[] = [];
-  const friTime: string[] = [];
-  const satTime: string[] = [];
-
-
-  const arrayDayTime = dateTime?.map((dt: DateTime) => {
-    if (dt.courseDate == "Sunday")
-      sunTime.push(dt.courseTime);
-    else if (dt.courseDate == "Monday")
-      monTime.push(dt.courseTime);
-    else if (dt.courseDate == "Tuesday")
-      tueTime.push(dt.courseTime);
-    else if (dt.courseDate == "Wednesday")
-      wedTime.push(dt.courseTime);
-    else if (dt.courseDate == "Thrusday")
-      thrTime.push(dt.courseTime);
-    else if (dt.courseDate == "Friday")
-      friTime.push(dt.courseTime);
-    else if (dt.courseDate == "Saturday")
-      satTime.push(dt.courseTime);
-
-
-  });
-
-
-
 
   return (
     <div>
@@ -300,8 +231,6 @@ export default function CourseDetail() {
               <p className="ml-32 mt-28 ">Course Name(ENG)</p>
               <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
               <span className="font-semibold text-xl ml-32">{courseData.courseName}</span>
-
-
             </div>
             {/* ก้อน3 */}
             <div>
@@ -314,41 +243,7 @@ export default function CourseDetail() {
             <div>
               <p className="ml-32 mt-5">Available Days of The Week</p>
               <hr className="ml-20 mr-20 my-3 bg-[#000000]  " />
-              <div className="font-semibold text-xl">
-                <div className=" ml-32">SUN :
-                  {sunTime.map((t: any) => (<span className=" pl-5 pr-5 ">{t}</span>))}
-                </div>
-                <div className=" ml-32">MON :
-                  {monTime.map((t: any) => (
-                    <span className=" pl-5 pr-5 ">{t}</span>
-                  ))}
-                </div>
-                <div className="ml-32 ">TUE :
-                  {tueTime.map((t: any) => (
-                    <span className=" pl-5 pr-5 ">{t}</span>
-                  ))}
-                </div>
-                <div className=" ml-32">WED :
-                  {wedTime.map((t: any) => (
-                    <span className="pl-5 pr-5 ">{t}</span>
-                  ))}
-                </div>
-                <div className=" ml-32">THR :
-                  {thrTime.map((t: any) => (
-                    <span className=" pl-5 pr-5 ">{t}</span>
-                  ))}
-                </div>
-                <div className=" ml-32">FRI :
-                  {friTime.map((t: any) => (
-                    <span className=" pl-5 pr-5 ">{t}</span>
-                  ))}
-                </div>
-                <div className="ml-32">SAT :
-                  {satTime.map((t: any) => (
-                    <span className=" pl-5 pr-5 ">{t}</span>
-                  ))}
-                </div>
-              </div>
+              <span className="font-light text-base ml-32">ดึงวันเวลา</span>
             </div>
             {/* ก้อน5 */}
             <div>
@@ -395,11 +290,11 @@ export default function CourseDetail() {
                   <hr className="ml-20 mr-10 my-3 bg-[#000000]" />
                   <div>
                     <div className="grid ">
-
-                      {ranks?.map((rank: Rank) => (
-                        <span className="font-semibold text-xl ml-32 ">{rank.rankName}</span>
-                      ))}
-
+                     
+                        {ranks?.map((rank: Rank) => (
+                          <span className="font-semibold text-xl ml-32 ">{rank.rankName}</span>
+                        ))}
+                      
                     </div>
                   </div>
                 </div>
@@ -408,9 +303,9 @@ export default function CourseDetail() {
                   <hr className=" mr-20 my-3 bg-[#000000]" />
                   <div>
                     <div className="grid ">
-                      {members?.map((mem: Member) => (
-                        <span className="font-semibold text-xl ml-10 ">{mem.nameEng}</span>
-                      ))}
+                       {members?.map((mem: Member) => (
+                          <span className="font-semibold text-xl ml-10 ">{mem.nameEng}</span>
+                        ))}
                     </div>
                   </div>
                 </div>
