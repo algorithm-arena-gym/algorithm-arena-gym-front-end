@@ -518,7 +518,7 @@ export default function TrainerEdit() {
             if (values.memberID[1] != null && listTrainerMemberID[1] != null && values.day_m2 == null && values.time_m2 == null) {
                 console.log(values.memberID[1]);
                 console.log(listTrainerMemberID[1]);
-
+                
                 const res3 = await fetch(`http://localhost:4000/trainer-member${listTrainerMemberID[1]}`, {
                     method: 'PATCH',
                     headers: {

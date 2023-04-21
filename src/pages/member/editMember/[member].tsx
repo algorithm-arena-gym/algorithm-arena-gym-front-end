@@ -439,7 +439,9 @@ console.log(values.courseID);
                 //             "memberID": memberID,
                 //             "trainingDate": null ? null :values.day[i],
                 //             "trainingTime": null ? null :values.time[i],
-
+                             
+        
+                            
                 //         }),
                 //     });
                 //     const data2 = await res2.json();

@@ -325,6 +325,7 @@ export default function EditCourse() {
   // const trainerOld = JSON.parse(JSON.stringify(trainerOldData));
 
   const dateTimeOld = JSON.parse(JSON.stringify(dateTimeOldData));
+  
 
 
   const listCDT: number[] = [];

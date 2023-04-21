@@ -24,7 +24,7 @@ interface Member {
   nameEng: string;
   trainingDate: string;
   trainingTime: string;
-
+  
 }
 
 interface Course {
@@ -107,7 +107,7 @@ export default function TrainerDetail() {
         setError(null);
 
         // console.log(json3)
-
+        
       } catch (error) {
         console.error(error);
         setError("An error occurred while fetching the trainerData.");
@@ -135,22 +135,22 @@ export default function TrainerDetail() {
        <div>
         <TabNavbar />
       </div>
-      <p className="font-AzeretMono font-semibold">No trainerData to display.</p>
+      <p className="font-AzeretMono font-semibold">No trainerData to display.</p> 
       {/* <Link href="/member" className="bg-[#EF4444] font-AzeretMono font-semibold">
        Go back
       </Link> */}
       </div>;
   }
-
+  
   const listMember = memberData?.map((mem:Member) => {
     return (
-
+      
       <div className="flex flex-row mb-2 ">
                     <div className="basis-1/2 ">
                       <div>
                         <div className="grid ml-20">
                            <span className="font-semibold text-xl ">{null ? null :mem.nameEng }</span>
-
+                         
                         </div>
                       </div>
                     </div>
@@ -175,7 +175,7 @@ export default function TrainerDetail() {
 
   const listCourse= courseData?.map((co:Course) => {
     return (
-
+      
       <div className="flex flex-row mb-2 ">
                     <div className="basis-1/3 ">
                       <div>
@@ -204,7 +204,7 @@ export default function TrainerDetail() {
 
   const onDelete = async (trainerID : any) => {
     try{
-
+      
       // const memberID = router.query.member as string;
       let response = await fetch(`http://localhost:4000/trainer/${trainerID}` , {
          headers: {
@@ -216,7 +216,7 @@ export default function TrainerDetail() {
     }catch(error) {
       console.log("An error occured while deleting trainer",error);
     }
-
+    
   };
 
   return (

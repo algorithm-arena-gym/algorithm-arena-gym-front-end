@@ -152,6 +152,7 @@ export default function RankCreate() {
     //     // Your form submission logic here
     //     setSuccessMessage('Form submitted successfully!');
     // };
+    
 
 
 
@@ -176,7 +177,7 @@ export default function RankCreate() {
 
             const apiRankID = data1.insertId;
 
-
+           
 
             for (let j = 0; j < values.courseID.length; j++) {
                 if(values.courseID[j] !=null) {
@@ -194,7 +195,7 @@ export default function RankCreate() {
                 // console.log(data2);
 
                 }
-
+                
             }
             if (response1.ok)
                 setSuccessMessage('Form Rank submitted successfully!');
@@ -215,7 +216,7 @@ export default function RankCreate() {
             {successMessage &&
                 <p>{successMessage}</p>}
 
-
+           
 
 
             <Formik
