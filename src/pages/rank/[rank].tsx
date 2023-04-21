@@ -213,8 +213,7 @@ export default function RankDetail() {
 
                                         </div>
                                     </div>
-                                    
- 
+
 
 
                                 </div>

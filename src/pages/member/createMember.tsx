@@ -205,7 +205,6 @@ export default function createMember() {
     const trainers = JSON.parse(JSON.stringify(trainerData));
     const courses = JSON.parse(JSON.stringify(courseData));
 
-    
 
 
 
