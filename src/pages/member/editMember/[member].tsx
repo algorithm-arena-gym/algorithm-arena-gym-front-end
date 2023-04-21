@@ -420,7 +420,8 @@ export default function EditMember() {
             const data1 = await res1.json();
             //  console.log(data1);
 
-console.log(values.courseID);
+console.log(values.
+    trainerID);
             const apiMemberID = data1.insertId;
 
             for (let i = 0; i < 2; i++) {
@@ -428,45 +429,44 @@ console.log(values.courseID);
                 // console.log(listTrainerMemberID[i]);
                 // console.log(memberID);
 
-                // if (values.trainerID[i] != null && listTrainerMemberID[i] != null) {
-                //     const res2 = await fetch(`http://localhost:4000/trainer-member/${listTrainerMemberID[i]}`, {
-                //         method: 'PATCH',
-                //         headers: {
-                //             'Content-Type': 'application/json',
-                //         },
-                //         body: JSON.stringify({
-                //             "trainerID": values.trainerID,
-                //             "memberID": memberID,
-                //             "trainingDate": null ? null :values.day[i],
-                //             "trainingTime": null ? null :values.time[i],
+                if (values.trainerID[i] != null && listTrainerMemberID[i] != null) {
+                    const res2 = await fetch(`http://localhost:4000/trainer-member/${listTrainerMemberID[i]}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "trainerID": values.trainerID,
+                            "memberID": memberID,
+                            "trainingDate": null ? null :values.day[i],
+                            "trainingTime": null ? null :values.time[i],
                              
         
                             
-                //         }),
-                //     });
-                //     const data2 = await res2.json();
-                // }
-                // if (values.trainerID[i] != null ) {
-                //     const res2 = await fetch(`http://localhost:4000/trainer-member`, {
-                //         method: 'POST',
-                //         headers: {
-                //             'Content-Type': 'application/json',
-                //         },
-                //         body: JSON.stringify({
-                //             "trainerID": values.trainerID,
-                //             "memberID": memberID,
-                //             "trainingDate": values.day[i],
-                //             "trainingTime": values.time[i],
-                //         }),
-                //     });
-                //     const data2 = await res2.json();
-                // }
+                        }),
+                    });
+                    const data2 = await res2.json();
+                }
+                if (values.trainerID[i] != null ) {
+                    const res2 = await fetch(`http://localhost:4000/trainer-member`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "trainerID": values.trainerID,
+                            "memberID": memberID,
+                            "trainingDate": values.day[i],
+                            "trainingTime": values.time[i],
+                        }),
+                    });
+                    const data2 = await res2.json();
+                }
             }
 
 
             for (let j = 0; j < values.courseID.length; j++) {
                 if (values.courseID[j] != null && listCourseMemberID[j] != null) {
-                    console.log(1);
                     const res3 = await fetch(`http://localhost:4000/course-member/${listCourseMemberID[j]}`, {
                         method: 'PATCH',
                         headers: {
