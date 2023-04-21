@@ -106,7 +106,7 @@ export default function TrainerDetail() {
         setCourseData(json3);
         setError(null);
 
-        console.log(json3)
+        // console.log(json3)
         
       } catch (error) {
         console.error(error);
@@ -149,7 +149,7 @@ export default function TrainerDetail() {
                     <div className="basis-1/2 ">
                       <div>
                         <div className="grid ml-20">
-                           <span className="font-semibold text-xl ">{mem.nameEng}</span>
+                           <span className="font-semibold text-xl ">{null ? null :mem.nameEng }</span>
                          
                         </div>
                       </div>
@@ -157,7 +157,7 @@ export default function TrainerDetail() {
                     <div className="basis-1/4 flex justify-center ...">
                       <div>
                         <div className="grid  ">
-                          <span className="font-semibold text-xl ">{mem.trainingDate}</span>
+                          <span className="font-semibold text-xl ">{null ? null :mem.trainingDate}</span>
 
                         </div>
                       </div>
@@ -165,7 +165,7 @@ export default function TrainerDetail() {
                     <div className="basis-1/4 flex justify-center ...">
                       <div>
                         <div className="grid ">
-                         <span className="font-semibold text-xl ">{mem.trainingTime}</span>
+                         <span className="font-semibold text-xl ">{null ? null :mem.trainingTime}</span>
                         </div>
                       </div>
                     </div>

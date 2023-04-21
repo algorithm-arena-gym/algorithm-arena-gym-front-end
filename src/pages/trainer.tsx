@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useRouter } from "next/router";
 import 'src/app/globals.css'
 import TabNavbar from "src/app/navbar/navbar.js";
 import "src/app/rankcard.css";
@@ -21,6 +22,7 @@ interface Trainer {
 
 
 export default function Trainer() {
+  const router = useRouter();
   const [trainerData, setData] = useState<Trainer | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -82,7 +84,11 @@ export default function Trainer() {
         ))}
         <div className=' bg-[#D9D9D9] p-4 rounded-3xl  w-70 h-28 grid ' >
           <div className='grid justify-items-center'>
-            <button type="button" className="bttn" >+</button>
+            
+           
+             <Link href={`/trainer/createTrainer`}>
+              <button type="button" className="bttn " >+</button>
+            </Link>
           </div>
         </div>
       </div>

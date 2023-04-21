@@ -41,16 +41,15 @@ img {
   margin: 8px 30px;
 }
 
-.card .btn {
+.btn {
   outline: none;
 
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   background-color: #46FFBD;
   color: black;
   font-size: 30px;
   font-weight: 900;
-  /* margin-left: 110px; */
   margin: auto;
   padding: 20px 30px;
   border: none;
@@ -59,7 +58,7 @@ img {
   text-align: center;
 }
 
-.card .btn:hover {
+.btn:hover {
   background-color: #E2FEA7;
   color: rgb(0, 0, 0);
 }
