@@ -219,7 +219,7 @@ export default function MemberDetail() {
             </div>
           </div>
         </div>
-        <div className="basis-1/4 flex justify-center ...">
+        <div className="basis-1/4 flex justify-start ...">
           <div>
             <div className="grid  ">
               <span className="font-semibold text-xl ">{tr.trainingDate}</span>
@@ -227,7 +227,7 @@ export default function MemberDetail() {
             </div>
           </div>
         </div>
-        <div className="basis-1/4 flex justify-center ...">
+        <div className="basis-1/4 flex justify-start ...">
           <div>
             <div className="grid ">
               <span className="font-semibold text-xl ">{tr.trainingTime}</span>
@@ -248,7 +248,7 @@ export default function MemberDetail() {
             </div>
           </div>
         </div>
-        <div className="basis-1/3 flex justify-center ...">
+        <div className="basis-1/3  pl-5">
           <div>
             <div className="grid  ">
               <span className="font-semibold text-xl ">{co.courseDate}</span>
@@ -411,14 +411,14 @@ export default function MemberDetail() {
                         </div>
                       </div>
                     </div>
-                    <div className="basis-1/4 flex justify-center ...">
+                    <div className="basis-1/4 flex justify-start ...">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>
                         </div>
                       </div>
                     </div>
-                    <div className="basis-1/4 flex justify-center ...">
+                    <div className="basis-1/4 flex justify-start ...">
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Time</span>
@@ -440,7 +440,7 @@ export default function MemberDetail() {
                         </div>
                       </div>
                     </div>
-                    <div className="basis-1/3 flex justify-center ...">
+                    <div className="basis-1/3 pl-5">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>

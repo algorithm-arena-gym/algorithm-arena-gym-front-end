@@ -154,7 +154,7 @@ export default function TrainerDetail() {
                         </div>
                       </div>
                     </div>
-                    <div className="basis-1/4 flex justify-center ...">
+                    <div className="basis-1/4 pl-5">
                       <div>
                         <div className="grid  ">
                           <span className="font-semibold text-xl ">{null ? null :mem.trainingDate}</span>
@@ -162,7 +162,7 @@ export default function TrainerDetail() {
                         </div>
                       </div>
                     </div>
-                    <div className="basis-1/4 flex justify-center ...">
+                    <div className="basis-1/4 ">
                       <div>
                         <div className="grid ">
                          <span className="font-semibold text-xl ">{null ? null :mem.trainingTime}</span>
@@ -184,7 +184,7 @@ export default function TrainerDetail() {
                           </div>
                       </div>
                     </div>
-                    <div className="basis-1/3 flex justify-center ...">
+                    <div className="basis-1/3 pl-5">
                       <div>
                         <div className="grid  ">
                           <span className="font-semibold text-xl ">{co.courseDate}</span>
@@ -341,14 +341,14 @@ export default function TrainerDetail() {
                           </div>
                       </div>
                     </div>
-                    <div className="basis-1/4 flex justify-center ...">
+                    <div className="basis-1/4 pl-5">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>
                           </div>
                       </div>
                     </div>
-                    <div className="basis-1/4 flex justify-center ...">
+                    <div className="basis-1/4 ">
                       <div>
                         <div className="grid ">
                           <span className="font-light text-base ">Time</span>
@@ -371,7 +371,7 @@ export default function TrainerDetail() {
                           </div>
                       </div>
                     </div>
-                    <div className="basis-1/3 flex justify-center ...">
+                    <div className="basis-1/3 pl-5">
                       <div>
                         <div className="grid  ">
                           <span className="font-light text-base ">Days</span>

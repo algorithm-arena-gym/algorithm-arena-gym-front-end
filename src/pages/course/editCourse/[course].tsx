@@ -335,13 +335,13 @@ export default function EditCourse() {
   const listTime3: String[] = [];
 
 //  console.log(dateTimeOlds);
-  dateTimeOld?.map((dt: DateTimeOld) => {
-        // console.log(t.trainerID)
-        if (listCDT.indexOf(dt.courseDateTimeID) == -1 && listDay.indexOf(dt.courseDate) == -1) {
-            listCDT.push(dt.courseDateTimeID);
-            listDay.push(dt.courseDate);
-        }
-     });
+  // dateTimeOld?.map((dt: DateTimeOld) => {
+  //       // console.log(t.trainerID)
+  //       if (listCDT.indexOf(dt.courseDateTimeID) == -1 && listDay.indexOf(dt.courseDate) == -1) {
+  //           listCDT.push(dt.courseDateTimeID);
+  //           listDay.push(dt.courseDate);
+  //       }
+  //    });
 
 //  datrTimeOld?.map((dateTime : DateTimeOld) => {
 //  console.log(dateTime.courseDateTimeID)
@@ -559,7 +559,7 @@ export default function EditCourse() {
                                 <label htmlFor="first-name" className="font-light text-base ">Days</label>
                                 <Field type="string" name="day1" as="select"
                                   className="font-semibold text-xl rounded-md block w-full " >
-                                  <option className="font-semibold text-xl w-full">{null ? null : listDay[0]}</option>
+                                  <option className="font-semibold text-xl w-full">Monday</option>
                                   <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                   <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                   <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -570,7 +570,7 @@ export default function EditCourse() {
                                 </Field>
                                 <Field type="string" name="day2" as="select"
                                   className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                  <option className="font-semibold text-xl w-full"></option>
+                                  <option className="font-semibold text-xl w-full">Tuesday</option>
                                   <option value="Sunday" className="font-semibold text-xl w-full">Sunday</option>
                                   <option value="Monday" className="font-semibold text-xl w-full">Monday</option>
                                   <option value="Tuesday" className="font-semibold text-xl w-full">Tuesday</option>
@@ -602,7 +602,7 @@ export default function EditCourse() {
                                 <label htmlFor="first-name" className="font-light text-base ">Time</label>
                                 <Field type="string" name={`time1[0]`} as="select"
                                   className="font-semibold text-xl rounded-md block w-full" >
-                                  <option className="font-semibold text-xl w-full"></option>
+                                  <option className="font-semibold text-xl w-full">14-15</option>
                                   <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                   <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                   <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
@@ -616,7 +616,7 @@ export default function EditCourse() {
                                 </Field>
                                 <Field type="string" name={`time2[0]`} as="select"
                                   className="font-semibold text-xl rounded-md block w-full mt-3" >
-                                  <option className="font-semibold text-xl w-full"></option>
+                                  <option className="font-semibold text-xl w-full">15-16</option>
                                   <option value="10-11" className="font-semibold text-xl w-full">10-11</option>
                                   <option value="11-12" className="font-semibold text-xl w-full">11-12</option>
                                   <option value="12-13" className="font-semibold text-xl w-full">12-13</option>
